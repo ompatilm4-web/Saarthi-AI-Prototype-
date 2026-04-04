@@ -1,0 +1,1789 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saarthi AI – My Profile</title>
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #f9fafc;
+            --surface: #ffffff;
+            --border: #e2e8f0;
+            --blue: #2563eb;
+            --blue-dark: #1e3a8a;
+            --cyan: #0891b2;
+            --saffron: #0d26b8e4;
+            --green: #16a34a;
+            --purple: #9333ea;
+            --gold: #eab308;
+            --red: #dc2626;
+            --text: #0f172a;
+            --text-light: #475569;
+            --muted: #64748b;
+            --font-main: 'Inter', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        /* Dashboard Layout */
+        .dashboard {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar (same as dashboard) */
+        .sidebar {
+            width: 280px;
+            background: var(--surface);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+        }
+
+        .logo-wrap {
+            padding: 0 1.5rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            cursor: pointer;
+        }
+
+        .logo-mark {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .logo-square {
+            background-color: var(--blue-dark);
+            color: white;
+            width: 2rem;
+            height: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .logo-text {
+            color: var(--text);
+        }
+
+        .logo-text span {
+            color: var(--blue);
+        }
+
+        .nav-section {
+            padding: 1.5rem 0.75rem 0;
+        }
+
+        .nav-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--muted);
+            padding: 0 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--text-light);
+            font-weight: 500;
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .nav-item:hover {
+            background: #f1f5f9;
+            color: var(--blue);
+        }
+
+        .nav-item.active {
+            background: #eef2ff;
+            color: var(--blue);
+            font-weight: 600;
+        }
+
+        .nav-icon {
+            width: 1.5rem;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .nav-badge {
+            margin-left: auto;
+            background: var(--saffron);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+        }
+
+        .sidebar-bottom {
+            margin-top: auto;
+            padding: 1.5rem 0.75rem 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .user-pill {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            border-radius: 12px;
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .user-pill:hover {
+            border-color: var(--blue);
+            background: #f1f5f9;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--blue), var(--purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        .user-info {
+            flex: 1;
+        }
+
+        .user-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .user-role {
+            font-size: 0.7rem;
+            color: var(--muted);
+        }
+
+        /* Main Content */
+        .main {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        /* Top Bar */
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .page-title span {
+            color: var(--blue);
+            position: relative;
+        }
+
+        .page-title span::after {
+            content: '';
+            position: absolute;
+            bottom: 0.2rem;
+            left: 0;
+            width: 100%;
+            height: 0.4rem;
+            background-color: #fed7aa;
+            z-index: -1;
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .top-btn {
+            padding: 0.6rem 1.2rem;
+            border-radius: 40px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text);
+            font-weight: 500;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .top-btn:hover {
+            border-color: var(--blue);
+            color: var(--blue);
+        }
+
+        .top-btn.primary {
+            background: var(--blue-dark);
+            border-color: var(--blue-dark);
+            color: white;
+        }
+
+        .top-btn.primary:hover {
+            background: var(--blue);
+        }
+
+        /* Profile Layout */
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 1.5rem;
+        }
+
+        /* Profile Card */
+        .profile-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            position: relative;
+            animation: fadeUp 0.5s ease forwards;
+        }
+
+        .profile-cover {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(135deg, var(--blue), var(--purple));
+            border-radius: 24px 24px 0 0;
+            opacity: 0.1;
+        }
+
+        .profile-avatar-large {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--blue), var(--purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: white;
+            font-size: 2.5rem;
+            margin: 0 auto 1rem;
+            border: 4px solid var(--surface);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .profile-badge {
+            display: inline-block;
+            background: #eef2ff;
+            color: var(--blue);
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            margin-bottom: 1rem;
+        }
+
+        .profile-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin: 1.5rem 0;
+            padding: 1rem 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .meta-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 10px;
+            background: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--blue);
+        }
+
+        .profile-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .stat-item {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 1rem;
+        }
+
+        .stat-number {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--blue);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+
+        /* Profile Details */
+        .details-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 2rem;
+            animation: fadeUp 0.5s ease 0.1s forwards;
+            opacity: 0;
+        }
+
+        .details-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+
+        .details-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .edit-btn {
+            background: none;
+            border: 1px solid var(--border);
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .edit-btn:hover {
+            border-color: var(--blue);
+            color: var(--blue);
+            background: #eef2ff;
+        }
+
+        /* Form Grid */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--muted);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .form-value {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text);
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* Documents Section */
+        .documents-section {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .documents-title {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .doc-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .doc-card {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .doc-card:hover {
+            border-color: var(--blue);
+            background: #eef2ff;
+        }
+
+        .doc-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: var(--surface);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--blue);
+        }
+
+        .doc-info {
+            flex: 1;
+        }
+
+        .doc-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        .doc-status {
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .status-verified {
+            color: var(--green);
+        }
+
+        .status-pending {
+            color: var(--gold);
+        }
+
+        /* Activity Timeline */
+        .timeline {
+            margin-top: 2rem;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .timeline-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--blue);
+            flex-shrink: 0;
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .timeline-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-time {
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+
+        /* Language Chips */
+        .language-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .lang-chip {
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid var(--border);
+            background: #f8fafc;
+        }
+
+        .lang-chip.active {
+            background: var(--blue);
+            color: white;
+            border-color: var(--blue);
+        }
+
+        /* Animations */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .profile-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .dashboard {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Unified Top Nav -->
+    <!-- <header id="header" class="unified-header">
+        <nav class="container">
+
+            <div class="logo">
+                <a href="index.html" style="text-decoration:none; color:inherit;">Saarthi AI</a>
+            </div>
+
+            <ul class="nav-links">
+                <!-- ✅ Dashboard Button -->
+    <!-- <li>
+                    <a href="dashboard.html" class="dashboard-btn">
+                        <i class="fas fa-th-large"></i> Dashboard
+                    </a>
+                </li> -->
+
+    <!-- ✅ Round Profile Icon (active state) -->
+    <!-- <li> -->
+    <!-- <a href="profile.html" class="profile-icon-round active" title="My Profile"> -->
+    <!-- <img src="blank-profile-picture-973460_640.webp" alt="User Profile"> -->
+    <!-- </a>
+                </li>
+            </ul>
+
+        </nav>
+    </header>  -->
+
+    <body>
+
+        <!-- ADD THESE 3 LINES at the very top of body -->
+        <script src="JS/api.js"></script>
+        <script>requireAuth();</script>
+        <!-- END ADD -->
+
+        <!-- ... rest of your dashboard content ... -->
+
+        <!-- At the bottom, before 
+    <!-- ── Edit Profile Modal ─────────────────────────────── -->
+    <div id="editProfileModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.55); z-index:9999; align-items:center; justify-content:center;">
+        <div style="background:#fff; border-radius:16px; padding:2rem; width:100%; max-width:520px; margin:1rem; max-height:90vh; overflow-y:auto; box-shadow:0 20px 60px rgba(0,0,0,0.3);">
+            
+            <!-- Header -->
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+                <h2 style="margin:0; font-size:1.3rem; color:#1a202c;">✏️ Edit Profile</h2>
+                <button onclick="closeEditModal()" style="background:none; border:none; font-size:1.5rem; cursor:pointer; color:#6b7280; line-height:1;">×</button>
+            </div>
+
+            <!-- Form -->
+            <div style="display:grid; gap:1rem;">
+
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                    <div>
+                        <label style="display:block; font-size:12px; font-weight:600; color:#6b7280; text-transform:uppercase; margin-bottom:4px;">Full Name</label>
+                        <input id="edit_full_name" type="text" placeholder="Your full name"
+                            style="width:100%; padding:10px 12px; border:1.5px solid #e2e8f0; border-radius:8px; font-size:14px; box-sizing:border-box; outline:none;"
+                            onfocus="this.style.borderColor='#1a56db'" onblur="this.style.borderColor='#e2e8f0'">
+                    </div>
+                    <div>
+                        <label style="display:block; font-size:12px; font-weight:600; color:#6b7280; text-transform:uppercase; margin-bottom:4px;">Age</label>
+                        <input id="edit_age" type="number" placeholder="Your age" min="1" max="120"
+                            style="width:100%; padding:10px 12px; border:1.5px solid #e2e8f0; border-radius:8px; font-size:14px; box-sizing:border-box; outline:none;"
+                            onfocus="this.style.borderColor='#1a56db'" onblur="this.style.borderColor='#e2e8f0'">
+                    </div>
+                </div>
+
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                    <div>
+                        <label style="display:block; font-size:12px; font-weight:600; color:#6b7280; text-transform:uppercase; margin-bottom:4px;">Gender</label>
+                        <select id="edit_gender"
+                            style="width:100%; padding:10px 12px; border:1.5px solid #e2e8f0; border-radius:8px; font-size:14px; box-sizing:border-box; outline:none; background:#fff;"
+                            onfocus="this.style.borderColor='#1a56db'" onblur="this.style.borderColor='#e2e8f0'">
+                            <option value="">Select Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="display:block; font-size:12px; font-weight:600; color:#6b7280; text-transform:uppercase; margin-bottom:4px;">State</label>
+                        <select id="edit_state"
+                            style="width:100%; padding:10px 12px; border:1.5px solid #e2e8f0; border-radius:8px; font-size:14px; box-sizing:border-box; outline:none; background:#fff;"
+                            onfocus="this.style.borderColor='#1a56db'" onblur="this.style.borderColor='#e2e8f0'">
+                            <option value="">Select State</option>
+                            <option value="andhra_pradesh">Andhra Pradesh</option>
+                            <option value="assam">Assam</option>
+                            <option value="bihar">Bihar</option>
+                            <option value="delhi">Delhi</option>
+                            <option value="gujarat">Gujarat</option>
+                            <option value="haryana">Haryana</option>
+                            <option value="jharkhand">Jharkhand</option>
+                            <option value="karnataka">Karnataka</option>
+                            <option value="kerala">Kerala</option>
+                            <option value="madhya_pradesh">Madhya Pradesh</option>
+                            <option value="maharashtra">Maharashtra</option>
+                            <option value="odisha">Odisha</option>
+                            <option value="punjab">Punjab</option>
+                            <option value="rajasthan">Rajasthan</option>
+                            <option value="tamil_nadu">Tamil Nadu</option>
+                            <option value="telangana">Telangana</option>
+                            <option value="uttar_pradesh">Uttar Pradesh</option>
+                            <option value="uttarakhand">Uttarakhand</option>
+                            <option value="west_bengal">West Bengal</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                    <div>
+                        <label style="display:block; font-size:12px; font-weight:600; color:#6b7280; text-transform:uppercase; margin-bottom:4px;">Occupation</label>
+                        <select id="edit_occupation"
+                            style="width:100%; padding:10px 12px; border:1.5px solid #e2e8f0; border-radius:8px; font-size:14px; box-sizing:border-box; outline:none; background:#fff;"
+                            onfocus="this.style.borderColor='#1a56db'" onblur="this.style.borderColor='#e2e8f0'">
+                            <option value="">Select Occupation</option>
+                            <option value="farmer">Farmer</option>
+                            <option value="student">Student</option>
+                            <option value="salaried">Salaried</option>
+                            <option value="business">Business</option>
+                            <option value="unemployed">Unemployed</option>
+                            <option value="homemaker">Homemaker</option>
+                            <option value="daily_wage">Daily Wage</option>
+                            <option value="artisan">Artisan</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="display:block; font-size:12px; font-weight:600; color:#6b7280; text-transform:uppercase; margin-bottom:4px;">Annual Income (₹)</label>
+                        <input id="edit_income" type="number" placeholder="e.g. 60000" min="0"
+                            style="width:100%; padding:10px 12px; border:1.5px solid #e2e8f0; border-radius:8px; font-size:14px; box-sizing:border-box; outline:none;"
+                            onfocus="this.style.borderColor='#1a56db'" onblur="this.style.borderColor='#e2e8f0'">
+                    </div>
+                </div>
+
+                <div>
+                    <label style="display:block; font-size:12px; font-weight:600; color:#6b7280; text-transform:uppercase; margin-bottom:4px;">Category</label>
+                    <select id="edit_category"
+                        style="width:100%; padding:10px 12px; border:1.5px solid #e2e8f0; border-radius:8px; font-size:14px; box-sizing:border-box; outline:none; background:#fff;"
+                        onfocus="this.style.borderColor='#1a56db'" onblur="this.style.borderColor='#e2e8f0'">
+                        <option value="">Select Category</option>
+                        <option value="general">General</option>
+                        <option value="obc">OBC</option>
+                        <option value="sc">SC</option>
+                        <option value="st">ST</option>
+                        <option value="ews">EWS</option>
+                    </select>
+                </div>
+
+                <!-- Status message -->
+                <div id="editStatusMsg" style="display:none; padding:10px 14px; border-radius:8px; font-size:14px; font-weight:500;"></div>
+
+                <!-- Action buttons -->
+                <div style="display:flex; gap:1rem; margin-top:0.5rem;">
+                    <button onclick="saveProfile()"
+                        style="flex:1; background:#1a56db; color:#fff; border:none; padding:12px; border-radius:10px; font-size:15px; font-weight:600; cursor:pointer; transition:background 0.2s;"
+                        onmouseover="this.style.background='#1648b8'" onmouseout="this.style.background='#1a56db'">
+                        💾 Save Changes
+                    </button>
+                    <button onclick="closeEditModal()"
+                        style="flex:1; background:#f3f4f6; color:#374151; border:none; padding:12px; border-radius:10px; font-size:15px; font-weight:600; cursor:pointer;">
+                        Cancel
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ── Open modal and pre-fill with current user data ───────
+        function openEditModal() {
+            const user = getUser();
+            if (!user) { alert("Please login first."); return; }
+
+            // Pre-fill all fields
+            document.getElementById("edit_full_name").value  = user.full_name || user.name || "";
+            document.getElementById("edit_age").value        = user.age || "";
+            document.getElementById("edit_gender").value     = user.gender || "";
+            document.getElementById("edit_state").value      = user.state || "";
+            document.getElementById("edit_occupation").value = user.occupation || "";
+            document.getElementById("edit_income").value     = user.income || "";
+            document.getElementById("edit_category").value   = user.category || "";
+
+            // Hide status message
+            const msg = document.getElementById("editStatusMsg");
+            msg.style.display = "none";
+
+            // Show modal
+            const modal = document.getElementById("editProfileModal");
+            modal.style.display = "flex";
+            document.body.style.overflow = "hidden";
+        }
+
+        // ── Close modal ──────────────────────────────────────────
+        function closeEditModal() {
+            document.getElementById("editProfileModal").style.display = "none";
+            document.body.style.overflow = "";
+        }
+
+        // Close on backdrop click
+        document.getElementById("editProfileModal").addEventListener("click", function(e) {
+            if (e.target === this) closeEditModal();
+        });
+
+        // ── Save profile via PUT /api/v1/auth/profile ────────────
+        async function saveProfile() {
+            const user = getUser();
+            if (!user) return;
+
+            // mobile is stored under different keys depending on Supabase response
+            const phone = user.mobile || user.phone || user.phone_number || null;
+            if (!phone) {
+                console.error("[saveProfile] user object:", JSON.stringify(user));
+                alert("Could not identify user. Please login again.");
+                return;
+            }
+
+            const saveBtn = document.querySelector("#editProfileModal button[onclick=\'saveProfile()\']")
+                         || document.querySelector("#editProfileModal button");
+
+            const payload = {
+                full_name:  document.getElementById("edit_full_name").value.trim()  || null,
+                age:        parseInt(document.getElementById("edit_age").value)      || null,
+                gender:     document.getElementById("edit_gender").value             || null,
+                state:      document.getElementById("edit_state").value              || null,
+                occupation: document.getElementById("edit_occupation").value         || null,
+                income:     parseInt(document.getElementById("edit_income").value)   || null,
+                category:   document.getElementById("edit_category").value           || null,
+            };
+
+            // Remove null values
+            Object.keys(payload).forEach(k => payload[k] === null && delete payload[k]);
+
+            if (Object.keys(payload).length === 0) {
+                showEditStatus("No changes to save.", "warning");
+                return;
+            }
+
+            showEditStatus("Saving...", "info");
+
+            try {
+                const res = await fetch(
+                    `http://localhost:8080/profile?mobile=${encodeURIComponent(phone)}`,
+                    {
+                        method: "PUT",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(payload),
+                    }
+                );
+
+                if (!res.ok) {
+                    const err = await res.json().catch(() => ({}));
+                    throw new Error(err.detail || "Failed to update profile");
+                }
+
+                // ── Update localStorage with new values ──────────
+                const updatedUser = { ...user, ...payload };
+                localStorage.setItem("saarthi_user", JSON.stringify(updatedUser));
+
+                showEditStatus("✅ Profile updated successfully!", "success");
+
+                // Refresh displayed values on the page
+                loadUserProfile();
+
+                // Auto-close after 1.2 seconds
+                setTimeout(closeEditModal, 1200);
+
+            } catch (err) {
+                showEditStatus("❌ " + (err.message || "Update failed. Try again."), "error");
+            }
+        }
+
+        // ── Status message helper ────────────────────────────────
+        function showEditStatus(message, type) {
+            const el = document.getElementById("editStatusMsg");
+            const styles = {
+                success: "background:#f0fdf4; color:#166534; border:1px solid #bbf7d0;",
+                error:   "background:#fef2f2; color:#991b1b; border:1px solid #fecaca;",
+                info:    "background:#eff6ff; color:#1e40af; border:1px solid #bfdbfe;",
+                warning: "background:#fffbeb; color:#92400e; border:1px solid #fde68a;",
+            };
+            el.style.cssText = `display:block; padding:10px 14px; border-radius:8px; font-size:14px; font-weight:500; ${styles[type]}`;
+            el.textContent = message;
+        }
+    </script>
+
+</body> -->
+        <script src="JS/main.js"></script>
+    
+    <!-- ── Edit Profile Modal ─────────────────────────────── -->
+    <div id="editProfileModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.55); z-index:9999; align-items:center; justify-content:center;">
+        <div style="background:#fff; border-radius:16px; padding:2rem; width:100%; max-width:520px; margin:1rem; max-height:90vh; overflow-y:auto; box-shadow:0 20px 60px rgba(0,0,0,0.3);">
+            
+            <!-- Header -->
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+                <h2 style="margin:0; font-size:1.3rem; color:#1a202c;">✏️ Edit Profile</h2>
+                <button onclick="closeEditModal()" style="background:none; border:none; font-size:1.5rem; cursor:pointer; color:#6b7280; line-height:1;">×</button>
+            </div>
+
+            <!-- Form -->
+            <div style="display:grid; gap:1rem;">
+
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                    <div>
+                        <label style="display:block; font-size:12px; font-weight:600; color:#6b7280; text-transform:uppercase; margin-bottom:4px;">Full Name</label>
+                        <input id="edit_full_name" type="text" placeholder="Your full name"
+                            style="width:100%; padding:10px 12px; border:1.5px solid #e2e8f0; border-radius:8px; font-size:14px; box-sizing:border-box; outline:none;"
+                            onfocus="this.style.borderColor='#1a56db'" onblur="this.style.borderColor='#e2e8f0'">
+                    </div>
+                    <div>
+                        <label style="display:block; font-size:12px; font-weight:600; color:#6b7280; text-transform:uppercase; margin-bottom:4px;">Age</label>
+                        <input id="edit_age" type="number" placeholder="Your age" min="1" max="120"
+                            style="width:100%; padding:10px 12px; border:1.5px solid #e2e8f0; border-radius:8px; font-size:14px; box-sizing:border-box; outline:none;"
+                            onfocus="this.style.borderColor='#1a56db'" onblur="this.style.borderColor='#e2e8f0'">
+                    </div>
+                </div>
+
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                    <div>
+                        <label style="display:block; font-size:12px; font-weight:600; color:#6b7280; text-transform:uppercase; margin-bottom:4px;">Gender</label>
+                        <select id="edit_gender"
+                            style="width:100%; padding:10px 12px; border:1.5px solid #e2e8f0; border-radius:8px; font-size:14px; box-sizing:border-box; outline:none; background:#fff;"
+                            onfocus="this.style.borderColor='#1a56db'" onblur="this.style.borderColor='#e2e8f0'">
+                            <option value="">Select Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="display:block; font-size:12px; font-weight:600; color:#6b7280; text-transform:uppercase; margin-bottom:4px;">State</label>
+                        <select id="edit_state"
+                            style="width:100%; padding:10px 12px; border:1.5px solid #e2e8f0; border-radius:8px; font-size:14px; box-sizing:border-box; outline:none; background:#fff;"
+                            onfocus="this.style.borderColor='#1a56db'" onblur="this.style.borderColor='#e2e8f0'">
+                            <option value="">Select State</option>
+                            <option value="andhra_pradesh">Andhra Pradesh</option>
+                            <option value="assam">Assam</option>
+                            <option value="bihar">Bihar</option>
+                            <option value="delhi">Delhi</option>
+                            <option value="gujarat">Gujarat</option>
+                            <option value="haryana">Haryana</option>
+                            <option value="jharkhand">Jharkhand</option>
+                            <option value="karnataka">Karnataka</option>
+                            <option value="kerala">Kerala</option>
+                            <option value="madhya_pradesh">Madhya Pradesh</option>
+                            <option value="maharashtra">Maharashtra</option>
+                            <option value="odisha">Odisha</option>
+                            <option value="punjab">Punjab</option>
+                            <option value="rajasthan">Rajasthan</option>
+                            <option value="tamil_nadu">Tamil Nadu</option>
+                            <option value="telangana">Telangana</option>
+                            <option value="uttar_pradesh">Uttar Pradesh</option>
+                            <option value="uttarakhand">Uttarakhand</option>
+                            <option value="west_bengal">West Bengal</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                    <div>
+                        <label style="display:block; font-size:12px; font-weight:600; color:#6b7280; text-transform:uppercase; margin-bottom:4px;">Occupation</label>
+                        <select id="edit_occupation"
+                            style="width:100%; padding:10px 12px; border:1.5px solid #e2e8f0; border-radius:8px; font-size:14px; box-sizing:border-box; outline:none; background:#fff;"
+                            onfocus="this.style.borderColor='#1a56db'" onblur="this.style.borderColor='#e2e8f0'">
+                            <option value="">Select Occupation</option>
+                            <option value="farmer">Farmer</option>
+                            <option value="student">Student</option>
+                            <option value="salaried">Salaried</option>
+                            <option value="business">Business</option>
+                            <option value="unemployed">Unemployed</option>
+                            <option value="homemaker">Homemaker</option>
+                            <option value="daily_wage">Daily Wage</option>
+                            <option value="artisan">Artisan</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="display:block; font-size:12px; font-weight:600; color:#6b7280; text-transform:uppercase; margin-bottom:4px;">Annual Income (₹)</label>
+                        <input id="edit_income" type="number" placeholder="e.g. 60000" min="0"
+                            style="width:100%; padding:10px 12px; border:1.5px solid #e2e8f0; border-radius:8px; font-size:14px; box-sizing:border-box; outline:none;"
+                            onfocus="this.style.borderColor='#1a56db'" onblur="this.style.borderColor='#e2e8f0'">
+                    </div>
+                </div>
+
+                <div>
+                    <label style="display:block; font-size:12px; font-weight:600; color:#6b7280; text-transform:uppercase; margin-bottom:4px;">Category</label>
+                    <select id="edit_category"
+                        style="width:100%; padding:10px 12px; border:1.5px solid #e2e8f0; border-radius:8px; font-size:14px; box-sizing:border-box; outline:none; background:#fff;"
+                        onfocus="this.style.borderColor='#1a56db'" onblur="this.style.borderColor='#e2e8f0'">
+                        <option value="">Select Category</option>
+                        <option value="general">General</option>
+                        <option value="obc">OBC</option>
+                        <option value="sc">SC</option>
+                        <option value="st">ST</option>
+                        <option value="ews">EWS</option>
+                    </select>
+                </div>
+
+                <!-- Status message -->
+                <div id="editStatusMsg" style="display:none; padding:10px 14px; border-radius:8px; font-size:14px; font-weight:500;"></div>
+
+                <!-- Action buttons -->
+                <div style="display:flex; gap:1rem; margin-top:0.5rem;">
+                    <button onclick="saveProfile()"
+                        style="flex:1; background:#1a56db; color:#fff; border:none; padding:12px; border-radius:10px; font-size:15px; font-weight:600; cursor:pointer; transition:background 0.2s;"
+                        onmouseover="this.style.background='#1648b8'" onmouseout="this.style.background='#1a56db'">
+                        💾 Save Changes
+                    </button>
+                    <button onclick="closeEditModal()"
+                        style="flex:1; background:#f3f4f6; color:#374151; border:none; padding:12px; border-radius:10px; font-size:15px; font-weight:600; cursor:pointer;">
+                        Cancel
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ── Open modal and pre-fill with current user data ───────
+        function openEditModal() {
+            const user = getUser();
+            if (!user) { alert("Please login first."); return; }
+
+            // Pre-fill all fields
+            document.getElementById("edit_full_name").value  = user.full_name || user.name || "";
+            document.getElementById("edit_age").value        = user.age || "";
+            document.getElementById("edit_gender").value     = user.gender || "";
+            document.getElementById("edit_state").value      = user.state || "";
+            document.getElementById("edit_occupation").value = user.occupation || "";
+            document.getElementById("edit_income").value     = user.income || "";
+            document.getElementById("edit_category").value   = user.category || "";
+
+            // Hide status message
+            const msg = document.getElementById("editStatusMsg");
+            msg.style.display = "none";
+
+            // Show modal
+            const modal = document.getElementById("editProfileModal");
+            modal.style.display = "flex";
+            document.body.style.overflow = "hidden";
+        }
+
+        // ── Close modal ──────────────────────────────────────────
+        function closeEditModal() {
+            document.getElementById("editProfileModal").style.display = "none";
+            document.body.style.overflow = "";
+        }
+
+        // Close on backdrop click
+        document.getElementById("editProfileModal").addEventListener("click", function(e) {
+            if (e.target === this) closeEditModal();
+        });
+
+        // ── Save profile via PUT /api/v1/auth/profile ────────────
+        async function saveProfile() {
+            const user = getUser();
+            if (!user) return;
+
+            // mobile is stored under different keys depending on Supabase response
+            const phone = user.mobile || user.phone || user.phone_number || null;
+            if (!phone) {
+                console.error("[saveProfile] user object:", JSON.stringify(user));
+                alert("Could not identify user. Please login again.");
+                return;
+            }
+
+            const saveBtn = document.querySelector("#editProfileModal button[onclick=\'saveProfile()\']")
+                         || document.querySelector("#editProfileModal button");
+
+            const payload = {
+                full_name:  document.getElementById("edit_full_name").value.trim()  || null,
+                age:        parseInt(document.getElementById("edit_age").value)      || null,
+                gender:     document.getElementById("edit_gender").value             || null,
+                state:      document.getElementById("edit_state").value              || null,
+                occupation: document.getElementById("edit_occupation").value         || null,
+                income:     parseInt(document.getElementById("edit_income").value)   || null,
+                category:   document.getElementById("edit_category").value           || null,
+            };
+
+            // Remove null values
+            Object.keys(payload).forEach(k => payload[k] === null && delete payload[k]);
+
+            if (Object.keys(payload).length === 0) {
+                showEditStatus("No changes to save.", "warning");
+                return;
+            }
+
+            showEditStatus("Saving...", "info");
+
+            try {
+                const res = await fetch(
+                    `http://localhost:8080/profile?mobile=${encodeURIComponent(phone)}`,
+                    {
+                        method: "PUT",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(payload),
+                    }
+                );
+
+                if (!res.ok) {
+                    const err = await res.json().catch(() => ({}));
+                    throw new Error(err.detail || "Failed to update profile");
+                }
+
+                // ── Update localStorage with new values ──────────
+                const updatedUser = { ...user, ...payload };
+                localStorage.setItem("saarthi_user", JSON.stringify(updatedUser));
+
+                showEditStatus("✅ Profile updated successfully!", "success");
+
+                // Refresh displayed values on the page
+                loadUserProfile();
+
+                // Auto-close after 1.2 seconds
+                setTimeout(closeEditModal, 1200);
+
+            } catch (err) {
+                showEditStatus("❌ " + (err.message || "Update failed. Try again."), "error");
+            }
+        }
+
+        // ── Status message helper ────────────────────────────────
+        function showEditStatus(message, type) {
+            const el = document.getElementById("editStatusMsg");
+            const styles = {
+                success: "background:#f0fdf4; color:#166534; border:1px solid #bbf7d0;",
+                error:   "background:#fef2f2; color:#991b1b; border:1px solid #fecaca;",
+                info:    "background:#eff6ff; color:#1e40af; border:1px solid #bfdbfe;",
+                warning: "background:#fffbeb; color:#92400e; border:1px solid #fde68a;",
+            };
+            el.style.cssText = `display:block; padding:10px 14px; border-radius:8px; font-size:14px; font-weight:500; ${styles[type]}`;
+            el.textContent = message;
+        }
+    </script>
+
+</body>
+
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo-wrap" onclick="window.location.href='index.html';">
+                <div class="logo-mark">
+                    <div class="logo-square">S</div>
+                    <div class="logo-text">Saarthi<span>AI</span></div>
+                </div>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-label">MAIN</div>
+                <div class="nav-item" onclick="window.location.href='dashboard.html';"><span
+                        class="nav-icon">⚡</span><span data-i18n="dashboard">Dashboard</span></div>
+                <div class="nav-item" onclick="window.location.href='my-schemes.html';"><span
+                        class="nav-icon">📋</span><span data-i18n="mySchemes">My Schemes</span> <span
+                        class="nav-badge">3</span></div>
+                <div class="nav-item" onclick="window.location.href='voice-assistant.html';"><span
+                        class="nav-icon">🎤</span><span data-i18n="voiceAssistant">Voice Assistant</span></div>
+                <div class="nav-item" onclick="window.location.href='documents.html';"><span
+                        class="nav-icon">📄</span><span data-i18n="documents">Documents</span></div>
+                <div class="nav-item" onclick="window.location.href='notifications.html';"><span
+                        class="nav-icon">🔔</span><span data-i18n="notifications">Notifications</span> <span
+                        class="nav-badge">7</span></div>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-label">ACCOUNT</div>
+                <!-- <div class="nav-item active" onclick="window.location.href='profile.html';"><span
+                        class="nav-icon">👤</span>Profile</div> -->
+                <div class="nav-item" onclick="window.location.href='language.html';"><span
+                        class="nav-icon">🌐</span><span data-i18n="language">Language</span></div>
+                <!-- <div class="nav-item" onclick="window.location.href='settings.html';"><span
+                        class="nav-icon">⚙️</span>Settings</div> -->
+            </div>
+
+            <div class="sidebar-bottom">
+                <div class="user-pill" onclick="window.location.href='profile.html';">
+                    <div class="avatar" id="sidebarAvatar">—</div>
+                    <div class="user-info">
+                        <div class="user-name" id="sidebarName">Loading…</div>
+                        <div class="user-role" id="sidebarRole">Verified Citizen</div>
+                    </div>
+                    <i class="fas fa-chevron-right" style="color: var(--muted); font-size: 0.8rem;"></i>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main">
+            <!-- Top Bar -->
+            <div class="topbar">
+                <h1 class="page-title"><span>My</span> Profile</h1>
+                <div class="topbar-right">
+                    <button class="top-btn primary" onclick="openEditModal()"><i
+                            class="fas fa-edit"></i> Edit Profile</button>
+                </div>
+            </div>
+
+            <!-- Profile Grid -->
+            <div class="profile-grid">
+                <!-- Left Column - Profile Card -->
+                <div class="profile-card">
+                    <div class="profile-cover"></div>
+                    <div class="profile-avatar-large" id="profileAvatar">—</div>
+                    <h2 class="profile-name" id="profileName">—</h2>
+                    <div class="profile-badge">
+                        <i class="fas fa-check-circle" style="margin-right: 0.3rem;"></i>Verified Citizen
+                    </div>
+
+                    <div class="profile-meta">
+                        <div class="meta-item">
+                            <div class="meta-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <span id="metaState">Location loading...</span>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-icon"><i class="fas fa-phone-alt"></i></div>
+                            <span id="metaPhone">—</span>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-icon"><i class="fas fa-envelope"></i></div>
+                            <span id="metaEmail">—</span>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-icon"><i class="fas fa-calendar"></i></div>
+                            <span id="metaMemberSince">Member since Jan 2024</span>
+                        </div>
+                    </div>
+
+                    <div class="profile-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">8</div>
+                            <div class="stat-label">Active Schemes</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">12</div>
+                            <div class="stat-label">Applications</div>
+                        </div>
+                    </div>
+
+                    <!-- Language Preference -->
+                    <div style="margin-top: 1.5rem; text-align: left;">
+                        <div style="font-size: 0.8rem; font-weight: 600; color: var(--muted); margin-bottom: 0.75rem;">
+                            <i class="fas fa-language" style="margin-right: 0.3rem;"></i>Preferred Languages
+                        </div>
+                        <div class="language-chips">
+                            <span class="lang-chip active">हिंदी</span>
+                            <span class="lang-chip">English</span>
+                            <span class="lang-chip">भोजपुरी</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column - Details -->
+                <div class="details-card">
+                    <div class="details-header">
+                        <h3 class="details-title">Personal Information</h3>
+                        <button class="edit-btn" onclick="openEditModal()">
+                            <i class="fas fa-pencil-alt"></i> Edit
+                        </button>
+                    </div>
+
+                    <!-- Personal Details Grid -->
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">Full Name</label>
+                            <div class="form-value" id="fieldName">Rajesh Kumar Singh</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Phone Number</label>
+                            <div class="form-value" id="fieldPhone">+91 98765 43210</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Aadhaar Number</label>
+                            <div class="form-value" id="fieldAadhaar">XXXX-XXXX-1234</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Occupation</label>
+                            <div class="form-value" id="fieldOccupation">Farmer</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">State</label>
+                            <div class="form-value" id="fieldState">Uttar Pradesh</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Annual Income</label>
+                            <div class="form-value" id="fieldIncome">₹60,000</div>
+                        </div>
+                    </div>
+
+                    <!-- Address Section -->
+                    <div style="margin-top: 2rem;">
+                        <h4 style="font-size: 1rem; font-weight: 700; margin-bottom: 1rem;">Address Details</h4>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">Street Address</label>
+                                <div class="form-value">123, Ganga Nagar</div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">City/District</label>
+                                <div class="form-value">Lucknow</div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">State</label>
+                                <div class="form-value">Uttar Pradesh</div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">PIN Code</label>
+                                <div class="form-value">226001</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Documents Section -->
+                    <div class="documents-section">
+                        <h4 class="documents-title">Verified Documents</h4>
+                        <div class="doc-grid">
+                            <div class="doc-card">
+                                <div class="doc-icon"><i class="fas fa-id-card"></i></div>
+                                <div class="doc-info">
+                                    <div class="doc-name">Aadhaar Card</div>
+                                    <div class="doc-status status-verified">
+                                        <i class="fas fa-check-circle"></i> Verified
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="doc-card">
+                                <div class="doc-icon"><i class="fas fa-passport"></i></div>
+                                <div class="doc-info">
+                                    <div class="doc-name">Voter ID</div>
+                                    <div class="doc-status status-verified">
+                                        <i class="fas fa-check-circle"></i> Verified
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="doc-card">
+                                <div class="doc-icon"><i class="fas fa-file-invoice"></i></div>
+                                <div class="doc-info">
+                                    <div class="doc-name">PAN Card</div>
+                                    <div class="doc-status status-pending">
+                                        <i class="fas fa-clock"></i> Pending
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <div style="margin-top: 2rem;">
+                        <h4 style="font-size: 1rem; font-weight: 700; margin-bottom: 1rem;">Recent Activity</h4>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-icon"><i class="fas fa-file-alt"></i></div>
+                                <div class="timeline-content">
+                                    <div class="timeline-title">Applied for PM-KISAN Scheme</div>
+                                    <div class="timeline-time">2 days ago</div>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-icon"><i class="fas fa-check-circle"
+                                        style="color: var(--green);"></i></div>
+                                <div class="timeline-content">
+                                    <div class="timeline-title">Aadhaar verification completed</div>
+                                    <div class="timeline-time">5 days ago</div>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-icon"><i class="fas fa-rupee-sign"></i></div>
+                                <div class="timeline-content">
+                                    <div class="timeline-title">Received ₹2,000 PM-KISAN installment</div>
+                                    <div class="timeline-time">1 week ago</div>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-icon"><i class="fas fa-comment"></i></div>
+                                <div class="timeline-content">
+                                    <div class="timeline-title">Asked Saarthi about Ayushman Bharat</div>
+                                    <div class="timeline-time">2 weeks ago</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Account Actions -->
+                    <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: flex-end;">
+                        <button class="top-btn" style="border-color: var(--red); color: var(--red);"
+                            onclick="if(confirm('Are you sure?')) alert('Account deleted')">
+                            <i class="fas fa-trash-alt"></i> Delete Account
+                        </button>
+                        <button class="top-btn" onclick="window.location.href='change-password.html';">
+                            <i class="fas fa-lock"></i> Change Password
+                        </button>
+                        <button class="top-btn" style="border-color: var(--primary, #1a56db); color: var(--primary, #1a56db);"
+                            onclick="if(confirm('Are you sure you want to logout?')) logout()">
+                            <i class="fas fa-sign-out-alt"></i> Log Out
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Live clock update
+        function updateClock() {
+            const now = new Date();
+            const clock = document.getElementById('clock');
+            if (clock) {
+                const opts = { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' };
+                clock.textContent = now.toLocaleDateString('en-IN', opts);
+            }
+        }
+        updateClock();
+        setInterval(updateClock, 1000);
+
+        // Count-up animation for stats
+        document.querySelectorAll('.count-up').forEach(el => {
+            const target = +el.dataset.target;
+            const duration = 1400;
+            const start = performance.now();
+
+            function update(now) {
+                const progress = Math.min((now - start) / duration, 1);
+                const ease = 1 - Math.pow(1 - progress, 3);
+                const val = Math.round(ease * target);
+                el.textContent = val;
+                if (progress < 1) requestAnimationFrame(update);
+            }
+            requestAnimationFrame(update);
+        });
+
+        // Language chips toggle
+        document.querySelectorAll('.lang-chip').forEach(chip => {
+            chip.addEventListener('click', function () {
+                document.querySelectorAll('.lang-chip').forEach(c => c.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+    <!-- Google Translate (hidden widget) -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({ pageLanguage: 'en', autoDisplay: false, includedLanguages: 'hi,bn,te,ta,mr,gu,kn,ml,pa,or,as,en' }, 'google_translate_element');
+        }
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <div id="google_translate_element" style="display:none;"></div>
+
+    <script src="JS/api.js"></script>
+    <script>
+        function getInitials(name) {
+            if (!name) return "?";
+            return name.split(" ").map(w => w[0]).join("").toUpperCase().slice(0, 2);
+        }
+
+        function loadUserProfile() {
+            const user = getUser(); // reads from localStorage (saved at login)
+
+            if (!user) {
+                // No user in storage — show guest state
+                ["sidebarName", "profileName"].forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) el.textContent = "Guest User";
+                });
+                return;
+            }
+
+            const name = user.full_name || user.name || user.mobile || "Citizen";
+            const phone = user.mobile || "—";
+            const state = user.state || "—";
+            const initials = getInitials(name);
+
+            // Sidebar
+            const sidebarAvatar = document.getElementById("sidebarAvatar");
+            const sidebarName = document.getElementById("sidebarName");
+            const sidebarRole = document.getElementById("sidebarRole");
+            if (sidebarAvatar) sidebarAvatar.textContent = initials;
+            if (sidebarName) sidebarName.textContent = name;
+            if (sidebarRole) sidebarRole.textContent = `Verified Citizen · ${state}`;
+
+            // Main profile header
+            const profileAvatar = document.getElementById("profileAvatar");
+            const profileName = document.getElementById("profileName");
+            if (profileAvatar) profileAvatar.textContent = initials;
+            if (profileName) profileName.textContent = name;
+
+            // Fill form fields if they exist
+            const fieldMap = {
+                "fieldName":       user.full_name || user.name || phone,
+                "fieldPhone":      phone,
+                "fieldState":      user.state || "—",
+                "fieldAadhaar":    user.aadhaar
+                                     ? `XXXX-XXXX-${String(user.aadhaar).slice(-4)}`
+                                     : "—",
+                "fieldOccupation": user.occupation || "—",
+                "fieldIncome":     user.income
+                                     ? `₹${Number(user.income).toLocaleString("en-IN")}`
+                                     : "—",
+                // Meta fields
+                "metaPhone":  phone,
+                "metaState":  user.state || "—",
+                "metaEmail":  user.email || "—",
+            };
+            Object.entries(fieldMap).forEach(([id, val]) => {
+                const el = document.getElementById(id);
+                if (el) el.textContent = val;
+            });
+        }
+
+        loadUserProfile();
+    </script>
+    <script src="JS/language.js"></script>
+    <script src="JS/main.js"></script>
+
+    <!-- ── Edit Profile Modal ─────────────────────────────── -->
+    <div id="editProfileModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.55); z-index:9999; align-items:center; justify-content:center;">
+        <div style="background:#fff; border-radius:16px; padding:2rem; width:100%; max-width:520px; margin:1rem; max-height:90vh; overflow-y:auto; box-shadow:0 20px 60px rgba(0,0,0,0.3);">
+            
+            <!-- Header -->
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+                <h2 style="margin:0; font-size:1.3rem; color:#1a202c;">✏️ Edit Profile</h2>
+                <button onclick="closeEditModal()" style="background:none; border:none; font-size:1.5rem; cursor:pointer; color:#6b7280; line-height:1;">×</button>
+            </div>
+
+            <!-- Form -->
+            <div style="display:grid; gap:1rem;">
+
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                    <div>
+                        <label style="display:block; font-size:12px; font-weight:600; color:#6b7280; text-transform:uppercase; margin-bottom:4px;">Full Name</label>
+                        <input id="edit_full_name" type="text" placeholder="Your full name"
+                            style="width:100%; padding:10px 12px; border:1.5px solid #e2e8f0; border-radius:8px; font-size:14px; box-sizing:border-box; outline:none;"
+                            onfocus="this.style.borderColor='#1a56db'" onblur="this.style.borderColor='#e2e8f0'">
+                    </div>
+                    <div>
+                        <label style="display:block; font-size:12px; font-weight:600; color:#6b7280; text-transform:uppercase; margin-bottom:4px;">Age</label>
+                        <input id="edit_age" type="number" placeholder="Your age" min="1" max="120"
+                            style="width:100%; padding:10px 12px; border:1.5px solid #e2e8f0; border-radius:8px; font-size:14px; box-sizing:border-box; outline:none;"
+                            onfocus="this.style.borderColor='#1a56db'" onblur="this.style.borderColor='#e2e8f0'">
+                    </div>
+                </div>
+
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                    <div>
+                        <label style="display:block; font-size:12px; font-weight:600; color:#6b7280; text-transform:uppercase; margin-bottom:4px;">Gender</label>
+                        <select id="edit_gender"
+                            style="width:100%; padding:10px 12px; border:1.5px solid #e2e8f0; border-radius:8px; font-size:14px; box-sizing:border-box; outline:none; background:#fff;"
+                            onfocus="this.style.borderColor='#1a56db'" onblur="this.style.borderColor='#e2e8f0'">
+                            <option value="">Select Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="display:block; font-size:12px; font-weight:600; color:#6b7280; text-transform:uppercase; margin-bottom:4px;">State</label>
+                        <select id="edit_state"
+                            style="width:100%; padding:10px 12px; border:1.5px solid #e2e8f0; border-radius:8px; font-size:14px; box-sizing:border-box; outline:none; background:#fff;"
+                            onfocus="this.style.borderColor='#1a56db'" onblur="this.style.borderColor='#e2e8f0'">
+                            <option value="">Select State</option>
+                            <option value="andhra_pradesh">Andhra Pradesh</option>
+                            <option value="assam">Assam</option>
+                            <option value="bihar">Bihar</option>
+                            <option value="delhi">Delhi</option>
+                            <option value="gujarat">Gujarat</option>
+                            <option value="haryana">Haryana</option>
+                            <option value="jharkhand">Jharkhand</option>
+                            <option value="karnataka">Karnataka</option>
+                            <option value="kerala">Kerala</option>
+                            <option value="madhya_pradesh">Madhya Pradesh</option>
+                            <option value="maharashtra">Maharashtra</option>
+                            <option value="odisha">Odisha</option>
+                            <option value="punjab">Punjab</option>
+                            <option value="rajasthan">Rajasthan</option>
+                            <option value="tamil_nadu">Tamil Nadu</option>
+                            <option value="telangana">Telangana</option>
+                            <option value="uttar_pradesh">Uttar Pradesh</option>
+                            <option value="uttarakhand">Uttarakhand</option>
+                            <option value="west_bengal">West Bengal</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                    <div>
+                        <label style="display:block; font-size:12px; font-weight:600; color:#6b7280; text-transform:uppercase; margin-bottom:4px;">Occupation</label>
+                        <select id="edit_occupation"
+                            style="width:100%; padding:10px 12px; border:1.5px solid #e2e8f0; border-radius:8px; font-size:14px; box-sizing:border-box; outline:none; background:#fff;"
+                            onfocus="this.style.borderColor='#1a56db'" onblur="this.style.borderColor='#e2e8f0'">
+                            <option value="">Select Occupation</option>
+                            <option value="farmer">Farmer</option>
+                            <option value="student">Student</option>
+                            <option value="salaried">Salaried</option>
+                            <option value="business">Business</option>
+                            <option value="unemployed">Unemployed</option>
+                            <option value="homemaker">Homemaker</option>
+                            <option value="daily_wage">Daily Wage</option>
+                            <option value="artisan">Artisan</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="display:block; font-size:12px; font-weight:600; color:#6b7280; text-transform:uppercase; margin-bottom:4px;">Annual Income (₹)</label>
+                        <input id="edit_income" type="number" placeholder="e.g. 60000" min="0"
+                            style="width:100%; padding:10px 12px; border:1.5px solid #e2e8f0; border-radius:8px; font-size:14px; box-sizing:border-box; outline:none;"
+                            onfocus="this.style.borderColor='#1a56db'" onblur="this.style.borderColor='#e2e8f0'">
+                    </div>
+                </div>
+
+                <div>
+                    <label style="display:block; font-size:12px; font-weight:600; color:#6b7280; text-transform:uppercase; margin-bottom:4px;">Category</label>
+                    <select id="edit_category"
+                        style="width:100%; padding:10px 12px; border:1.5px solid #e2e8f0; border-radius:8px; font-size:14px; box-sizing:border-box; outline:none; background:#fff;"
+                        onfocus="this.style.borderColor='#1a56db'" onblur="this.style.borderColor='#e2e8f0'">
+                        <option value="">Select Category</option>
+                        <option value="general">General</option>
+                        <option value="obc">OBC</option>
+                        <option value="sc">SC</option>
+                        <option value="st">ST</option>
+                        <option value="ews">EWS</option>
+                    </select>
+                </div>
+
+                <!-- Status message -->
+                <div id="editStatusMsg" style="display:none; padding:10px 14px; border-radius:8px; font-size:14px; font-weight:500;"></div>
+
+                <!-- Action buttons -->
+                <div style="display:flex; gap:1rem; margin-top:0.5rem;">
+                    <button onclick="saveProfile()"
+                        style="flex:1; background:#1a56db; color:#fff; border:none; padding:12px; border-radius:10px; font-size:15px; font-weight:600; cursor:pointer; transition:background 0.2s;"
+                        onmouseover="this.style.background='#1648b8'" onmouseout="this.style.background='#1a56db'">
+                        💾 Save Changes
+                    </button>
+                    <button onclick="closeEditModal()"
+                        style="flex:1; background:#f3f4f6; color:#374151; border:none; padding:12px; border-radius:10px; font-size:15px; font-weight:600; cursor:pointer;">
+                        Cancel
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ── Open modal and pre-fill with current user data ───────
+        function openEditModal() {
+            const user = getUser();
+            if (!user) { alert("Please login first."); return; }
+
+            // Pre-fill all fields
+            document.getElementById("edit_full_name").value  = user.full_name || user.name || "";
+            document.getElementById("edit_age").value        = user.age || "";
+            document.getElementById("edit_gender").value     = user.gender || "";
+            document.getElementById("edit_state").value      = user.state || "";
+            document.getElementById("edit_occupation").value = user.occupation || "";
+            document.getElementById("edit_income").value     = user.income || "";
+            document.getElementById("edit_category").value   = user.category || "";
+
+            // Hide status message
+            const msg = document.getElementById("editStatusMsg");
+            msg.style.display = "none";
+
+            // Show modal
+            const modal = document.getElementById("editProfileModal");
+            modal.style.display = "flex";
+            document.body.style.overflow = "hidden";
+        }
+
+        // ── Close modal ──────────────────────────────────────────
+        function closeEditModal() {
+            document.getElementById("editProfileModal").style.display = "none";
+            document.body.style.overflow = "";
+        }
+
+        // Close on backdrop click
+        document.getElementById("editProfileModal").addEventListener("click", function(e) {
+            if (e.target === this) closeEditModal();
+        });
+
+        // ── Save profile via PUT /api/v1/auth/profile ────────────
+        async function saveProfile() {
+            const user = getUser();
+            if (!user) return;
+
+            // mobile is stored under different keys depending on Supabase response
+            const phone = user.mobile || user.phone || user.phone_number || null;
+            if (!phone) {
+                console.error("[saveProfile] user object:", JSON.stringify(user));
+                alert("Could not identify user. Please login again.");
+                return;
+            }
+
+            const saveBtn = document.querySelector("#editProfileModal button[onclick=\'saveProfile()\']")
+                         || document.querySelector("#editProfileModal button");
+
+            const payload = {
+                full_name:  document.getElementById("edit_full_name").value.trim()  || null,
+                age:        parseInt(document.getElementById("edit_age").value)      || null,
+                gender:     document.getElementById("edit_gender").value             || null,
+                state:      document.getElementById("edit_state").value              || null,
+                occupation: document.getElementById("edit_occupation").value         || null,
+                income:     parseInt(document.getElementById("edit_income").value)   || null,
+                category:   document.getElementById("edit_category").value           || null,
+            };
+
+            // Remove null values
+            Object.keys(payload).forEach(k => payload[k] === null && delete payload[k]);
+
+            if (Object.keys(payload).length === 0) {
+                showEditStatus("No changes to save.", "warning");
+                return;
+            }
+
+            showEditStatus("Saving...", "info");
+
+            try {
+                const res = await fetch(
+                    `http://localhost:8080/profile?mobile=${encodeURIComponent(phone)}`,
+                    {
+                        method: "PUT",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(payload),
+                    }
+                );
+
+                if (!res.ok) {
+                    const err = await res.json().catch(() => ({}));
+                    throw new Error(err.detail || "Failed to update profile");
+                }
+
+                // ── Update localStorage with new values ──────────
+                const updatedUser = { ...user, ...payload };
+                localStorage.setItem("saarthi_user", JSON.stringify(updatedUser));
+
+                showEditStatus("✅ Profile updated successfully!", "success");
+
+                // Refresh displayed values on the page
+                loadUserProfile();
+
+                // Auto-close after 1.2 seconds
+                setTimeout(closeEditModal, 1200);
+
+            } catch (err) {
+                showEditStatus("❌ " + (err.message || "Update failed. Try again."), "error");
+            }
+        }
+
+        // ── Status message helper ────────────────────────────────
+        function showEditStatus(message, type) {
+            const el = document.getElementById("editStatusMsg");
+            const styles = {
+                success: "background:#f0fdf4; color:#166534; border:1px solid #bbf7d0;",
+                error:   "background:#fef2f2; color:#991b1b; border:1px solid #fecaca;",
+                info:    "background:#eff6ff; color:#1e40af; border:1px solid #bfdbfe;",
+                warning: "background:#fffbeb; color:#92400e; border:1px solid #fde68a;",
+            };
+            el.style.cssText = `display:block; padding:10px 14px; border-radius:8px; font-size:14px; font-weight:500; ${styles[type]}`;
+            el.textContent = message;
+        }
+    </script>
+
+</body>
+
+</html>

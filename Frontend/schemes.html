@@ -1,0 +1,1729 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Government Schemes — Saarthi AI</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --navy: #06064f;
+      --blue-dark: #1e3a8a;
+      --blue-mid: #1a56db;
+      --blue-light: #0891b2;
+      --cyan: #4299e1;
+      --gold: #facc15;
+      --white: #ffffff;
+      --bg: #f0f4ff;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --green: #16a34a;
+      --orange: #ea580c;
+      --purple: #7c3aed;
+      --red: #dc2626;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    header {
+      background: linear-gradient(135deg, var(--navy), var(--blue-mid));
+      padding: 0.85rem 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.18);
+    }
+
+    header nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255, 255, 255, 0.85);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--white);
+    }
+
+    .dashboard-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.15);
+      color: var(--white) !important;
+      padding: 7px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      transition: background 0.2s;
+    }
+
+    .dashboard-btn:hover {
+      background: rgba(255, 255, 255, 0.25) !important;
+    }
+
+    .profile-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white) !important;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .profile-icon:hover {
+      background: rgba(255, 255, 255, 0.28) !important;
+    }
+
+    /* ── Page Hero ── */
+    .page-hero {
+      background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-light) 100%);
+      padding: 3rem 1.5rem 2.5rem;
+      text-align: center;
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .page-hero h1 {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      position: relative;
+    }
+
+    .page-hero p {
+      font-size: 1rem;
+      opacity: 0.88;
+      max-width: 520px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .scheme-count-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: 800;
+      font-size: 0.82rem;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-top: 1rem;
+      position: relative;
+    }
+
+    /* ── Main Layout ── */
+    .main-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    /* ── Search + Filter Bar ── */
+    .filter-bar {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 1.25rem 1.5rem;
+      box-shadow: 0 2px 12px rgba(30, 58, 138, 0.08);
+      margin-bottom: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .search-box {
+      flex: 1;
+      min-width: 220px;
+      position: relative;
+    }
+
+    .search-box i {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 10px 14px 10px 40px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-size: 0.92rem;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+      background: var(--bg);
+    }
+
+    .search-box input:focus {
+      border-color: var(--blue-mid);
+    }
+
+    .filter-select {
+      padding: 10px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      outline: none;
+      background: var(--bg);
+      color: var(--text);
+      cursor: pointer;
+      transition: border-color 0.2s;
+      min-width: 150px;
+    }
+
+    .filter-select:focus {
+      border-color: var(--blue-mid);
+    }
+
+    .results-count {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    .results-count span {
+      font-weight: 700;
+      color: var(--blue-mid);
+    }
+
+    /* ── Category Pills ── */
+    .category-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .pill {
+      padding: 7px 16px;
+      border-radius: 20px;
+      font-size: 0.83rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--white);
+      color: var(--text-muted);
+      border-color: var(--border);
+    }
+
+    .pill:hover {
+      border-color: var(--blue-mid);
+      color: var(--blue-mid);
+    }
+
+    .pill.active {
+      background: var(--blue-mid);
+      color: var(--white);
+      border-color: var(--blue-mid);
+    }
+
+    /* ── Scheme Cards Grid ── */
+    .schemes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .scheme-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(30, 58, 138, 0.07);
+      border: 1.5px solid var(--border);
+      transition: transform 0.22s, box-shadow 0.22s;
+      display: flex;
+      flex-direction: column;
+      animation: fadeUp 0.4s ease both;
+    }
+
+    .scheme-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 28px rgba(30, 58, 138, 0.14);
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card-header {
+      padding: 1.25rem 1.25rem 1rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .scheme-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .card-title-wrap {
+      flex: 1;
+    }
+
+    .scheme-name {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.3;
+      margin-bottom: 4px;
+    }
+
+    .scheme-ministry {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .category-tag {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.73rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    .card-body {
+      padding: 0 1.25rem 1rem;
+      flex: 1;
+    }
+
+    .scheme-desc {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .scheme-benefits {
+      background: var(--bg);
+      border-radius: 10px;
+      padding: 0.75rem 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .scheme-benefits h4 {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.4rem;
+    }
+
+    .scheme-benefits p {
+      font-size: 0.85rem;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .eligibility-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 1rem;
+    }
+
+    .elig-tag {
+      font-size: 0.75rem;
+      padding: 3px 10px;
+      border-radius: 6px;
+      background: #eff6ff;
+      color: var(--blue-dark);
+      border: 1px solid #bfdbfe;
+      font-weight: 500;
+    }
+
+    .card-footer {
+      padding: 1rem 1.25rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .btn-apply {
+      flex: 1;
+      padding: 9px 0;
+      background: linear-gradient(135deg, var(--blue-mid), var(--blue-light));
+      color: var(--white);
+      border: none;
+      border-radius: 10px;
+      font-size: 0.875rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      transition: opacity 0.2s, transform 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      text-decoration: none;
+    }
+
+    .btn-apply:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    .btn-ask-ai {
+      flex: 1;
+      padding: 9px 0;
+      background: transparent;
+      color: var(--blue-mid);
+      border: 2px solid var(--blue-mid);
+      border-radius: 10px;
+      font-size: 0.875rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .btn-ask-ai:hover {
+      background: var(--blue-mid);
+      color: var(--white);
+      transform: translateY(-1px);
+    }
+
+    /* ── No Results ── */
+    .no-results {
+      text-align: center;
+      padding: 4rem 1rem;
+      display: none;
+    }
+
+    .no-results i {
+      font-size: 3rem;
+      color: var(--border);
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .no-results h3 {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .no-results p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* ══════════════════════════════════════════════
+       GUIDED APPLICATION MODAL
+    ══════════════════════════════════════════════ */
+
+    .apply-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(6, 6, 79, 0.6);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      animation: overlayIn 0.2s ease;
+    }
+
+    .apply-overlay.open {
+      display: flex;
+    }
+
+    @keyframes overlayIn {
+      from {
+        opacity: 0
+      }
+
+      to {
+        opacity: 1
+      }
+    }
+
+    .apply-modal {
+      background: #fff;
+      border-radius: 24px;
+      width: 100%;
+      max-width: 560px;
+      max-height: 92vh;
+      overflow-y: auto;
+      box-shadow: 0 32px 80px rgba(6, 6, 79, 0.28);
+      animation: modalUp 0.32s cubic-bezier(0.34, 1.4, 0.64, 1);
+      position: relative;
+    }
+
+    @keyframes modalUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.96)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1)
+      }
+    }
+
+    .modal-progress {
+      height: 4px;
+      background: #e2e8f0;
+      border-radius: 4px 4px 0 0;
+      overflow: hidden;
+    }
+
+    .modal-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--blue-dark), var(--blue-light));
+      transition: width 0.4s ease;
+    }
+
+    .step-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      padding: 1.2rem 0 0;
+    }
+
+    .step-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #e2e8f0;
+      transition: all 0.3s;
+    }
+
+    .step-dot.active {
+      background: var(--blue-mid);
+      transform: scale(1.3);
+    }
+
+    .step-dot.done {
+      background: var(--green);
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid #e2e8f0;
+      background: #f8fafc;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      color: #64748b;
+      transition: all 0.2s;
+      z-index: 10;
+    }
+
+    .modal-close-btn:hover {
+      background: #fee2e2;
+      color: #dc2626;
+      border-color: #fca5a5;
+    }
+
+    .modal-step {
+      display: none;
+      padding: 1.5rem 2rem 2rem;
+    }
+
+    .modal-step.active {
+      display: block;
+      animation: stepIn 0.25s ease;
+    }
+
+    @keyframes stepIn {
+      from {
+        opacity: 0;
+        transform: translateX(16px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0)
+      }
+    }
+
+    .scheme-banner {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: linear-gradient(135deg, #eff6ff, #f0fdf4);
+      border: 1.5px solid #bfdbfe;
+      border-radius: 16px;
+      padding: 1.1rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .scheme-banner-icon {
+      font-size: 2.5rem;
+      flex-shrink: 0;
+    }
+
+    .scheme-banner-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+
+    .scheme-banner-ministry {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .modal-section-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: #94a3b8;
+      margin-bottom: 0.85rem;
+    }
+
+    .doc-list {
+      list-style: none;
+      margin-bottom: 1rem;
+    }
+
+    .doc-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid #f1f5f9;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .doc-item:last-child {
+      border-bottom: none;
+    }
+
+    .doc-checkbox {
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      border: 2px solid #cbd5e1;
+      background: white;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      color: white;
+      transition: all 0.2s;
+      margin-top: 1px;
+    }
+
+    .doc-item.checked .doc-checkbox {
+      background: var(--green);
+      border-color: var(--green);
+    }
+
+    .doc-item.checked .doc-checkbox::after {
+      content: '✓';
+    }
+
+    .doc-label {
+      font-size: 0.88rem;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .doc-note {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .doc-progress-wrap {
+      background: #f1f5f9;
+      border-radius: 99px;
+      height: 6px;
+      overflow: hidden;
+      margin-bottom: 0.4rem;
+    }
+
+    .doc-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--green), #22c55e);
+      border-radius: 99px;
+      transition: width 0.4s ease;
+    }
+
+    .doc-progress-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+
+    .elig-question {
+      background: #f8fafc;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 1.1rem 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .elig-q-text {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+    }
+
+    .elig-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .elig-option {
+      padding: 6px 16px;
+      border-radius: 8px;
+      border: 1.5px solid #e2e8f0;
+      background: white;
+      font-size: 0.82rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.18s;
+      color: var(--text);
+      font-family: inherit;
+    }
+
+    .elig-option:hover {
+      border-color: var(--blue-mid);
+      color: var(--blue-mid);
+    }
+
+    .elig-option.selected {
+      background: var(--blue-mid);
+      border-color: var(--blue-mid);
+      color: white;
+      font-weight: 600;
+    }
+
+    .elig-option.disqualify.selected {
+      background: var(--red);
+      border-color: var(--red);
+    }
+
+    .result-box {
+      border-radius: 18px;
+      padding: 2rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .result-box.eligible {
+      background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+      border: 2px solid #86efac;
+    }
+
+    .result-box.not-eligible {
+      background: linear-gradient(135deg, #fff7ed, #fee2e2);
+      border: 2px solid #fca5a5;
+    }
+
+    .result-icon {
+      font-size: 3.5rem;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .result-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: 0.4rem;
+    }
+
+    .result-sub {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .warning-box {
+      background: #fffbeb;
+      border: 1.5px solid #fde68a;
+      border-radius: 12px;
+      padding: 0.85rem 1.1rem;
+      font-size: 0.82rem;
+      color: #92400e;
+      margin-bottom: 1.25rem;
+      display: flex;
+      gap: 0.6rem;
+      align-items: flex-start;
+      line-height: 1.5;
+    }
+
+    .csc-box {
+      background: #f0f9ff;
+      border: 1.5px solid #bae6fd;
+      border-radius: 12px;
+      padding: 0.85rem 1.1rem;
+      font-size: 0.82rem;
+      color: #0369a1;
+      margin-bottom: 1.25rem;
+      display: flex;
+      gap: 0.6rem;
+      align-items: flex-start;
+      line-height: 1.5;
+    }
+
+    .alt-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.7rem 1rem;
+      border-radius: 10px;
+      border: 1px solid #e2e8f0;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+      transition: all 0.18s;
+      background: white;
+    }
+
+    .alt-item:hover {
+      border-color: var(--blue-mid);
+      background: #eff6ff;
+    }
+
+    .alt-icon {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .alt-name {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .alt-arrow {
+      margin-left: auto;
+      color: #94a3b8;
+      font-size: 0.8rem;
+    }
+
+    .modal-btn-row {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+    }
+
+    .modal-btn {
+      flex: 1;
+      padding: 11px 0;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .modal-btn.primary {
+      background: linear-gradient(135deg, var(--blue-dark), var(--blue-mid));
+      color: white;
+    }
+
+    .modal-btn.primary:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    .modal-btn.primary:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .modal-btn.secondary {
+      background: #f1f5f9;
+      color: var(--text-muted);
+    }
+
+    .modal-btn.secondary:hover {
+      background: #e2e8f0;
+      color: var(--text);
+    }
+
+    .modal-btn.success {
+      background: linear-gradient(135deg, #16a34a, #22c55e);
+      color: white;
+    }
+
+    .modal-btn.success:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    .step-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+    }
+
+    .step-back {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 0;
+      font-family: inherit;
+      transition: color 0.2s;
+    }
+
+    .step-back:hover {
+      color: var(--text);
+    }
+
+    .step-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 0.03em;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .page-hero h1 {
+        font-size: 1.6rem;
+      }
+
+      .schemes-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .filter-bar {
+        flex-direction: column;
+      }
+
+      .search-box {
+        min-width: 100%;
+      }
+
+      .nav-links {
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <nav>
+      <a href="index.html" class="logo">Saarthi AI</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="dashboard.html" class="dashboard-btn"><i class="fas fa-th-large"></i> Dashboard</a></li>
+        <li>
+          <a href="profile.html" class="profile-icon" title="My Profile">
+            <i class="fas fa-user"></i>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="page-hero">
+    <h1>🇮🇳 Government Schemes</h1>
+    <p>Find and apply for schemes you are eligible for — in your language</p>
+    <div class="scheme-count-badge">✦ <span id="countDisplay">0</span> Active Schemes Listed</div>
+  </section>
+
+  <div class="main-wrapper">
+
+    <div class="filter-bar">
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" id="searchInput" placeholder="Search schemes...">
+      </div>
+
+      <select id="levelFilter" class="filter-select">
+        <option value="">All (Central + State)</option>
+        <option value="central">Central Government</option>
+        <option value="state">State Government</option>
+      </select>
+
+      <select id="stateFilter" class="filter-select">
+        <option value="">All States</option>
+        <option value="maharashtra">Maharashtra</option>
+        <option value="uttar-pradesh">Uttar Pradesh</option>
+      </select>
+    </div>
+
+    <div class="category-pills">
+      <div class="pill active" data-cat="all"><i class="fas fa-border-all"></i> All</div>
+      <div class="pill" data-cat="agriculture"><i class="fas fa-tractor"></i> Agriculture</div>
+      <div class="pill" data-cat="healthcare"><i class="fas fa-heartbeat"></i> Healthcare</div>
+      <div class="pill" data-cat="education"><i class="fas fa-graduation-cap"></i> Education</div>
+      <div class="pill" data-cat="banking"><i class="fas fa-university"></i> Banking</div>
+      <div class="pill" data-cat="housing"><i class="fas fa-home"></i> Housing</div>
+      <div class="pill" data-cat="women"><i class="fas fa-female"></i> Women</div>
+      <div class="pill" data-cat="legal"><i class="fas fa-gavel"></i> Legal</div>
+    </div>
+
+    <div class="schemes-grid" id="schemesGrid"></div>
+
+    <div class="no-results" id="noResults">
+      <i class="fas fa-search"></i>
+      <h3>No schemes found</h3>
+      <p>Try a different search term or category</p>
+    </div>
+
+  </div>
+
+
+  <div class="apply-overlay" id="applyOverlay">
+    <div class="apply-modal" id="applyModal">
+
+      <div class="modal-progress">
+        <div class="modal-progress-fill" id="modalProgressFill" style="width:33%"></div>
+      </div>
+      <button class="modal-close-btn" onclick="closeApplyModal()">✕</button>
+      <div class="step-dots">
+        <div class="step-dot active" id="dot1"></div>
+        <div class="step-dot" id="dot2"></div>
+        <div class="step-dot" id="dot3"></div>
+      </div>
+
+      <div class="modal-step active" id="step1">
+        <div class="step-nav">
+          <span class="step-label">STEP 1 OF 3 — PREPARATION</span>
+        </div>
+        <div class="scheme-banner">
+          <div class="scheme-banner-icon" id="modalSchemeIcon"></div>
+          <div>
+            <div class="scheme-banner-name" id="modalSchemeName"></div>
+            <div class="scheme-banner-ministry" id="modalSchemeMinistry"></div>
+          </div>
+        </div>
+        <div class="modal-section-title">📋 DOCUMENTS NEEDED — TICK WHAT YOU HAVE</div>
+        <ul class="doc-list" id="docList"></ul>
+        <div class="doc-progress-wrap">
+          <div class="doc-progress-fill" id="docProgressFill" style="width:0%"></div>
+        </div>
+        <div class="doc-progress-label" id="docProgressLabel">0 of 0 documents ready</div>
+        <div class="warning-box">
+          <span>⚠️</span>
+          <span>You don't need all documents to continue — but having them ready will speed up your application
+            significantly.</span>
+        </div>
+        <div class="modal-btn-row">
+          <button class="modal-btn secondary" onclick="closeApplyModal()">Cancel</button>
+          <button class="modal-btn primary" onclick="goToStep(2)">Check Eligibility <i
+              class="fas fa-arrow-right"></i></button>
+        </div>
+      </div>
+
+      <div class="modal-step" id="step2">
+        <div class="step-nav">
+          <button class="step-back" onclick="goToStep(1)">← Back</button>
+          <span class="step-label">STEP 2 OF 3 — ELIGIBILITY CHECK</span>
+        </div>
+        <div class="modal-section-title">✅ ANSWER A FEW QUICK QUESTIONS</div>
+        <div id="eligQuestions"></div>
+        <div class="modal-btn-row">
+          <button class="modal-btn secondary" onclick="goToStep(1)">Back</button>
+          <button class="modal-btn primary" id="step2Next" onclick="checkEligibility()" disabled>
+            See My Result <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="modal-step" id="step3">
+        <div class="step-nav">
+          <button class="step-back" onclick="goToStep(2)">← Back</button>
+          <span class="step-label">STEP 3 OF 3 — YOUR RESULT</span>
+        </div>
+        <div id="resultContent"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // ── Scheme Data ────────────────────────────────────────────
+    const schemes = [
+      {
+        name: "PM-KISAN Samman Nidhi",
+        ministry: "Ministry of Agriculture",
+        category: "agriculture",
+        icon: "🌾",
+        iconBg: "#f0fdf4",
+        tagColor: "#16a34a",
+        tagBg: "#dcfce7",
+        desc: "Income support of ₹6,000 per year to small and marginal farmer families in three equal instalments.",
+        benefit: "₹6,000 per year (₹2,000 per instalment)",
+        eligibility: ["Farmers", "Small & Marginal", "All India"],
+        applyUrl: "https://pmkisan.gov.in"
+      },
+      {
+        name: "Ayushman Bharat PM-JAY",
+        ministry: "Ministry of Health",
+        category: "healthcare",
+        icon: "🏥",
+        iconBg: "#fff1f2",
+        tagColor: "#dc2626",
+        tagBg: "#fee2e2",
+        desc: "Health insurance cover of ₹5 lakh per family per year for secondary and tertiary hospitalisation.",
+        benefit: "₹5 lakh health cover per family/year",
+        eligibility: ["BPL Families", "SECC Database", "All India"],
+        applyUrl: "https://pmjay.gov.in"
+      },
+      {
+        name: "PM Awas Yojana (Urban)",
+        ministry: "Ministry of Housing",
+        category: "housing",
+        icon: "🏠",
+        iconBg: "#fffbeb",
+        tagColor: "#d97706",
+        tagBg: "#fef3c7",
+        desc: "Housing for all urban poor — interest subsidy on home loans for EWS, LIG, and MIG categories.",
+        benefit: "Interest subsidy up to ₹2.67 lakh",
+        eligibility: ["Urban Poor", "EWS/LIG/MIG", "First-time Buyers"],
+        applyUrl: "https://pmaymis.gov.in"
+      },
+      {
+        name: "PM Scholarship Scheme",
+        ministry: "Ministry of Education",
+        category: "education",
+        icon: "🎓",
+        iconBg: "#eff6ff",
+        tagColor: "#1d4ed8",
+        tagBg: "#dbeafe",
+        desc: "Scholarships for wards of ex-servicemen and ex-coast guard personnel for higher technical and professional education.",
+        benefit: "₹2,500–₹3,000 per month",
+        eligibility: ["Students", "Ex-Servicemen Wards", "All India"],
+        applyUrl: "https://scholarships.gov.in"
+      },
+      {
+        name: "Jan Dhan Yojana",
+        ministry: "Ministry of Finance",
+        category: "banking",
+        icon: "🏦",
+        iconBg: "#f5f3ff",
+        tagColor: "#7c3aed",
+        tagBg: "#ede9fe",
+        desc: "Zero balance bank account with RuPay debit card, overdraft facility, and accidental insurance coverage.",
+        benefit: "Zero balance account + ₹2 lakh accident cover",
+        eligibility: ["All Citizens", "No Bank Account", "All India"],
+        applyUrl: "https://pmjdy.gov.in"
+      },
+      {
+        name: "Beti Bachao Beti Padhao",
+        ministry: "Ministry of Women & Child",
+        category: "women",
+        icon: "👧",
+        iconBg: "#fdf4ff",
+        tagColor: "#9333ea",
+        tagBg: "#fae8ff",
+        desc: "Addresses declining child sex ratio and promotes welfare, education and empowerment of the girl child.",
+        benefit: "Education support & social security",
+        eligibility: ["Girl Child", "Women", "All India"],
+        applyUrl: "https://wcd.nic.in"
+      },
+      {
+        name: "Pradhan Mantri Fasal Bima",
+        ministry: "Ministry of Agriculture",
+        category: "agriculture",
+        icon: "🌱",
+        iconBg: "#f0fdf4",
+        tagColor: "#16a34a",
+        tagBg: "#dcfce7",
+        desc: "Crop insurance scheme that provides financial support to farmers suffering crop loss or damage due to natural calamities.",
+        benefit: "Full crop loss compensation",
+        eligibility: ["Farmers", "Crop Growers", "All India"],
+        applyUrl: "https://pmfby.gov.in"
+      },
+      {
+        name: "National Pension Scheme",
+        ministry: "Ministry of Finance",
+        category: "banking",
+        icon: "💰",
+        iconBg: "#f5f3ff",
+        tagColor: "#7c3aed",
+        tagBg: "#ede9fe",
+        desc: "Voluntary, long-term retirement savings scheme designed to enable systematic savings during working life.",
+        benefit: "Pension after retirement + tax benefits",
+        eligibility: ["18–70 Years", "All Citizens", "All India"],
+        applyUrl: "https://enps.nsdl.com"
+      },
+      {
+        name: "Mid Day Meal Scheme",
+        ministry: "Ministry of Education",
+        category: "education",
+        icon: "🍱",
+        iconBg: "#eff6ff",
+        tagColor: "#1d4ed8",
+        tagBg: "#dbeafe",
+        desc: "Free lunch on working days for children in government primary and upper primary schools across India.",
+        benefit: "Free nutritious meal every school day",
+        eligibility: ["School Children", "Class 1–8", "All India"],
+        applyUrl: "https://mdm.nic.in"
+      },
+      {
+        name: "Sukanya Samriddhi Yojana",
+        ministry: "Ministry of Finance",
+        category: "women",
+        icon: "🌸",
+        iconBg: "#fdf4ff",
+        tagColor: "#9333ea",
+        tagBg: "#fae8ff",
+        desc: "Small savings scheme for a girl child's future — high interest rate and tax benefits under Section 80C.",
+        benefit: "8.2% interest + tax exemption",
+        eligibility: ["Girl Child (0–10 yrs)", "Parents/Guardian", "All India"],
+        applyUrl: "https://www.india.gov.in/sukanya-samriddhi-yojana"
+      },
+      {
+        name: "PM Ujjwala Yojana",
+        ministry: "Ministry of Petroleum",
+        category: "healthcare",
+        icon: "🔥",
+        iconBg: "#fff1f2",
+        tagColor: "#dc2626",
+        tagBg: "#fee2e2",
+        desc: "Free LPG connections to women from BPL households to replace unclean cooking fuels with clean ones.",
+        benefit: "Free LPG connection + first refill",
+        eligibility: ["BPL Women", "No LPG Connection", "All India"],
+        applyUrl: "https://pmuy.gov.in"
+      },
+      {
+        name: "Legal Aid Services (NALSA)",
+        ministry: "Ministry of Law & Justice",
+        category: "legal",
+        icon: "⚖️",
+        iconBg: "#fff7ed",
+        tagColor: "#ea580c",
+        tagBg: "#ffedd5",
+        desc: "Free legal services to marginalized sections — women, SC/ST, disabled persons, and victims of disasters.",
+        benefit: "Free legal representation & advice",
+        eligibility: ["SC/ST", "Women", "BPL", "Disabled"],
+        applyUrl: "https://nalsa.gov.in"
+      },
+      {
+        name: "Kisan Credit Card",
+        ministry: "Ministry of Agriculture",
+        category: "agriculture",
+        icon: "💳",
+        iconBg: "#f0fdf4",
+        tagColor: "#16a34a",
+        tagBg: "#dcfce7",
+        desc: "Credit card for farmers providing flexible credit for agricultural needs at low interest rates.",
+        benefit: "Credit up to ₹3 lakh @ 4% interest",
+        eligibility: ["Farmers", "Fishermen", "Animal Husbandry"],
+        applyUrl: "https://www.nabard.org"
+      },
+      {
+        name: "Pradhan Mantri Matru Vandana",
+        ministry: "Ministry of Women & Child",
+        category: "women",
+        icon: "🤱",
+        iconBg: "#fdf4ff",
+        tagColor: "#9333ea",
+        tagBg: "#fae8ff",
+        desc: "Maternity benefit programme providing cash incentive of ₹5,000 for first live birth to pregnant women.",
+        benefit: "₹5,000 maternity benefit",
+        eligibility: ["Pregnant Women", "First Live Birth", "All India"],
+        applyUrl: "https://pmmvy.wcd.gov.in"
+      },
+      {
+        name: "e-SHRAM Portal",
+        ministry: "Ministry of Labour",
+        category: "legal",
+        icon: "👷",
+        iconBg: "#fff7ed",
+        tagColor: "#ea580c",
+        tagBg: "#ffedd5",
+        desc: "National database of unorganized workers with social security benefits and accident insurance.",
+        benefit: "₹2 lakh accident cover + social security",
+        eligibility: ["Unorganized Workers", "16–59 Years", "All India"],
+        applyUrl: "https://eshram.gov.in"
+      },
+      {
+        name: "PM Garib Kalyan Anna Yojana",
+        ministry: "Ministry of Food",
+        category: "healthcare",
+        icon: "🍚",
+        iconBg: "#fff1f2",
+        tagColor: "#dc2626",
+        tagBg: "#fee2e2",
+        desc: "Free food grain distribution — 5 kg wheat/rice per person per month to National Food Security Act beneficiaries.",
+        benefit: "5 kg free food grain per person/month",
+        eligibility: ["NFSA Beneficiaries", "Ration Card Holders", "All India"],
+        applyUrl: "https://dfpd.gov.in"
+      },
+      {
+        name: "PM Mudra Yojana",
+        ministry: "Ministry of Finance",
+        category: "banking",
+        icon: "💼",
+        iconBg: "#f5f3ff",
+        tagColor: "#7c3aed",
+        tagBg: "#ede9fe",
+        desc: "Loans up to ₹10 lakh to small/micro enterprises for income generating activities in non-farm sector.",
+        benefit: "Loans from ₹50,000 to ₹10 lakh",
+        eligibility: ["Small Business", "Self-Employed", "All India"],
+        applyUrl: "https://mudra.org.in"
+      },
+      {
+        name: "National Scholarship Portal",
+        ministry: "Ministry of Education",
+        category: "education",
+        icon: "📚",
+        iconBg: "#eff6ff",
+        tagColor: "#1d4ed8",
+        tagBg: "#dbeafe",
+        desc: "Single platform for various scholarships for students from pre-matric to post-doctoral level.",
+        benefit: "₹1,000–₹25,000 per year",
+        eligibility: ["Students", "SC/ST/OBC/Minority", "All India"],
+        applyUrl: "https://scholarships.gov.in"
+      },
+      {
+        name: "PM Awas Yojana (Gramin)",
+        ministry: "Ministry of Rural Development",
+        category: "housing",
+        icon: "🏡",
+        iconBg: "#fffbeb",
+        tagColor: "#d97706",
+        tagBg: "#fef3c7",
+        desc: "Financial assistance to rural BPL households for construction of pucca houses with basic amenities.",
+        benefit: "₹1.2–1.3 lakh per house",
+        eligibility: ["Rural BPL", "No Pucca House", "SECC Listed"],
+        applyUrl: "https://pmayg.nic.in"
+      },
+      {
+        name: "Atal Pension Yojana",
+        ministry: "Ministry of Finance",
+        category: "banking",
+        icon: "👴",
+        iconBg: "#f5f3ff",
+        tagColor: "#7c3aed",
+        tagBg: "#ede9fe",
+        desc: "Guaranteed minimum pension of ₹1,000–₹5,000 per month after age 60 for workers in unorganized sector.",
+        benefit: "₹1,000–₹5,000/month pension after 60",
+        eligibility: ["18–40 Years", "Bank Account Holders", "Unorganized Sector"],
+        applyUrl: "https://enps.nsdl.com"
+      }
+    ];
+
+    // Track filtered data for correct index mapping
+    let filteredData = [...schemes];
+
+    // ── Render Cards ───────────────────────────────────────────
+    function renderCards(data) {
+      const grid = document.getElementById('schemesGrid');
+      const noResults = document.getElementById('noResults');
+      const countDisplay = document.getElementById('countDisplay');
+
+      grid.innerHTML = '';
+      countDisplay.textContent = data.length;
+
+      if (data.length === 0) {
+        noResults.style.display = 'block';
+        return;
+      }
+
+      noResults.style.display = 'none';
+
+      data.forEach((s, i) => {
+        const card = document.createElement('div');
+        card.className = 'scheme-card';
+        card.style.animationDelay = `${i * 0.05}s`;
+
+        card.innerHTML = `
+      <div class="card-header">
+        <div class="scheme-icon" style="background:${s.iconBg}; font-size:1.6rem">${s.icon}</div>
+        <div class="card-title-wrap">
+          <div class="scheme-name">${s.name}</div>
+          <div class="scheme-ministry"><i class="fas fa-landmark" style="font-size:0.7rem"></i> ${s.ministry}</div>
+          <span class="category-tag" style="color:${s.tagColor};background:${s.tagBg};margin-top:5px;display:inline-block">
+            ${s.category.charAt(0).toUpperCase() + s.category.slice(1)}
+          </span>
+        </div>
+      </div>
+      <div class="card-body">
+        <p class="scheme-desc">${s.desc}</p>
+        <div class="scheme-benefits">
+          <h4>💡 Key Benefit</h4>
+          <p>${s.benefit}</p>
+        </div>
+        <div class="eligibility-tags">
+          ${s.eligibility.map(e => `<span class="elig-tag">${e}</span>`).join('')}
+        </div>
+      </div>
+      <div class="card-footer">
+        <button class="btn-apply" onclick="openApplyModal(${i})">
+          <i class="fas fa-file-alt"></i> Apply Now
+        </button>
+        <button class="btn-ask-ai" onclick="askAIAboutScheme('${s.name}')">
+          <i class="fas fa-robot"></i> Ask AI
+        </button>
+      </div>
+    `;
+        grid.appendChild(card);
+      });
+    }
+
+    // ── Ask AI about a scheme ──────────────────────────────────
+    function askAIAboutScheme(schemeName) {
+      localStorage.setItem('saarthi_prefill_query', `Tell me about ${schemeName} — eligibility, benefits and how to apply`);
+      window.location.href = 'index.html?openChat=true';
+    }
+
+    // ── Filtering Logic ────────────────────────────────────────
+    function getFiltered() {
+      const search = document.getElementById('searchInput').value.toLowerCase();
+      const state = document.getElementById('stateFilter').value;
+      const activeCat = document.querySelector('.pill.active').dataset.cat;
+
+      return schemes.filter(s => {
+        const matchCat = activeCat === 'all' || s.category === activeCat;
+        const matchSearch = !search || 
+                           s.name.toLowerCase().includes(search) || 
+                           s.desc.toLowerCase().includes(search) || 
+                           s.ministry.toLowerCase().includes(search);
+        const matchState = !state || s.eligibility.some(e => e.toLowerCase().includes(state.toLowerCase()));
+        
+        return matchCat && matchSearch && matchState;
+      });
+    }
+
+    function applyFilters() { 
+      filteredData = getFiltered();
+      renderCards(filteredData); 
+    }
+
+    // ── Event Listeners ────────────────────────────────────────
+    document.getElementById('searchInput').addEventListener('input', applyFilters);
+    document.getElementById('stateFilter').addEventListener('change', applyFilters);
+    document.getElementById('levelFilter').addEventListener('change', applyFilters);
+
+    document.querySelectorAll('.pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        applyFilters();
+      });
+    });
+
+
+    // ══════════════════════════════════════════════════════════════
+    //  GUIDED APPLICATION FLOW
+    // ══════════════════════════════════════════════════════════════
+
+    const schemeGuides = {
+      "PM-KISAN Samman Nidhi": {
+        docs: [
+          { label: "Aadhaar Card", note: "Required for identity verification" },
+          { label: "Land ownership papers / Khasra-Khatauni", note: "Proof that you own agricultural land" },
+          { label: "Bank passbook (first page)", note: "For direct benefit transfer — must be Aadhaar-linked" },
+          { label: "Mobile number linked to Aadhaar", note: "OTP will be sent for verification" },
+        ],
+        questions: [
+          { q: "Do you own agricultural land?", options: ["Yes", "No"], disqualify: ["No"] },
+          { q: "What is your land holding size?", options: ["Less than 2 hectares", "2–5 hectares", "More than 5 hectares"], disqualify: [] },
+          { q: "Are you a government employee or income taxpayer?", options: ["Yes", "No"], disqualify: ["Yes"] },
+          { q: "Is your bank account linked to Aadhaar?", options: ["Yes", "No, but I can link it", "No"], disqualify: [] },
+        ],
+        alternatives: [
+          { icon: "🌱", name: "Pradhan Mantri Fasal Bima Yojana" },
+          { icon: "💳", name: "Kisan Credit Card" },
+        ]
+      },
+      "Ayushman Bharat PM-JAY": {
+        docs: [
+          { label: "Aadhaar Card", note: "For all family members to be covered" },
+          { label: "Ration Card (BPL/NFSA)", note: "Proof of socio-economic status" },
+          { label: "SECC 2011 data confirmation", note: "Your name should appear in SECC database" },
+          { label: "Mobile number", note: "For card generation and OTP" },
+        ],
+        questions: [
+          { q: "Is your family listed in the BPL / SECC 2011 database?", options: ["Yes", "Not sure", "No"], disqualify: ["No"] },
+          { q: "Do you have a Ration Card?", options: ["Yes — BPL/Yellow", "Yes — APL/White", "No"], disqualify: [] },
+          { q: "Have you ever received an Ayushman Bharat card before?", options: ["No, first time", "Yes, it expired", "Yes, it's active"], disqualify: ["Yes, it's active"] },
+          { q: "Do you have a valid Aadhaar card?", options: ["Yes", "No"], disqualify: ["No"] },
+        ],
+        alternatives: [
+          { icon: "🔥", name: "PM Ujjwala Yojana" },
+          { icon: "🍚", name: "PM Garib Kalyan Anna Yojana" },
+        ]
+      }
+    };
+
+    const defaultGuide = (schemeName) => ({
+      docs: [
+        { label: "Aadhaar Card", note: "Primary identity document required for all government schemes" },
+        { label: "Bank passbook (first page)", note: "For direct benefit transfer — should be Aadhaar-linked" },
+        { label: "Passport-size photographs (2)", note: "Recent photographs" },
+        { label: "Income certificate", note: "Issued by competent government authority" },
+        { label: "Address proof", note: "Aadhaar / Voter ID / utility bill" },
+      ],
+      questions: [
+        { q: "Are you an Indian citizen?", options: ["Yes", "No"], disqualify: ["No"] },
+        { q: "Do you have a valid Aadhaar card?", options: ["Yes", "No — but I can apply for one", "No"], disqualify: [] },
+        { q: "Do you have a bank account linked to Aadhaar?", options: ["Yes", "No, but I can link it", "No account at all"], disqualify: [] },
+        { q: "Have you applied for this scheme before?", options: ["No, first time", "Yes, but was rejected", "Yes, currently active"], disqualify: ["Yes, currently active"] },
+      ],
+      alternatives: [
+        { icon: "🏦", name: "Jan Dhan Yojana" },
+        { icon: "🛡️", name: "e-SHRAM Portal" },
+      ]
+    });
+
+    let currentSchemeIndex = null;
+    let answeredQuestions = [];
+
+    function openApplyModal(schemeIndex) {
+      currentSchemeIndex = schemeIndex;
+      answeredQuestions = [];
+      const s = filteredData[schemeIndex];
+
+      document.getElementById('modalSchemeIcon').textContent = s.icon;
+      document.getElementById('modalSchemeName').textContent = s.name;
+      document.getElementById('modalSchemeMinistry').textContent = s.ministry;
+
+      const guide = schemeGuides[s.name] || defaultGuide(s.name);
+
+      const docList = document.getElementById('docList');
+      docList.innerHTML = guide.docs.map((doc, i) => `
+        <li class="doc-item" id="docItem${i}" onclick="toggleDoc(${i}, ${guide.docs.length})">
+          <div class="doc-checkbox" id="docCheck${i}"></div>
+          <div>
+            <div class="doc-label">${doc.label}</div>
+            <div class="doc-note">${doc.note}</div>
+          </div>
+        </li>
+      `).join('');
+
+      updateDocProgress(0, guide.docs.length);
+
+      const qContainer = document.getElementById('eligQuestions');
+      qContainer.innerHTML = guide.questions.map((q, qi) => `
+        <div class="elig-question" id="qBlock${qi}">
+          <div class="elig-q-text">${qi + 1}. ${q.q}</div>
+          <div class="elig-options">
+            ${q.options.map(opt => `
+              <button class="elig-option ${q.disqualify.includes(opt) ? 'disqualify' : ''}"
+                onclick="selectOption(${qi}, this, ${JSON.stringify(q.disqualify.includes(opt))})">
+                ${opt}
+              </button>
+            `).join('')}
+          </div>
+        </div>
+      `).join('');
+
+      answeredQuestions = new Array(guide.questions.length).fill(null);
+      goToStep(1);
+      document.getElementById('applyOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeApplyModal() {
+      document.getElementById('applyOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function toggleDoc(index, total) {
+      const item = document.getElementById(`docItem${index}`);
+      item.classList.toggle('checked');
+      const checked = document.querySelectorAll('.doc-item.checked').length;
+      updateDocProgress(checked, total);
+    }
+
+    function updateDocProgress(checked, total) {
+      const pct = total > 0 ? Math.round((checked / total) * 100) : 0;
+      document.getElementById('docProgressFill').style.width = pct + '%';
+      document.getElementById('docProgressLabel').textContent =
+        `${checked} of ${total} documents ready${checked === total ? ' — You&apos;re all set! ✅' : ''}`;
+    }
+
+    function selectOption(qIndex, btn, isDisqualifying) {
+      const siblings = btn.closest('.elig-options').querySelectorAll('.elig-option');
+      siblings.forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+
+      answeredQuestions[qIndex] = { disqualifies: isDisqualifying };
+
+      const allAnswered = answeredQuestions.every(a => a !== null);
+      document.getElementById('step2Next').disabled = !allAnswered;
+    }
+
+    function checkEligibility() {
+      const s = filteredData[currentSchemeIndex];
+      const guide = schemeGuides[s.name] || defaultGuide(s.name);
+      const isEligible = !answeredQuestions.some(a => a && a.disqualifies);
+
+      const resultEl = document.getElementById('resultContent');
+
+      if (isEligible) {
+        const docsReady = document.querySelectorAll('.doc-item.checked').length;
+        const totalDocs = guide.docs.length;
+        const docWarning = docsReady < totalDocs
+          ? `<div class="warning-box"><span>⚠️</span><span>You've marked ${docsReady} of ${totalDocs} documents ready. Collect the remaining documents before visiting the portal — incomplete applications are often rejected.</span></div>`
+          : `<div class="csc-box"><span>✅</span><span>All ${totalDocs} documents are ready. You're well prepared for a smooth application!</span></div>`;
+
+        resultEl.innerHTML = `
+          <div class="result-box eligible">
+            <span class="result-icon">🎉</span>
+            <div class="result-title" style="color:#16a34a">You appear eligible!</div>
+            <div class="result-sub">Based on your answers, you likely qualify for <strong>${s.name}</strong>. Final confirmation will be done by the government portal.</div>
+          </div>
+          ${docWarning}
+          <div class="csc-box"><span>💡</span><span><strong>Tip:</strong> If you find the government website confusing, visit your nearest <strong>Jan Seva Kendra (CSC)</strong> — a trained operator will help you apply for free.</span></div>
+          <div class="modal-btn-row">
+            <button class="modal-btn secondary" onclick="closeApplyModal()">Close</button>
+            <button class="modal-btn success" onclick="window.open('${s.applyUrl}','_blank')">
+              <i class="fas fa-external-link-alt"></i> Open Government Portal
+            </button>
+          </div>
+        `;
+      } else {
+        const alts = guide.alternatives;
+        resultEl.innerHTML = `
+          <div class="result-box not-eligible">
+            <span class="result-icon">😔</span>
+            <div class="result-title" style="color:#dc2626">You may not be eligible</div>
+            <div class="result-sub">Based on your answers, you might not qualify for <strong>${s.name}</strong> right now.</div>
+          </div>
+          <div class="modal-section-title" style="margin-top:0.5rem">🔍 SCHEMES YOU MIGHT QUALIFY FOR</div>
+          <div>
+            ${alts.map(a => `
+              <div class="alt-item" onclick="switchToScheme('${a.name}')">
+                <span class="alt-icon">${a.icon}</span>
+                <span class="alt-name">${a.name}</span>
+                <span class="alt-arrow"><i class="fas fa-chevron-right"></i></span>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      }
+
+      goToStep(3);
+    }
+
+    function switchToScheme(schemeName) {
+      const idx = filteredData.findIndex(s => s.name === schemeName);
+      if (idx !== -1) { closeApplyModal(); setTimeout(() => openApplyModal(idx), 200); }
+    }
+
+    function goToStep(step) {
+      [1, 2, 3].forEach(n => {
+        document.getElementById(`step${n}`).classList.toggle('active', n === step);
+        const dot = document.getElementById(`dot${n}`);
+        dot.className = 'step-dot' + (n < step ? ' done' : n === step ? ' active' : '');
+      });
+      document.getElementById('modalProgressFill').style.width = `${Math.round((step / 3) * 100)}%`;
+      document.getElementById('applyModal').scrollTop = 0;
+    }
+
+    // ── Init ───────────────────────────────────────────────────
+    renderCards(schemes);
+  </script>
+</body>
+
+</html>

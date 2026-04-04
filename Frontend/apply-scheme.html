@@ -1,0 +1,1938 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saarthi AI – Apply Scheme</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #f9fafc;
+            --surface: #ffffff;
+            --border: #e2e8f0;
+            --blue: #2563eb;
+            --blue-dark: #1e3a8a;
+            --cyan: #0891b2;
+            --saffron: #100d70;
+            --green: #16a34a;
+            --purple: #9333ea;
+            --gold: #eab308;
+            --red: #dc2626;
+            --text: #0f172a;
+            --text-light: #475569;
+            --muted: #64748b;
+            --font-main: 'Inter', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        .dashboard {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* ── Sidebar ── */
+        .sidebar {
+            width: 280px;
+            background: var(--surface);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+        }
+
+        .logo-wrap {
+            padding: 0 1.5rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            cursor: pointer;
+        }
+
+        .logo-mark {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .logo-square {
+            background: var(--blue-dark);
+            color: white;
+            width: 2rem;
+            height: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .logo-text {
+            color: var(--text);
+        }
+
+        .logo-text span {
+            color: var(--blue);
+        }
+
+        .nav-section {
+            padding: 1.5rem 0.75rem 0;
+        }
+
+        .nav-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--muted);
+            padding: 0 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--text-light);
+            font-weight: 500;
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+            text-decoration: none;
+        }
+
+        .nav-item:hover {
+            background: #f1f5f9;
+            color: var(--blue);
+        }
+
+        .nav-item.active {
+            /* background: #eef2ff;
+            color: var(--blue); */
+            font-weight: 600;
+        }
+
+        .nav-icon {
+            width: 1.5rem;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .nav-badge {
+            margin-left: auto;
+            background: var(--saffron);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+        }
+
+        .sidebar-bottom {
+            margin-top: 180px;
+            padding: 1.5rem 0.75rem 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .user-pill {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            border-radius: 12px;
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .user-pill:hover {
+            border-color: var(--blue);
+            background: #f1f5f9;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--blue), var(--purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        .user-info {
+            flex: 1;
+        }
+
+        .user-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .user-role {
+            font-size: 0.7rem;
+            color: var(--muted);
+        }
+
+        /* ── Main ── */
+        .main {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .page-title span {
+            color: var(--blue);
+            position: relative;
+        }
+
+        .page-title span::after {
+            content: '';
+            position: absolute;
+            bottom: 0.2rem;
+            left: 0;
+            width: 100%;
+            height: 0.4rem;
+            background: #fed7aa;
+            z-index: -1;
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .top-btn {
+            padding: 0.6rem 1.2rem;
+            border-radius: 40px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text);
+            font-weight: 500;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--font-main);
+        }
+
+        .top-btn:hover {
+            border-color: var(--blue);
+            color: var(--blue);
+        }
+
+        .top-btn.primary {
+            background: var(--blue-dark);
+            border-color: var(--blue-dark);
+            color: white;
+        }
+
+        .top-btn.primary:hover {
+            background: var(--blue);
+        }
+
+        /* ── AI Eligibility Banner ── */
+        .ai-banner {
+            background: linear-gradient(110deg, #1e3a8a 0%, #2563eb 60%, #0891b2 100%);
+            border-radius: 20px;
+            padding: 2rem 2.5rem;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ai-banner::before {
+            content: '';
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .ai-banner::after {
+            content: '';
+            position: absolute;
+            bottom: -60px;
+            right: 100px;
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .ai-icon {
+            font-size: 3rem;
+            flex-shrink: 0;
+        }
+
+        .ai-text {
+            flex: 1;
+        }
+
+        .ai-text h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+        }
+
+        .ai-text p {
+            font-size: 0.9rem;
+            opacity: 0.85;
+            line-height: 1.6;
+        }
+
+        .ai-chips {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.9rem;
+            flex-wrap: wrap;
+        }
+
+        .ai-chip {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 40px;
+            padding: 0.3rem 0.9rem;
+            font-size: 0.78rem;
+            font-weight: 600;
+        }
+
+        .ai-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            flex-shrink: 0;
+            z-index: 1;
+        }
+
+        .ai-btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: var(--font-main);
+            white-space: nowrap;
+            border: none;
+        }
+
+        .ai-btn.white {
+            background: white;
+            color: var(--blue-dark);
+        }
+
+        .ai-btn.white:hover {
+            background: #f1f5f9;
+            transform: translateY(-1px);
+        }
+
+        .ai-btn.outline {
+            background: transparent;
+            color: white;
+            border: 1.5px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .ai-btn.outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* ── Progress Steps ── */
+        .steps-bar {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            flex: 1;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 55%;
+            width: 90%;
+            height: 2px;
+            background: var(--border);
+        }
+
+        .step.done:not(:last-child)::after {
+            background: var(--green);
+        }
+
+        .step.active:not(:last-child)::after {
+            background: linear-gradient(to right, var(--blue), var(--border));
+        }
+
+        .step-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: 700;
+            border: 2px solid var(--border);
+            background: var(--surface);
+            color: var(--muted);
+            z-index: 1;
+            transition: all 0.3s;
+        }
+
+        .step.done .step-circle {
+            background: var(--green);
+            border-color: var(--green);
+            color: white;
+        }
+
+        .step.active .step-circle {
+            background: var(--blue);
+            border-color: var(--blue);
+            color: white;
+            box-shadow: 0 0 0 4px #2563eb22;
+        }
+
+        .step-label {
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .step.active .step-label {
+            color: var(--blue);
+        }
+
+        .step.done .step-label {
+            color: var(--green);
+        }
+
+        /* ── Two Column Layout ── */
+        .apply-layout {
+            display: grid;
+            grid-template-columns: 1fr 360px;
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        /* ── Scheme Search & Filter ── */
+        .panel {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 1.5rem;
+        }
+
+        .panel-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.25rem;
+        }
+
+        .panel-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .panel-sub {
+            font-size: 0.82rem;
+            color: var(--muted);
+            margin-top: 0.2rem;
+        }
+
+        .search-row {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+            flex-wrap: wrap;
+        }
+
+        .search-wrap {
+            position: relative;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .search-wrap i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.7rem 1rem 0.7rem 2.5rem;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-family: var(--font-main);
+            color: var(--text);
+            background: var(--bg);
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .search-input:focus {
+            border-color: var(--blue);
+            box-shadow: 0 0 0 3px #2563eb18;
+        }
+
+        .cat-filter {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.25rem;
+        }
+
+        .cat-btn {
+            padding: 0.4rem 0.9rem;
+            border-radius: 40px;
+            border: 1.5px solid var(--border);
+            background: var(--surface);
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--muted);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: var(--font-main);
+        }
+
+        .cat-btn:hover {
+            border-color: var(--blue);
+            color: var(--blue);
+        }
+
+        .cat-btn.active {
+            background: var(--blue);
+            border-color: var(--blue);
+            color: white;
+        }
+
+        /* ── Scheme List Items ── */
+        .scheme-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-height: 560px;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+
+        .scheme-list::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .scheme-list::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 99px;
+        }
+
+        .scheme-item {
+            border: 1.5px solid var(--border);
+            border-radius: 16px;
+            padding: 1.2rem 1.25rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            position: relative;
+        }
+
+        .scheme-item:hover {
+            border-color: #c7d8fc;
+            background: #f8fafc;
+            transform: translateX(3px);
+        }
+
+        .scheme-item.selected {
+            border-color: var(--blue);
+            background: #eef2ff;
+        }
+
+        .scheme-item.selected::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--blue);
+            border-radius: 4px 0 0 4px;
+        }
+
+        .s-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+
+        .s-icon.blue {
+            background: #eef2ff;
+        }
+
+        .s-icon.green {
+            background: #dcfce7;
+        }
+
+        .s-icon.gold {
+            background: #fef9c3;
+        }
+
+        .s-icon.cyan {
+            background: #e0f2fe;
+        }
+
+        .s-icon.purple {
+            background: #f3e8ff;
+        }
+
+        .s-icon.red {
+            background: #fee2e2;
+        }
+
+        .s-icon.teal {
+            background: #ccfbf1;
+        }
+
+        .s-icon.orange {
+            background: #ffedd5;
+        }
+
+        .s-body {
+            flex: 1;
+        }
+
+        .s-cat {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.25rem;
+        }
+
+        .s-cat.blue {
+            color: var(--blue);
+        }
+
+        .s-cat.green {
+            color: var(--green);
+        }
+
+        .s-cat.gold {
+            color: var(--gold);
+        }
+
+        .s-cat.cyan {
+            color: var(--cyan);
+        }
+
+        .s-cat.purple {
+            color: var(--purple);
+        }
+
+        .s-cat.red {
+            color: var(--red);
+        }
+
+        .s-cat.teal {
+            color: #0d9488;
+        }
+
+        .s-cat.orange {
+            color: #ea580c;
+        }
+
+        .s-name {
+            font-size: 0.92rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+            color: var(--text);
+        }
+
+        .s-desc {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            line-height: 1.5;
+            margin-bottom: 0.5rem;
+        }
+
+        .s-tags {
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+        }
+
+        .s-tag {
+            background: #f1f5f9;
+            color: var(--muted);
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.2rem 0.55rem;
+            border-radius: 20px;
+        }
+
+        .s-benefit {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--green);
+            white-space: nowrap;
+        }
+
+        /* ── Right Panel ── */
+        .right-col {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        /* Eligibility Checker */
+        .elig-panel {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 1.5rem;
+        }
+
+        .elig-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .elig-header i {
+            font-size: 1.3rem;
+            color: var(--blue);
+        }
+
+        .elig-title {
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .elig-row {
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .elig-field label {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--muted);
+            display: block;
+            margin-bottom: 0.35rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .elig-field input,
+        .elig-field select {
+            width: 100%;
+            padding: 0.65rem 0.9rem;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-size: 0.88rem;
+            font-family: var(--font-main);
+            color: var(--text);
+            background: var(--bg);
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .elig-field input:focus,
+        .elig-field select:focus {
+            border-color: var(--blue);
+            box-shadow: 0 0 0 3px #2563eb18;
+            background: white;
+        }
+
+        .check-btn {
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--blue-dark);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: var(--font-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .check-btn:hover {
+            background: var(--blue);
+            transform: translateY(-1px);
+        }
+
+        /* Eligibility Result */
+        .elig-result {
+            display: none;
+            margin-top: 1rem;
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+        }
+
+        .elig-result.show {
+            display: block;
+            animation: fadeUp 0.3s ease;
+        }
+
+        .elig-result.pass {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+        }
+
+        .elig-result.fail {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+        }
+
+        .elig-result .res-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+        }
+
+        .elig-result.pass .res-title {
+            color: var(--green);
+        }
+
+        .elig-result.fail .res-title {
+            color: var(--red);
+        }
+
+        .elig-result .res-list {
+            font-size: 0.82rem;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        /* Required Docs Panel */
+        .docs-panel {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 1.5rem;
+        }
+
+        .docs-title {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .docs-title i {
+            color: var(--cyan);
+        }
+
+        .doc-row {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.65rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .doc-row:last-child {
+            border-bottom: none;
+        }
+
+        .doc-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: #eef2ff;
+            color: var(--blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+
+        .doc-icon.ok {
+            background: #dcfce7;
+            color: var(--green);
+        }
+
+        .doc-info {
+            flex: 1;
+        }
+
+        .doc-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .doc-status {
+            font-size: 0.72rem;
+            color: var(--muted);
+        }
+
+        .doc-status.ok {
+            color: var(--green);
+        }
+
+        /* Apply Form */
+        .form-panel {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 1.5rem;
+        }
+
+        .form-section-title {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--muted);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-row.full {
+            grid-template-columns: 1fr;
+        }
+
+        .form-field label {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-light);
+            display: block;
+            margin-bottom: 0.35rem;
+        }
+
+        .form-field input,
+        .form-field select,
+        .form-field textarea {
+            width: 100%;
+            padding: 0.65rem 0.9rem;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-size: 0.88rem;
+            font-family: var(--font-main);
+            color: var(--text);
+            background: var(--bg);
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .form-field input:focus,
+        .form-field select:focus,
+        .form-field textarea:focus {
+            border-color: var(--blue);
+            box-shadow: 0 0 0 3px #2563eb18;
+            background: white;
+        }
+
+        .form-field textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        /* Upload Zone */
+        .upload-zone {
+            border: 2px dashed var(--border);
+            border-radius: 14px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: var(--bg);
+        }
+
+        .upload-zone:hover {
+            border-color: var(--blue);
+            background: #f0f5ff;
+        }
+
+        .upload-zone i {
+            font-size: 2rem;
+            color: var(--muted);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .upload-zone p {
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        .upload-zone span {
+            color: var(--blue);
+            font-weight: 600;
+        }
+
+        /* Confirm & Submit */
+        .submit-section {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .declaration {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .declaration input[type=checkbox] {
+            margin-top: 3px;
+            width: 16px;
+            height: 16px;
+            accent-color: var(--blue);
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+
+        .declaration label {
+            font-size: 0.83rem;
+            color: var(--text-light);
+            line-height: 1.6;
+            cursor: pointer;
+        }
+
+        .declaration label a {
+            color: var(--blue);
+            font-weight: 600;
+        }
+
+        .submit-row {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-submit {
+            flex: 1;
+            padding: 0.9rem;
+            background: var(--blue-dark);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: var(--font-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-submit:hover {
+            background: var(--blue);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px #2563eb33;
+        }
+
+        .btn-save {
+            padding: 0.9rem 1.5rem;
+            background: white;
+            color: var(--text-light);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: var(--font-main);
+        }
+
+        .btn-save:hover {
+            border-color: var(--blue);
+            color: var(--blue);
+        }
+
+        /* Success Toast */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--green);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 14px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            box-shadow: 0 8px 30px #16a34a44;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 999;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* No results */
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            color: var(--muted);
+        }
+
+        .no-results i {
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.4);
+                opacity: 0.6;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1100px) {
+            .apply-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+
+            .main {
+                padding: 1.25rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dashboard">
+
+        <!-- ── Sidebar ── -->
+        <aside class="sidebar">
+            <div class="logo-wrap" onclick="window.location.reload();" style="cursor:pointer;">
+                <div class="logo-mark">
+                    <div class="logo-square">S</div>
+                    <span class="logo-text">Saarthi <span>AI</span></span>
+                </div>
+            </div>
+            <!-- <nav class="nav-section">
+                <div class="nav-label">Navigation</div>
+                <a class="nav-item" href="dashboard.html"><span class="nav-icon"><i class="fas fa-th-large"></i></span>
+                    ⚡Dashboard</a>
+                <a class="nav-item" href="my-schemes.html"><span class="nav-icon"><i
+                            class="fas fa-clipboard-list"></i></span> My Schemes <span class="nav-badge">8</span></a>
+                <a class="nav-item active" href="apply-scheme.html"><span class="nav-icon"><i
+                            class="fas fa-plus-circle"></i></span> Apply Scheme</a>
+                <a class="nav-item" href="benefits.html"><span class="nav-icon"><i class="fas fa-rupee-sign"></i></span>
+                    Benefits</a>
+                <a class="nav-item" href="documents.html"><span class="nav-icon"><i
+                            class="fas fa-folder-open"></i></span> Documents</a>
+                <a class="nav-item" href="notifications.html"><span class="nav-icon"><i class="fas fa-bell"></i></span>
+                    Notifications</a> -->
+            <!-- <a class="nav-item" href="index.html?openChat=true"><span class="nav-icon"><i class="fas fa-microphone"></i></span> Voice Assistant</a>
+                <a class="nav-item" href="index.html#languages"><span class="nav-icon">🌐</span> Language</a> -->
+            <div class="nav-section">
+                <div class="nav-label">MAIN</div>
+                <div class="nav-item active" onclick="window.location.href='index.html';"><span
+                        class="nav-icon">🏚️</span>Home</div>
+                <div class="nav-item active" onclick="window.location.href='dashboard.html';"><span
+                        class="nav-icon">⚡</span>Dashboard</div>
+                <div class="nav-item" onclick="window.location.href='my-schemes.html';"><span
+                        class="nav-icon">📋</span>My Schemes <span class="nav-badge">3</span></div>
+                <div class="nav-item" onclick="window.location.href='index.html?openChat=true';"><span
+                        class="nav-icon">🎤</span>Voice Assistant</div>
+                <div class="nav-item" onclick="window.location.href='documents.html';"><span
+                        class="nav-icon">📄</span>Documents</div>
+                <div class="nav-item" onclick="window.location.href='notifications.html';"><span
+                        class="nav-icon">🔔</span>Notifications <span class="nav-badge">7</span></div>
+            </div>
+            <!-- <div class="sidebar-bottom">
+                    <div class="user-pill">
+                        <div class="user-pill" onclick="window.location.href='profile.html';"></div>
+                        <div class="avatar">RK</div>
+                        <div class="user-info">
+                            <div class="user-name">Rajesh Kumar</div>
+                            <div class="user-role">Verified Citizen · UP</div>
+                        </div>
+                        <i class="fas fa-chevron-right" style="color:var(--muted);font-size:0.8rem;"></i>
+                    </div>
+                </div> -->
+            <div class="sidebar-bottom">
+                <div class="user-pill" onclick="window.location.href='profile.html';">
+                    <div class="avatar">RK</div>
+                    <div class="user-info">
+                        <div class="user-name">Rajesh Kumar</div>
+                        <div class="user-role">Verified Citizen · UP</div>
+                    </div>
+                    <i class="fas fa-chevron-right" style="color: var(--muted); font-size: 0.8rem;"></i>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ── Main ── -->
+        <main class="main">
+
+            <!-- Top Bar -->
+            <div class="topbar">
+                <h1 class="page-title">Apply <span>Scheme</span></h1>
+                <div class="topbar-right">
+                    <button class="top-btn" onclick="window.location.href='my-schemes.html'"><i
+                            class="fas fa-clipboard-list"></i> My Schemes</button>
+                    <button class="top-btn primary"><i class="fas fa-headset"></i> Get Help</button>
+                </div>
+            </div>
+
+            <!-- AI Eligibility Banner -->
+            <div class="ai-banner">
+                <div class="ai-icon">🤖</div>
+                <div class="ai-text">
+                    <h2>Saarthi AI found 3 schemes you're eligible for</h2>
+                    <p>Based on your Aadhaar profile, income level (₹1.8L/yr), and location (Uttar Pradesh) — here are
+                        your best matches right now.</p>
+                    <div class="ai-chips">
+                        <span class="ai-chip">✅ Income Verified</span>
+                        <span class="ai-chip">✅ Location Matched</span>
+                        <span class="ai-chip">✅ Aadhaar Linked</span>
+                        <span class="ai-chip">⚡ 3 New Matches</span>
+                    </div>
+                </div>
+                <div class="ai-actions">
+                    <button class="ai-btn white" onclick="selectRecommended()"><i class="fas fa-magic"
+                            style="margin-right:6px;"></i>Show AI Picks</button>
+                    <button class="ai-btn outline" onclick="window.location.href='index.html?openChat=true'"><i
+                            class="fas fa-microphone" style="margin-right:6px;"></i>Ask Saarthi</button>
+                </div>
+            </div>
+
+            <!-- Step Progress Bar -->
+            <div class="steps-bar" id="stepsBar">
+                <div class="step done" id="step1">
+                    <div class="step-circle"><i class="fas fa-check"></i></div>
+                    <div class="step-label">Choose Scheme</div>
+                </div>
+                <div class="step active" id="step2">
+                    <div class="step-circle">2</div>
+                    <div class="step-label">Check Eligibility</div>
+                </div>
+                <div class="step" id="step3">
+                    <div class="step-circle">3</div>
+                    <div class="step-label">Fill Details</div>
+                </div>
+                <div class="step" id="step4">
+                    <div class="step-circle">4</div>
+                    <div class="step-label">Upload Docs</div>
+                </div>
+                <div class="step" id="step5">
+                    <div class="step-circle">5</div>
+                    <div class="step-label">Submit</div>
+                </div>
+            </div>
+
+            <!-- Two Column Layout -->
+            <div class="apply-layout">
+
+                <!-- LEFT: Scheme Picker + Application Form -->
+                <div style="display:flex;flex-direction:column;gap:1.25rem;">
+
+                    <!-- Scheme Picker -->
+                    <div class="panel">
+                        <div class="panel-head">
+                            <div>
+                                <div class="panel-title">Browse & Select a Scheme</div>
+                                <div class="panel-sub">Click any scheme to select it, then fill the form below.</div>
+                            </div>
+                            <span style="font-size:0.82rem;color:var(--muted);" id="resultCount">18 schemes</span>
+                        </div>
+
+                        <!-- Search -->
+                        <div class="search-row">
+                            <div class="search-wrap">
+                                <i class="fas fa-search"></i>
+                                <input class="search-input" id="schemeSearch" type="text"
+                                    placeholder="Search scheme name or category…" oninput="filterList()">
+                            </div>
+                        </div>
+
+                        <!-- Category Filter -->
+                        <div class="cat-filter">
+                            <button class="cat-btn active" onclick="setCat('all',this)">All</button>
+                            <button class="cat-btn" onclick="setCat('Agriculture',this)">🌾 Agriculture</button>
+                            <button class="cat-btn" onclick="setCat('Health',this)">🏥 Health</button>
+                            <button class="cat-btn" onclick="setCat('Education',this)">🎓 Education</button>
+                            <button class="cat-btn" onclick="setCat('Housing',this)">🏠 Housing</button>
+                            <button class="cat-btn" onclick="setCat('Employment',this)">👷 Employment</button>
+                            <button class="cat-btn" onclick="setCat('Women',this)">👩 Women</button>
+                            <button class="cat-btn" onclick="setCat('Finance',this)">💰 Finance</button>
+                        </div>
+
+                        <!-- Scheme List -->
+                        <div class="scheme-list" id="schemeList">
+                            <!-- populated by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Application Form (shown after selection) -->
+                    <div class="form-panel" id="appForm" style="display:none;">
+                        <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;">
+                            <div class="s-icon blue" id="formIcon"
+                                style="width:52px;height:52px;font-size:1.6rem;border-radius:16px;">🌾</div>
+                            <div>
+                                <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--muted);margin-bottom:0.25rem;"
+                                    id="formCat">Agriculture</div>
+                                <div style="font-size:1.1rem;font-weight:700;" id="formName">PM-KISAN Samman Nidhi</div>
+                            </div>
+                            <span class="nav-badge" style="margin-left:auto;background:var(--green);">Selected</span>
+                        </div>
+
+                        <!-- Personal Details -->
+                        <div class="form-section-title">Personal Information</div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label>Full Name</label>
+                                <input type="text" value="Rajesh Kumar" placeholder="As per Aadhaar">
+                            </div>
+                            <div class="form-field">
+                                <label>Aadhaar Number</label>
+                                <input type="text" placeholder="XXXX-XXXX-XXXX">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label>Date of Birth</label>
+                                <input type="date">
+                            </div>
+                            <div class="form-field">
+                                <label>Gender</label>
+                                <select>
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label>Mobile Number</label>
+                                <input type="tel" placeholder="10-digit number">
+                            </div>
+                            <div class="form-field">
+                                <label>State</label>
+                                <select>
+                                    <option>Uttar Pradesh</option>
+                                    <option>Bihar</option>
+                                    <option>Madhya Pradesh</option>
+                                    <option>Rajasthan</option>
+                                    <option>Maharashtra</option>
+                                    <option>West Bengal</option>
+                                    <option>Tamil Nadu</option>
+                                    <option>Andhra Pradesh</option>
+                                    <option>Gujarat</option>
+                                    <option>Karnataka</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Scheme-Specific Details -->
+                        <div class="form-section-title" style="margin-top:1.25rem;">Scheme-Specific Details</div>
+                        <div class="form-row" id="schemeFields">
+                            <div class="form-field">
+                                <label>Annual Income (₹)</label>
+                                <input type="number" placeholder="e.g. 180000">
+                            </div>
+                            <div class="form-field">
+                                <label>Land Holding (acres)</label>
+                                <input type="number" placeholder="e.g. 2.5">
+                            </div>
+                        </div>
+                        <div class="form-row full">
+                            <div class="form-field">
+                                <label>Bank Account Number</label>
+                                <input type="text" placeholder="For direct benefit transfer">
+                            </div>
+                        </div>
+                        <div class="form-row full">
+                            <div class="form-field">
+                                <label>IFSC Code</label>
+                                <input type="text" placeholder="e.g. SBIN0001234">
+                            </div>
+                        </div>
+                        <div class="form-row full">
+                            <div class="form-field">
+                                <label>Additional Remarks (optional)</label>
+                                <textarea placeholder="Any additional information you'd like to provide…"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Upload -->
+                        <div class="doc-upload-section">
+                          <h3>📄 Upload Your Documents</h3>
+                          <p>Upload Aadhaar, Income Certificate, or any notice — we'll read it for you</p>
+
+                          <label class="upload-zone" id="uploadZone">
+                            <input type="file" id="docUpload" accept=".pdf,.jpg,.jpeg,.png" multiple hidden>
+                            <div class="upload-content">
+                              <span class="upload-icon">📤</span>
+                              <span>Tap to upload or take photo</span>
+                              <span class="upload-sub">PDF, JPG, PNG supported</span>
+                            </div>
+                          </label>
+
+                          <div id="docPreview" class="doc-preview-list"></div>
+
+                          <button class="btn-primary" id="autoFillBtn" style="display:none;">
+                            ✨ Auto-fill Form from Documents
+                          </button>
+                        </div>
+
+                        <!-- Submit -->
+                        <div class="submit-section">
+                            <div class="declaration">
+                                <input type="checkbox" id="declCheck">
+                                <label for="declCheck">I hereby declare that the information provided above is true and
+                                    correct to the best of my knowledge. I understand that any false information may
+                                    lead to rejection of my application. I agree to the <a href="#">Terms &
+                                        Conditions</a>.</label>
+                            </div>
+                            <div class="submit-row">
+                                <button class="btn-save"><i class="fas fa-save" style="margin-right:5px;"></i>Save
+                                    Draft</button>
+                                <button class="btn-submit" onclick="submitApp()"><i class="fas fa-paper-plane"
+                                        style="margin-right:5px;"></i>Submit Application</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- RIGHT: Eligibility + Docs -->
+                <div class="right-col">
+
+                    <!-- Eligibility Checker -->
+                    <div class="elig-panel" id="eligSection">
+                        <div class="elig-header">
+                            <i class="fas fa-shield-alt"></i>
+                            <div>
+                                <div class="elig-title">Quick Eligibility Check</div>
+                                <div style="font-size:0.78rem;color:var(--muted);">Check before you apply</div>
+                            </div>
+                        </div>
+                        <div class="elig-row">
+                            <div class="elig-field">
+                                <label>Annual Income (₹)</label>
+                                <input type="number" id="eIncome" placeholder="e.g. 180000">
+                            </div>
+                            <div class="elig-field">
+                                <label>Age</label>
+                                <input type="number" id="eAge" placeholder="e.g. 35">
+                            </div>
+                            <div class="elig-field">
+                                <label>Category</label>
+                                <select id="eCat">
+                                    <option value="">Select category</option>
+                                    <option>General</option>
+                                    <option>OBC</option>
+                                    <option>SC</option>
+                                    <option>ST</option>
+                                </select>
+                            </div>
+                            <div class="elig-field">
+                                <label>State</label>
+                                <select id="eState">
+                                    <option value="">Select state</option>
+                                    <option>Uttar Pradesh</option>
+                                    <option>Bihar</option>
+                                    <option>Madhya Pradesh</option>
+                                    <option>Rajasthan</option>
+                                    <option>Maharashtra</option>
+                                    <option>West Bengal</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button class="check-btn" onclick="checkElig()"><i class="fas fa-magic"></i> Check
+                            Eligibility</button>
+                        <div class="elig-result" id="eligResult"></div>
+                    </div>
+
+                    <!-- Required Documents -->
+                    <div class="docs-panel" id="docsPanel">
+                        <div class="docs-title"><i class="fas fa-folder-open"></i> Required Documents</div>
+                        <div id="docsList">
+                            <div class="doc-row">
+                                <div class="doc-icon ok"><i class="fas fa-check"></i></div>
+                                <div class="doc-info">
+                                    <div class="doc-name">Aadhaar Card</div>
+                                    <div class="doc-status ok">✓ Already uploaded</div>
+                                </div>
+                            </div>
+                            <div class="doc-row">
+                                <div class="doc-icon ok"><i class="fas fa-check"></i></div>
+                                <div class="doc-info">
+                                    <div class="doc-name">Bank Passbook / Account Details</div>
+                                    <div class="doc-status ok">✓ Already uploaded</div>
+                                </div>
+                            </div>
+                            <div class="doc-row">
+                                <div class="doc-icon"><i class="fas fa-file-alt"></i></div>
+                                <div class="doc-info">
+                                    <div class="doc-name">Land Records / Khasra</div>
+                                    <div class="doc-status">⚠ Upload required</div>
+                                </div>
+                            </div>
+                            <div class="doc-row">
+                                <div class="doc-icon"><i class="fas fa-file-alt"></i></div>
+                                <div class="doc-info">
+                                    <div class="doc-name">Income Certificate</div>
+                                    <div class="doc-status">⚠ Upload required</div>
+                                </div>
+                            </div>
+                            <div class="doc-row">
+                                <div class="doc-icon ok"><i class="fas fa-check"></i></div>
+                                <div class="doc-info">
+                                    <div class="doc-name">Passport Photo</div>
+                                    <div class="doc-status ok">✓ Already uploaded</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Application Tips -->
+                    <div class="panel">
+                        <div class="panel-title" style="margin-bottom:1rem;"><i class="fas fa-lightbulb"
+                                style="color:var(--gold);margin-right:0.5rem;"></i>Tips for Success</div>
+                        <div style="display:flex;flex-direction:column;gap:0.75rem;">
+                            <div style="display:flex;gap:0.75rem;align-items:flex-start;">
+                                <span style="color:var(--green);font-size:0.85rem;margin-top:1px;">✓</span>
+                                <span style="font-size:0.83rem;color:var(--text-light);line-height:1.5;">Make sure your
+                                    Aadhaar is linked to your bank account for DBT.</span>
+                            </div>
+                            <div style="display:flex;gap:0.75rem;align-items:flex-start;">
+                                <span style="color:var(--green);font-size:0.85rem;margin-top:1px;">✓</span>
+                                <span style="font-size:0.83rem;color:var(--text-light);line-height:1.5;">Upload clear,
+                                    legible scans — blurry documents cause rejections.</span>
+                            </div>
+                            <div style="display:flex;gap:0.75rem;align-items:flex-start;">
+                                <span style="color:var(--green);font-size:0.85rem;margin-top:1px;">✓</span>
+                                <span style="font-size:0.83rem;color:var(--text-light);line-height:1.5;">Double-check
+                                    your name spelling against your Aadhaar card exactly.</span>
+                            </div>
+                            <div style="display:flex;gap:0.75rem;align-items:flex-start;">
+                                <span style="color:var(--green);font-size:0.85rem;margin-top:1px;">✓</span>
+                                <span style="font-size:0.83rem;color:var(--text-light);line-height:1.5;">You can save a
+                                    draft and return later — no need to complete in one session.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"><i class="fas fa-check-circle"></i> <span id="toastMsg">Application submitted!</span>
+    </div>
+
+    <!-- Saarthi Global Scripts -->
+    <script>
+        const API_BASE = "http://localhost:8080";
+
+        function getUser() {
+            try { return JSON.parse(localStorage.getItem("saarthi_user") || "{}"); }
+            catch { return {}; }
+        }
+
+        async function apiFetch(path, options = {}) {
+            const res = await fetch(`${API_BASE}/api/v1${path}`, {
+                headers: { "Content-Type": "application/json" },
+                ...options
+            });
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            return res.json();
+        }
+
+        async function fetchRecommendations(userProfile) {
+            return apiFetch("/recommendations/", {
+                method: "POST",
+                body: JSON.stringify({ user_profile: userProfile, top_n: 10, lang: "en" })
+            });
+        }
+    </script>
+    <script src="JS/language.js"></script>
+
+    <script>
+        // ── Schemes Data ──
+        let schemes = [];
+        let activeCat = 'all';
+        let selectedScheme = null;
+
+        // Emoji & Color mapping for backend categories
+        const CAT_STYLE = {
+            agriculture: { icon: '🌾', color: 'green' },
+            health: { icon: '🏥', color: 'red' },
+            education: { icon: '🎓', color: 'purple' },
+            women: { icon: '👩', color: 'pink' },
+            housing: { icon: '🏠', color: 'cyan' },
+            business: { icon: '💼', color: 'blue' },
+            social_welfare: { icon: '🤝', color: 'gold' },
+            employment: { icon: '👷', color: 'orange' }
+        };
+
+        async function fetchAllSchemes() {
+            const res = await fetch(`${API_BASE}/api/v1/schemes/`);
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            return res.json();
+        }
+
+        async function initSchemes() {
+            try {
+                const data = await fetchAllSchemes();
+                schemes = (data?.data || []).map(s => ({
+                    ...s,
+                    scheme_id: s.scheme_id,
+                    icon: CAT_STYLE[s.category]?.icon || '📋',
+                    color: CAT_STYLE[s.category]?.color || 'blue',
+                    cat: s.category ? s.category.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase()) : 'Scheme',
+                    name: s.name_en || s.scheme_id,
+                    desc: s.description || "Government scheme for eligible citizens.",
+                    benefit: s.benefits?.amount ? `₹${s.benefits.amount.toLocaleString()}` : 'Varies',
+                    tags: s.target_group || []
+                }));
+
+                // Check if scheme_id is in URL
+                const urlParams = new URLSearchParams(window.location.search);
+                const sid = urlParams.get('scheme_id');
+                if (sid) {
+                    const found = schemes.findIndex(x => x.scheme_id === sid);
+                    if (found !== -1) {
+                        selectScheme(found);
+                        // Scroll form into view after short delay
+                        setTimeout(() => {
+                            document.getElementById('appForm').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }, 300);
+                    }
+                }
+
+                filterList();
+            } catch (err) {
+                console.error("Failed to load schemes:", err);
+            }
+        }
+
+        function renderList(data) {
+            const list = document.getElementById('schemeList');
+            document.getElementById('resultCount').textContent = `${data.length} scheme${data.length !== 1 ? 's' : ''}`;
+            if (!data.length) {
+                list.innerHTML = `<div class="no-results"><i class="fas fa-search"></i><div>No schemes found</div></div>`;
+                return;
+            }
+            list.innerHTML = data.map((s, i) => `
+        <div class="scheme-item ${selectedScheme && selectedScheme.name === s.name ? 'selected' : ''}"
+             onclick="selectScheme(${schemes.indexOf(s)})"
+             style="animation: fadeUp 0.3s ease ${i * 0.04}s both;">
+            <div class="s-icon ${s.color}">${s.icon}</div>
+            <div class="s-body">
+                <div class="s-cat ${s.color}">${s.cat}</div>
+                <div class="s-name">${s.name}</div>
+                <div class="s-desc">${s.desc}</div>
+                <div class="s-tags">
+                    ${s.tags.map(t => `<span class="s-tag">${t}</span>`).join('')}
+                </div>
+            </div>
+            <div class="s-benefit">${s.benefit}</div>
+        </div>
+    `).join('');
+        }
+
+        function filterList() {
+            const q = document.getElementById('schemeSearch').value.toLowerCase();
+            const filtered = schemes.filter(s => {
+                const matchQ = !q || s.name.toLowerCase().includes(q) || s.cat.toLowerCase().includes(q) || s.desc.toLowerCase().includes(q);
+                const matchC = activeCat === 'all' || s.cat === activeCat;
+                return matchQ && matchC;
+            });
+            renderList(filtered);
+        }
+
+        function setCat(cat, btn) {
+            activeCat = cat;
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            filterList();
+        }
+
+        function selectScheme(idx) {
+            selectedScheme = schemes[idx];
+            const form = document.getElementById('appForm');
+            document.getElementById('formIcon').textContent = selectedScheme.icon;
+            document.getElementById('formCat').textContent = selectedScheme.cat;
+            document.getElementById('formName').textContent = selectedScheme.name;
+            form.style.display = 'block';
+            form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            filterList();
+            // Advance step indicator
+            markStep(3);
+            showToast(`"${selectedScheme.name}" selected — fill the form below`);
+        }
+
+        async function selectRecommended() {
+            const user = getUser();
+            if (!user) return showToast("Please login to see recommendations", true);
+
+            try {
+                showToast("AI is analyzing your profile...");
+                const data = await fetchRecommendations(user);
+                const recs = data?.recommendations || [];
+                if (recs.length === 0) return showToast("No specific recommendations found.", true);
+
+                // Map recommendations to our display format
+                const mapped = recs.map(r => ({
+                    ...r,
+                    icon: CAT_STYLE[r.category]?.icon || '✨',
+                    color: CAT_STYLE[r.category]?.color || 'blue',
+                    cat: r.category ? r.category.replace('_', ' ') : 'Saarthi Pick',
+                    name: r.name_en || r.scheme_id,
+                    desc: r.description || "Highly matched for your profile.",
+                    benefit: r.benefits?.amount ? `₹${r.benefits.amount.toLocaleString()}` : 'Varies',
+                    tags: [`${Math.round(r.recommendation_score * 100)}% Match`]
+                }));
+
+                renderList(mapped);
+                activeCat = 'reco';
+                document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+                showToast(`Found ${mapped.length} great matches for you!`);
+            } catch (err) {
+                showToast("Recommendation engine unavailable", true);
+            }
+        }
+
+        function markStep(n) {
+            for (let i = 1; i <= 5; i++) {
+                const el = document.getElementById(`step${i}`);
+                el.classList.remove('done', 'active');
+                if (i < n) el.classList.add('done');
+                else if (i === n) el.classList.add('active');
+            }
+            // Update circle icons
+            document.querySelectorAll('.step.done .step-circle').forEach(c => c.innerHTML = '<i class="fas fa-check"></i>');
+        }
+
+        // ── Eligibility Checker ──
+        async function checkElig() {
+            if (!selectedScheme) return showToast("Select a scheme first!", true);
+
+            const income = parseInt(document.getElementById('eIncome').value) || 0;
+            const age = parseInt(document.getElementById('eAge').value) || 0;
+            const cat = document.getElementById('eCat').value;
+            const state = document.getElementById('eState').value;
+            const resEl = document.getElementById('eligResult');
+
+            if (!income || !age || !cat || !state) {
+                resEl.className = 'elig-result fail show';
+                resEl.innerHTML = `<div class="res-title">⚠ Please fill all fields</div>`;
+                return;
+            }
+
+            try {
+                const profile = {
+                    annual_income: income,
+                    age: age,
+                    caste_category: cat,
+                    state: state.toLowerCase().replace(" ", "_")
+                };
+
+                const res = await apiFetch("/schemes/eligibility", {
+                    method: "POST",
+                    body: JSON.stringify({
+                        scheme_id: selectedScheme.scheme_id,
+                        user_profile: profile
+                    })
+                });
+
+                if (res.eligible) {
+                    resEl.className = 'elig-result pass show';
+                    resEl.innerHTML = `
+                        <div class="res-title">✅ You appear ELIGIBLE!</div>
+                        <div class="res-list">Based on your provided details, you meet the primary criteria for <strong>${selectedScheme.name}</strong>.</div>
+                    `;
+                    markStep(3);
+                } else {
+                    resEl.className = 'elig-result fail show';
+                    resEl.innerHTML = `
+                        <div class="res-title">❌ Not Eligible</div>
+                        <div class="res-list">You may not meet the income or demographic requirements for this specific scheme.</div>
+                    `;
+                }
+            } catch (err) {
+                showToast("Eligibility check failed", true);
+            }
+        }
+
+        // ── File Upload ──
+        function triggerUpload() { document.getElementById('fileInput').click(); }
+        function handleFiles(input) {
+            const list = document.getElementById('fileList');
+            Array.from(input.files).forEach(f => {
+                const div = document.createElement('div');
+                div.style.cssText = 'display:flex;align-items:center;gap:0.75rem;padding:0.6rem 0.9rem;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;font-size:0.82rem;font-weight:600;color:var(--green);';
+                div.innerHTML = `<i class="fas fa-file-check"></i> ${f.name} <span style="color:var(--muted);font-weight:400;margin-left:auto;">${(f.size / 1024).toFixed(0)} KB</span>`;
+                list.appendChild(div);
+            });
+            markStep(4);
+        }
+
+        // ── Submit ──
+        function submitApp() {
+            if (!selectedScheme) { showToast('Please select a scheme first', true); return; }
+            if (!document.getElementById('declCheck').checked) { showToast('Please accept the declaration', true); return; }
+            markStep(5);
+            setTimeout(() => {
+                showToast(`Application for "${selectedScheme.name}" submitted successfully! 🎉`);
+                setTimeout(() => window.location.href = 'my-schemes.html', 2500);
+            }, 400);
+        }
+
+        // ── Toast ──
+        function showToast(msg, error = false) {
+            const t = document.getElementById('toast');
+            const m = document.getElementById('toastMsg');
+            m.textContent = msg;
+            t.style.background = error ? 'var(--red)' : 'var(--green)';
+            t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 3000);
+        }
+
+        // ── Init ──
+        initSchemes();
+
+        // Auto-scroll to eligibility section if redirected from chatbot
+        if (window.location.hash === '#eligSection') {
+            setTimeout(() => {
+                const el = document.getElementById('eligSection');
+                if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 600);
+        }
+
+    </script>
+</body>
+
+</html>

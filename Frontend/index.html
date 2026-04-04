@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saarthi AI - Voice-First Digital India Assistant</title>
+    <link rel="stylesheet" href="CSS/main.css">
+    <link rel="stylesheet" href="CSS/tts.css">
+    <link rel="stylesheet" href="CSS/responsive.css">
+</head>
+
+<body>
+
+    <!-- Announcement Bar -->
+    <div class="announcement-bar" id="announcementBar">
+        <!-- Scrolling ticker -->
+        <div class="announcement-marquee">
+            <div class="announcement-track">
+                <!-- Item 1 -->
+                <span class="announcement-item">
+                    <span class="announcement-badge">🆕 NEW</span>
+                    <span class="announcement-text">🎉 PM Vishwakarma Scheme is now live — Artisans &amp; craftspeople
+                        can apply for up to ₹3 lakh support!</span>
+                    <a href="#categories" class="announcement-cta">Learn More →</a>
+                </span>
+                <span class="announcement-sep">✦</span>
+                <!-- Item 2 -->
+                <span class="announcement-item">
+                    <span class="announcement-badge">🆕 NEW</span>
+                    <span class="announcement-text">📢 National Health Protection Scheme — Get health cover up to ₹5
+                        lakhs for your family. Apply today!</span>
+                    <a href="#categories" class="announcement-cta">Apply Now →</a>
+                </span>
+                <span class="announcement-sep">✦</span>
+                <!-- Item 3 -->
+                <span class="announcement-item">
+                    <span class="announcement-badge">🆕 NEW</span>
+                    <span class="announcement-text">🌾 Farmers Income Support: Direct ₹6,000/year benefit now available
+                        for all eligible farmer families.</span>
+                    <a href="#categories" class="announcement-cta">Check Eligibility →</a>
+                </span>
+                <span class="announcement-sep">✦</span>
+                <!-- Duplicate set for seamless loop -->
+                <span class="announcement-item">
+                    <span class="announcement-badge">🆕 NEW</span>
+                    <span class="announcement-text">🎉 PM Vishwakarma Scheme is now live — Artisans &amp; craftspeople
+                        can apply for up to ₹3 lakh support!</span>
+                    <a href="#categories" class="announcement-cta">Learn More →</a>
+                </span>
+                <span class="announcement-sep">✦</span>
+                <span class="announcement-item">
+                    <span class="announcement-badge">🆕 NEW</span>
+                    <span class="announcement-text">📢 National Health Protection Scheme — Get health cover up to ₹5
+                        lakhs for your family. Apply today!</span>
+                    <a href="#categories" class="announcement-cta">Apply Now →</a>
+                </span>
+                <span class="announcement-sep">✦</span>
+                <span class="announcement-item">
+                    <span class="announcement-badge">🆕 NEW</span>
+                    <span class="announcement-text">🌾 Farmers Income Support: Direct ₹6,000/year benefit now available
+                        for all eligible farmer families.</span>
+                    <a href="#categories" class="announcement-cta">Check Eligibility →</a>
+                </span>
+                <span class="announcement-sep">✦</span>
+            </div>
+        </div>
+
+        <!-- Close button -->
+        <!-- <button class="announcement-close" id="announcementClose" aria-label="Close announcement">✕</button> -->
+    </div>
+
+    <header id="header">
+        <nav class="container">
+
+            <!-- Logo -->
+            <div class="logo" onclick="window.location.reload();" style="cursor:pointer;">
+                Saarthi AI
+            </div>
+
+            <!-- Hamburger -->
+            <!-- <button class="hamburger" id="hamburger" aria-label="Menu">
+              <span></span><span></span><span></span>
+            </button> -->
+
+            <!-- Nav Links -->
+            <ul class="nav-links">
+                <li><a href="#categories" data-i18n="allSchemes">Schemes</a></li>
+                <li><a href="#languages" class="nav-link">Languages</a></li>
+                <li><a href="#features" class="nav-link">Features</a></li>
+                <li><a href="dashboard.html" class="nav-link" onclick="if(!localStorage.getItem('saarthi_token')){event.preventDefault();window.location.href='login.html';}">Dashboard</a></li>
+                <!-- <li><a href="dashboard.html"
+                        onclick="if(!localStorage.getItem('saarthi_token')){event.preventDefault();window.location.href='login.html';}"
+                        class="nav-link">
+                        Dashboard
+                    </a></li> -->
+
+                <!-- ✅ NEW: Dashboard Button -->
+                <!-- <li>
+                    <a href="dashboard.html" class="dashboard-btn">
+                        <i class="fas fa-th-large"></i> Dashboard
+                    </a>
+                </li> -->
+
+                <!-- Profile Icon — no login required -->
+                <li>
+                    <a href="profile.html" class="profile-icon-round">
+                        <i class="fas fa-user"></i>
+                        <img src="blank-profile-picture-973460_640.webp" alt="User Profile">
+                    </a>
+                </li>
+            </ul>
+
+        </nav>
+    </header>
+
+    <section class="hero" id="heroSection">
+        <div class="hero-content">
+            <h1>Digital India, In Your Voice</h1>
+            <p>Breaking barriers of language and literacy. Access government services, schemes, and information through
+                simple voice commands in your mother tongue.</p>
+
+            <!-- Simple Voice Interface - Initial State -->
+            <div class="voice-interface-simple" id="voiceInterfaceSimple">
+                <div class="mic-circle" id="micCircleLarge">
+                    <button class="mic-button-large" id="micButtonLarge" aria-label="Voice input">
+                        🎤
+                    </button>
+                    <div class="mic-circle-bg">
+                        <!-- Pulse rings -->
+                        <div class="pulse-ring"></div>
+                        <div class="pulse-ring"></div>
+                        <div class="pulse-ring"></div>
+                    </div>
+                </div>
+
+                <input type="text" class="input-box-simple" id="textInputSimple"
+                    placeholder="Ask anything in your language...">
+
+                <div class="status-text-simple" id="statusTextSimple"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chat Only View - Fullscreen -->
+    <div class="chat-only-view" id="chatOnlyView">
+
+        <!-- Chat Top Bar -->
+        <div class="chat-top-bar">
+            <button class="back-button" id="backButton" aria-label="Go back to home">
+                <span class="back-arrow">←</span>
+                <span class="back-text">Back to Home</span>
+            </button>
+
+            <div class="chat-title">
+                <span class="chat-title-logo">Saarthi AI</span>
+                <span class="chat-title-badge">🟢 Online</span>
+            </div>
+
+            <!-- Language Button top-right -->
+            <div class="lang-btn-wrap" id="langBtnWrap">
+                <button class="lang-toggle-btn" id="langToggleBtn" onclick="toggleLangPanel()">
+                    🌐 <span id="langBtnLabel">हिंदी</span> ▾
+                </button>
+                <div class="lang-dropdown" id="langDropdown">
+                    <div class="lang-dropdown-header">Choose Language / भाषा चुनें</div>
+                    <button class="lang-opt active" data-val="hi-IN" data-label="हिंदी"
+                        onclick="selectChatLang(this)">🇮🇳 हिंदी (Hindi)</button>
+                    <button class="lang-opt" data-val="en-IN" data-label="English" onclick="selectChatLang(this)">🇬🇧
+                        English</button>
+                    <button class="lang-opt" data-val="bn-IN" data-label="বাংলা" onclick="selectChatLang(this)">বাংলা
+                        (Bengali)</button>
+                    <button class="lang-opt" data-val="te-IN" data-label="తెలుగు" onclick="selectChatLang(this)">తెలుగు
+                        (Telugu)</button>
+                    <button class="lang-opt" data-val="mr-IN" data-label="मराठी" onclick="selectChatLang(this)">मराठी
+                        (Marathi)</button>
+                    <button class="lang-opt" data-val="ta-IN" data-label="தமிழ்" onclick="selectChatLang(this)">தமிழ்
+                        (Tamil)</button>
+                    <button class="lang-opt" data-val="gu-IN" data-label="ગુજરાતી"
+                        onclick="selectChatLang(this)">ગુજરાતી (Gujarati)</button>
+                    <button class="lang-opt" data-val="kn-IN" data-label="ಕನ್ನಡ" onclick="selectChatLang(this)">ಕನ್ನಡ
+                        (Kannada)</button>
+                    <button class="lang-opt" data-val="ml-IN" data-label="മലയാളം" onclick="selectChatLang(this)">മലയാളം
+                        (Malayalam)</button>
+                    <button class="lang-opt" data-val="pa-IN" data-label="ਪੰਜਾਬੀ" onclick="selectChatLang(this)">ਪੰਜਾਬੀ
+                        (Punjabi)</button>
+                    <button class="lang-opt" data-val="or-IN" data-label="ଓଡ଼ିଆ" onclick="selectChatLang(this)">ଓଡ଼ିଆ (Odia)</button>
+                    <button class="lang-opt" data-val="as-IN" data-label="অসমীয়া" onclick="selectChatLang(this)">অসমীয়া (Assamese)</button>
+                    <button class="lang-opt" data-val="ur-IN" data-label="اردو" onclick="selectChatLang(this)">اردو (Urdu)</button>
+                    <button class="lang-opt" data-val="ne-IN" data-label="नेपाली" onclick="selectChatLang(this)">नेपाली (Nepali)</button>
+                    <button class="lang-opt" data-val="sd-IN" data-label="سنڌي" onclick="selectChatLang(this)">سنڌي (Sindhi)</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hidden select kept for JS compatibility -->
+        <select id="language" style="display:none;">
+            <option value="hi-IN">हिंदी (Hindi)</option>
+            <option value="en-IN">English</option>
+            <option value="bn-IN">বাংলা (Bengali)</option>
+            <option value="te-IN">తెలుగు (Telugu)</option>
+            <option value="mr-IN">मराठी (Marathi)</option>
+            <option value="ta-IN">தமிழ் (Tamil)</option>
+            <option value="gu-IN">ગુજરાતી (Gujarati)</option>
+            <option value="kn-IN">ಕನ್ನಡ (Kannada)</option>
+            <option value="ml-IN">മലയാളം (Malayalam)</option>
+            <option value="pa-IN">ਪੰਜਾਬੀ (Punjabi)</option>
+            <option value="or-IN">ଓଡ଼ିଆ (Odia)</option>
+            <option value="as-IN">অসমীয়া (Assamese)</option>
+            <option value="ur-IN">اردو (Urdu)</option>
+            <option value="ne-IN">नेपाली (Nepali)</option>
+            <option value="sd-IN">سنڌي (Sindhi)</option>
+        </select>
+
+        <!-- Chat Body -->
+        <div class="voice-interface-full">
+            <div class="chat-display" id="chatDisplay">
+                <div class="message assistant-message" data-text="👋 Namaste! How can I help you with government services today?" data-lang="en-IN">
+                    <p class="msg-text">👋 Namaste! How can I help you with government services today?</p>
+                    <div class="msg-actions">
+                        <button class="tts-btn" onclick="saarthiTTS.speak(this.closest('[data-text]').dataset.text, this.closest('[data-lang]').dataset.lang)">
+                          🔊 सुनें
+                        </button>
+                        <button class="tts-slow-btn" onclick="saarthiTTS.speak(this.closest('[data-text]').dataset.text, this.closest('[data-lang]').dataset.lang, true)">
+                          🐢 धीरे सुनें
+                        </button>
+                        <button class="tts-replay-btn" onclick="saarthiTTS.replay()">
+                          🔁 दोबारा
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-container">
+                <input type="file" id="docFileInputGallery" accept="image/*,.pdf" style="display:none;">
+                <input type="file" id="docFileInputCamera" accept="image/*" capture="environment" style="display:none;">
+                <button class="mic-button" id="attachButton" title="Attach document" onclick="showAttachMenu(event)" style="font-size:1.1rem;">📎</button>
+                <input type="text" class="text-input" id="textInput" placeholder="Type your message or upload a legal document..."
+                    aria-label="Message input">
+                <button class="mic-button" id="micButton" aria-label="Voice input">
+                    🎤
+                </button>
+                <button class="send-button" id="sendButton" aria-label="Send message">
+                    ➤
+                </button>
+            </div>
+            <div id="filePreviewBar" style="display:none; padding:6px 14px; background:#eff6ff; border-top:1px solid #bfdbfe; font-size:0.82rem; color:#1e40af; align-items:center; gap:8px; flex-wrap:nowrap;">
+                <span>📄</span>
+                <span id="filePreviewName" style="flex:1; font-weight:600; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;"></span>
+                <span id="filePreviewSize" style="color:#64748b; white-space:nowrap;"></span>
+                <button onclick="clearDocFile()" style="background:none;border:none;cursor:pointer;color:#dc2626;font-size:1rem;padding:0 4px;">✕</button>
+            </div>
+
+            <div class="status-text" id="statusText"></div>
+        </div>
+    </div>
+
+    <!-- Featured Schemes -->
+    <section class="section-wrapper featured-section">
+        <div class="text-center">
+            <h2 class="section-title" data-i18n="trendingSchemes">Trending & Featured Schemes</h2>
+            <p class="section-subtitle" data-i18n="trendingSub">Discover the most applied for government programs.</p>
+        </div>
+        <div class="schemes-grid">
+            <div class="scheme-card" data-scheme="health-protection">
+                <div class="scheme-tag" data-i18n="health">Health & Wellness</div>
+                <h3 data-i18n="healthScheme">National Health Protection Scheme</h3>
+                <p class="scheme-desc" data-i18n="healthDesc">Health insurance cover up to ₹5 lakhs per family for
+                    secondary & tertiary care.</p>
+                <div class="eligibility-box">
+                    <p class="eligibility-label" data-i18n="whoCanApply">Who can apply?</p>
+                    <p class="eligibility-value" data-i18n="lowIncome">Low-income families</p>
+                </div>
+                <div class="card-footer">
+                    <a href="#" class="details-link" data-i18n="readDetails">📄 Read Details</a>
+                    <button class="apply-btn" data-i18n="applyNow">Apply Now</button>
+                </div>
+            </div>
+            <div class="scheme-card" data-scheme="farmers-support">
+                <div class="scheme-tag" data-i18n="agriculture">Agriculture</div>
+                <h3 data-i18n="farmerScheme">Farmers Income Support</h3>
+                <p class="scheme-desc" data-i18n="farmerDesc">Direct income support of ₹6,000 per year to all
+                    landholding farmer families.</p>
+                <div class="eligibility-box">
+                    <p class="eligibility-label" data-i18n="whoCanApply">Who can apply?</p>
+                    <p class="eligibility-value" data-i18n="smallFarmers">Small & marginal farmers</p>
+                </div>
+                <div class="card-footer">
+                    <a href="#" class="details-link" data-i18n="readDetails">📄 Read Details</a>
+                    <button class="apply-btn" data-i18n="applyNow">Apply Now</button>
+                </div>
+            </div>
+            <div class="scheme-card" data-scheme="girl-scholarship">
+                <div class="scheme-tag" data-i18n="education">Education</div>
+                <h3 data-i18n="girlScheme">Girl Child Education Scholarship</h3>
+                <p class="scheme-desc" data-i18n="girlDesc">Financial assistance to encourage families to educate girl
+                    children.</p>
+                <div class="eligibility-box">
+                    <p class="eligibility-label" data-i18n="whoCanApply">Who can apply?</p>
+                    <p class="eligibility-value" data-i18n="girlStudents">Girl students (Class 9-12)</p>
+                </div>
+                <div class="card-footer">
+                    <a href="#" class="details-link" data-i18n="readDetails">📄 Read Details</a>
+                    <button class="apply-btn" data-i18n="applyNow">Apply Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Personalized Recommendations Section -->
+    <section id="recommendations" class="section-wrapper" style="display:none;">
+        <div class="section-header">
+            <div>
+                <h2 class="animate-on-scroll" id="recoTitle">🎯 Recommended For You</h2>
+                <p class="animate-on-scroll" id="recoSubtitle">Schemes matched to your profile</p>
+            </div>
+            <a href="my-schemes.html" class="view-all">View All ›</a>
+        </div>
+        <div id="recoGrid" class="schemes-grid">
+            <!-- Populated by JS -->
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="categories" class="section-wrapper">
+        <div class="section-header">
+            <div>
+                <h2 data-i18n="exploreByCategory" class="animate-on-scroll">Explore by Category</h2>
+                <p data-i18n="categorySub" class="animate-on-scroll">Find schemes tailored to your specific needs.</p>
+            </div>
+            <a href="schemes.html" class="view-all" data-i18n="viewAll">View All ›</a>
+        </div>
+        <div class="category-grid">
+            <div class="category-card" data-category="Agriculture">
+                <div class="feature-card animate-on-scroll">
+                    <div class="category-icon">🌾</div>
+                    <h3 data-i18n="agriculture">Agriculture</h3>
+                    <p class="scheme-count">42 <span data-i18n="activeSchemes">Active Schemes</span></p>
+                </div>
+            </div>
+            <div class="category-card" data-category="Health">
+                <div class="feature-card animate-on-scroll">
+                    <div class="category-icon">💙</div>
+                    <h3 data-i18n="health">Health & Wellness</h3>
+                    <p class="scheme-count">28 <span data-i18n="activeSchemes">Active Schemes</span></p>
+                </div>
+            </div>
+            <div class="category-card" data-category="Education">
+                <div class="feature-card animate-on-scroll">
+                    <div class="category-icon">🎓</div>
+                    <h3 data-i18n="education">Education</h3>
+                    <p class="scheme-count">35 <span data-i18n="activeSchemes">Active Schemes</span></p>
+                </div>
+            </div>
+            <div class="category-card" data-category="Social">
+                <div class="feature-card animate-on-scroll">
+                    <div class="category-icon">👥</div>
+                    <h3 data-i18n="socialWelfare">Social Welfare</h3>
+                    <p class="scheme-count">56 <span data-i18n="activeSchemes">Active Schemes</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="languages" class="languages">
+        <div class="container">
+            <h2 class="animate-on-scroll">Speak Your Language</h2>
+            <div class="language-tags animate-scale">
+                <span class="language-tag" data-lang="hi" onclick="switchPageLanguage('hi')">हिंदी (Hindi)</span>
+                <span class="language-tag" data-lang="bn" onclick="switchPageLanguage('bn')">বাংলা (Bengali)</span>
+                <span class="language-tag" data-lang="te" onclick="switchPageLanguage('te')">తెలుగు (Telugu)</span>
+                <span class="language-tag" data-lang="mr" onclick="switchPageLanguage('mr')">मराठी (Marathi)</span>
+                <span class="language-tag" data-lang="ta" onclick="switchPageLanguage('ta')">தமிழ் (Tamil)</span>
+                <span class="language-tag" data-lang="gu" onclick="switchPageLanguage('gu')">ગુજરાતી (Gujarati)</span>
+                <span class="language-tag" data-lang="kn" onclick="switchPageLanguage('kn')">ಕನ್ನಡ (Kannada)</span>
+                <span class="language-tag" data-lang="ml" onclick="switchPageLanguage('ml')">മലയാളം (Malayalam)</span>
+                <span class="language-tag" data-lang="pa" onclick="switchPageLanguage('pa')">ਪੰਜਾਬੀ (Punjabi)</span>
+                <span class="language-tag" data-lang="or" onclick="switchPageLanguage('or')">ଓଡ଼ିଆ (Odia)</span>
+                <span class="language-tag" data-lang="as" onclick="switchPageLanguage('as')">অসমীয়া (Assamese)</span>
+                <span class="language-tag" data-lang="ur" onclick="switchPageLanguage('ur')">اردو (Urdu)</span>
+                <span class="language-tag" data-lang="ne" onclick="switchPageLanguage('ne')">नेपाली (Nepali)</span>
+                <span class="language-tag" data-lang="sd" onclick="switchPageLanguage('sd')">سنڌي (Sindhi)</span>
+                <span class="language-tag" data-lang="en" onclick="switchPageLanguage('en')">English</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="animate-on-scroll">Empowering Every Citizen</h2>
+            <div class="feature-grid">
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">🗣️</div>
+                    <h3>Voice-First Design</h3>
+                    <p>Speak naturally in your language. No typing, no reading required. Just ask and receive instant
+                        help.</p>
+                </div>
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">🌐</div>
+                    <h3>15 Indian Languages</h3>
+                    <p>From Hindi to Tamil, Bengali to Marathi - communicate in the language you're most comfortable
+                        with.</p>
+                </div>
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">📱</div>
+                    <h3>Works Anywhere</h3>
+                    <p>Access on smartphones, feature phones, or through missed call services. Technology that reaches
+                        everyone.</p>
+                </div>
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">🏛️</div>
+                    <h3>Government Services</h3>
+                    <p>Apply for schemes, check status, book appointments, and access certificates - all through voice.
+                    </p>
+                </div>
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Secure & Private</h3>
+                    <p>Your data is protected with bank-level security. Aadhaar integration for verified access.</p>
+                </div>
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Instant Responses</h3>
+                    <p>Get real-time answers and guidance. No waiting in queues or navigating complex websites.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="animate-on-scroll" id="footerSection">
+        <div class="container">
+            <p>&copy; 2026 Saarthi AI - Digital India for Everyone</p>
+            <p>Empowering 1.4 billion voices, one conversation at a time</p>
+        </div>
+    </footer>
+
+    <script src="JS/api.js"></script>
+    <script src="JS/languages.js"></script>
+    <script src="JS/language.js"></script>
+    <script src="JS/voice.js"></script>
+    <script src="JS/tts.js"></script>
+    <script src="JS/main.js"></script>
+    <script src="JS/mobile.js"></script>
+
+
+    <!-- ── Auth Guard for protected links ────────────────────── -->
+    <script>
+        // Protect ALL dashboard links on the page
+        document.querySelectorAll('a[href="dashboard.html"]').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                if (!localStorage.getItem('saarthi_token')) {
+                    e.preventDefault();
+                    window.location.href = 'login.html';
+                }
+            });
+        });
+    </script>
+
+
+    <script>
+    // ── Attach Menu ────────────────────────────────────────
+    function showAttachMenu(e) {
+        e.stopPropagation();
+        // Remove existing menu if any
+        const existing = document.getElementById("attachMenuPopup");
+        if (existing) { existing.remove(); return; }
+
+        const btn = document.getElementById("attachButton");
+        const rect = btn.getBoundingClientRect();
+
+        const menu = document.createElement("div");
+        menu.id = "attachMenuPopup";
+        menu.style.cssText = `
+            position: fixed;
+            bottom: ${window.innerHeight - rect.top + 8}px;
+            left: ${rect.left}px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+            padding: 8px;
+            z-index: 9999;
+            min-width: 200px;
+            border: 1px solid #e2e8f0;
+            animation: fadeUp 0.18s ease;
+        `;
+        menu.innerHTML = `
+            <div onclick="triggerGallery()" style="display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:10px;cursor:pointer;font-size:0.92rem;font-weight:600;color:#1e293b;transition:background 0.15s;" onmouseover="this.style.background='#f1f5f9'" onmouseout="this.style.background='transparent'">
+                <span style="font-size:1.3rem;">🖼️</span> Upload from Device
+            </div>
+            <div onclick="triggerCamera()" style="display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:10px;cursor:pointer;font-size:0.92rem;font-weight:600;color:#1e293b;transition:background 0.15s;" onmouseover="this.style.background='#f1f5f9'" onmouseout="this.style.background='transparent'">
+                <span style="font-size:1.3rem;">📷</span> Take Photo with Camera
+            </div>
+            <div onclick="triggerPDF()" style="display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:10px;cursor:pointer;font-size:0.92rem;font-weight:600;color:#1e293b;transition:background 0.15s;" onmouseover="this.style.background='#f1f5f9'" onmouseout="this.style.background='transparent'">
+                <span style="font-size:1.3rem;">📄</span> Upload PDF Document
+            </div>
+        `;
+        document.body.appendChild(menu);
+
+        // Close on outside click
+        setTimeout(() => {
+            document.addEventListener("click", function closeMenu() {
+                const m = document.getElementById("attachMenuPopup");
+                if (m) m.remove();
+                document.removeEventListener("click", closeMenu);
+            });
+        }, 10);
+    }
+
+    function triggerGallery() {
+        document.getElementById("attachMenuPopup")?.remove();
+        const input = document.getElementById("docFileInputGallery");
+        input.accept = "image/*,.pdf";
+        input.removeAttribute("capture");
+        input.click();
+    }
+
+    function triggerCamera() {
+        document.getElementById("attachMenuPopup")?.remove();
+        const input = document.getElementById("docFileInputCamera");
+        input.accept = "image/*";
+        input.setAttribute("capture", "environment");
+        input.click();
+    }
+
+    function triggerPDF() {
+        document.getElementById("attachMenuPopup")?.remove();
+        const input = document.getElementById("docFileInputGallery");
+        input.accept = ".pdf,application/pdf";
+        input.removeAttribute("capture");
+        input.click();
+    }
+
+    function handleFileSelected(file) {
+        if (!file) return;
+        window.pendingDocFile = file;
+        const bar = document.getElementById("filePreviewBar");
+        document.getElementById("filePreviewName").textContent = file.name;
+        document.getElementById("filePreviewSize").textContent = (file.size / 1024).toFixed(0) + " KB";
+        bar.style.display = "flex";
+        document.getElementById("textInput").placeholder = "Ask a question about this document (optional)...";
+        document.getElementById("textInput").focus();
+    }
+
+    // Attach change listeners to both inputs
+    document.getElementById("docFileInputGallery").addEventListener("change", function() {
+        handleFileSelected(this.files[0]);
+    });
+    document.getElementById("docFileInputCamera").addEventListener("change", function() {
+        handleFileSelected(this.files[0]);
+    });
+
+    function clearDocFile() {
+        window.pendingDocFile = null;
+        document.getElementById("docFileInputGallery").value = "";
+        document.getElementById("docFileInputCamera").value = "";
+        const bar = document.getElementById("filePreviewBar");
+        if (bar) bar.style.display = "none";        
+        const ti = document.getElementById("textInput");
+        if (ti) ti.placeholder = "Type your message or upload a legal document...";
+    }
+    </script>
+
+
+    <!-- ── Page Language Switcher ──────────────────────────── -->
+    <script>
+    const PAGE_TRANSLATIONS = {
+        en: {
+            allSchemes: "Schemes", languages: "Languages", features: "Features",
+            heroTitle: "Digital India, In Your Voice",
+            heroSub: "Breaking barriers of language and literacy. Access government services, schemes, and information through simple voice commands in your mother tongue.",
+            inputPlaceholder: "Ask anything in your language...",
+            trendingSchemes: "Trending & Featured Schemes",
+            trendingSub: "Discover the most applied for government programs.",
+            health: "Health & Wellness", agriculture: "Agriculture", education: "Education",
+            healthScheme: "National Health Protection Scheme",
+            healthDesc: "Health insurance cover up to ₹5 lakhs per family for secondary & tertiary care.",
+            farmerScheme: "Farmers Income Support",
+            farmerDesc: "Direct income support of ₹6,000 per year to all landholding farmer families.",
+            girlScheme: "Girl Child Education Scholarship",
+            girlDesc: "Financial assistance to encourage families to educate girl children.",
+            whoCanApply: "Who can apply?", lowIncome: "Low-income families",
+            smallFarmers: "Small & marginal farmers", girlStudents: "Girl students (Class 9-12)",
+            readDetails: "📄 Read Details", applyNow: "Apply Now",
+            exploreByCategory: "Explore by Category",
+            categorySub: "Find schemes tailored to your specific needs.",
+            socialWelfare: "Social Welfare", activeSchemes: "Active Schemes", viewAll: "View All ›",
+            speakYourLang: "Speak Your Language",
+            empowering: "Empowering Every Citizen",
+            voiceFirst: "Voice-First Design", voiceDesc: "Speak naturally in your language. No typing, no reading required. Just ask and receive instant help.",
+            langs15: "15 Indian Languages", langsDesc: "From Hindi to Tamil, Bengali to Marathi - communicate in the language you're most comfortable with.",
+            worksAnywhere: "Works Anywhere", worksDesc: "Access on smartphones, feature phones, or through missed call services. Technology that reaches everyone.",
+            govServices: "Government Services", govDesc: "Apply for schemes, check status, book appointments, and access certificates - all through voice.",
+            secure: "Secure & Private", secureDesc: "Your data is protected with bank-level security. Aadhaar integration for verified access.",
+            instant: "Instant Responses", instantDesc: "Get real-time answers and guidance. No waiting in queues or navigating complex websites.",
+            footer1: "© 2026 Saarthi AI - Digital India for Everyone",
+            footer2: "Empowering 1.4 billion voices, one conversation at a time",
+            langSwitchToast: "Language changed to English"
+        },
+        hi: {
+            allSchemes: "योजनाएं", languages: "भाषाएं", features: "विशेषताएं",
+            heroTitle: "डिजिटल भारत, आपकी आवाज़ में",
+            heroSub: "भाषा और साक्षरता की बाधाओं को तोड़ें। अपनी मातृभाषा में सरल वॉइस कमांड से सरकारी सेवाओं, योजनाओं और जानकारी तक पहुंचें।",
+            inputPlaceholder: "अपनी भाषा में कुछ भी पूछें...",
+            trendingSchemes: "ट्रेंडिंग और विशेष योजनाएं",
+            trendingSub: "सबसे अधिक आवेदित सरकारी कार्यक्रम खोजें।",
+            health: "स्वास्थ्य और कल्याण", agriculture: "कृषि", education: "शिक्षा",
+            healthScheme: "राष्ट्रीय स्वास्थ्य सुरक्षा योजना",
+            healthDesc: "परिवार के लिए ₹5 लाख तक स्वास्थ्य बीमा कवर।",
+            farmerScheme: "किसान आय सहायता",
+            farmerDesc: "सभी भूमिधारक किसान परिवारों को प्रति वर्ष ₹6,000 की आय सहायता।",
+            girlScheme: "बालिका शिक्षा छात्रवृत्ति",
+            girlDesc: "लड़कियों की शिक्षा के लिए वित्तीय सहायता।",
+            whoCanApply: "कौन आवेदन कर सकता है?", lowIncome: "कम आय वाले परिवार",
+            smallFarmers: "छोटे और सीमांत किसान", girlStudents: "छात्राएं (कक्षा 9-12)",
+            readDetails: "📄 विवरण पढ़ें", applyNow: "अभी आवेदन करें",
+            exploreByCategory: "श्रेणी के अनुसार खोजें",
+            categorySub: "अपनी विशेष जरूरतों के लिए योजनाएं खोजें।",
+            socialWelfare: "सामाजिक कल्याण", activeSchemes: "सक्रिय योजनाएं", viewAll: "सभी देखें ›",
+            speakYourLang: "अपनी भाषा में बोलें",
+            empowering: "हर नागरिक को सशक्त बनाना",
+            voiceFirst: "वॉइस-फर्स्ट डिज़ाइन", voiceDesc: "अपनी भाषा में स्वाभाविक रूप से बोलें। कोई टाइपिंग नहीं, कोई पढ़ाई नहीं।",
+            langs15: "15 भारतीय भाषाएं", langsDesc: "हिंदी से तमिल, बंगाली से मराठी तक।",
+            worksAnywhere: "कहीं भी काम करता है", worksDesc: "स्मार्टफोन, फीचर फोन पर उपलब्ध।",
+            govServices: "सरकारी सेवाएं", govDesc: "योजनाओं के लिए आवेदन करें, स्थिति जांचें।",
+            secure: "सुरक्षित और निजी", secureDesc: "आपका डेटा बैंक-स्तरीय सुरक्षा से सुरक्षित है।",
+            instant: "तत्काल प्रतिक्रिया", instantDesc: "वास्तविक समय में उत्तर और मार्गदर्शन प्राप्त करें।",
+            footer1: "© 2026 Saarthi AI - सभी के लिए डिजिटल भारत",
+            footer2: "1.4 अरब आवाजों को सशक्त बनाना, एक बातचीत एक समय",
+            langSwitchToast: "भाषा हिंदी में बदली गई"
+        },
+        bn: {
+            allSchemes: "প্রকল্প", languages: "ভাষা", features: "বৈশিষ্ট্য",
+            heroTitle: "ডিজিটাল ভারত, আপনার কণ্ঠে",
+            heroSub: "ভাষা ও সাক্ষরতার বাধা ভাঙুন। আপনার মাতৃভাষায় সরকারি সেবা ও প্রকল্পে প্রবেশ করুন।",
+            inputPlaceholder: "আপনার ভাষায় যেকোনো কিছু জিজ্ঞেস করুন...",
+            trendingSchemes: "ট্রেন্ডিং ও বিশেষ প্রকল্প", trendingSub: "সবচেয়ে বেশি আবেদনকৃত সরকারি কার্যক্রম।",
+            health: "স্বাস্থ্য ও কল্যাণ", agriculture: "কৃষি", education: "শিক্ষা",
+            healthScheme: "জাতীয় স্বাস্থ্য সুরক্ষা প্রকল্প", healthDesc: "পরিবারের জন্য ₹৫ লাখ পর্যন্ত স্বাস্থ্য বীমা।",
+            farmerScheme: "কৃষক আয় সহায়তা", farmerDesc: "বার্ষিক ₹৬,০০০ আয় সহায়তা।",
+            girlScheme: "বালিকা শিক্ষা বৃত্তি", girlDesc: "মেয়েদের শিক্ষার জন্য আর্থিক সহায়তা।",
+            whoCanApply: "কে আবেদন করতে পারবেন?", lowIncome: "স্বল্প আয়ের পরিবার",
+            smallFarmers: "ছোট ও প্রান্তিক কৃষক", girlStudents: "ছাত্রী (শ্রেণি ৯-১২)",
+            readDetails: "📄 বিস্তারিত পড়ুন", applyNow: "এখন আবেদন করুন",
+            exploreByCategory: "বিভাগ অনুযায়ী অন্বেষণ করুন", categorySub: "আপনার প্রয়োজন অনুযায়ী প্রকল্প খুঁজুন।",
+            socialWelfare: "সামাজিক কল্যাণ", activeSchemes: "সক্রিয় প্রকল্প", viewAll: "সব দেখুন ›",
+            speakYourLang: "আপনার ভাষায় কথা বলুন", empowering: "প্রতিটি নাগরিককে ক্ষমতায়িত করা",
+            voiceFirst: "ভয়েস-ফার্স্ট ডিজাইন", voiceDesc: "আপনার ভাষায় স্বাভাবিকভাবে কথা বলুন।",
+            langs15: "১৫ ভারতীয় ভাষা", langsDesc: "হিন্দি থেকে তামিল, বাংলা থেকে মারাঠি।",
+            worksAnywhere: "যেকোনো জায়গায় কাজ করে", worksDesc: "স্মার্টফোন ও ফিচার ফোনে উপলব্ধ।",
+            govServices: "সরকারি সেবা", govDesc: "প্রকল্পের জন্য আবেদন করুন, অবস্থা পরীক্ষা করুন।",
+            secure: "নিরাপদ ও ব্যক্তিগত", secureDesc: "আপনার তথ্য ব্যাংক-স্তরের নিরাপত্তায় সুরক্ষিত।",
+            instant: "তাৎক্ষণিক সাড়া", instantDesc: "রিয়েল-টাইম উত্তর ও নির্দেশনা পান।",
+            footer1: "© ২০২৬ Saarthi AI - সবার জন্য ডিজিটাল ভারত",
+            footer2: "১.৪ বিলিয়ন কণ্ঠকে ক্ষমতায়িত করা",
+            langSwitchToast: "ভাষা বাংলায় পরিবর্তিত হয়েছে"
+        },
+        te: {
+            allSchemes: "పథకాలు", languages: "భాషలు", features: "లక్షణాలు",
+            heroTitle: "డిజిటల్ ఇండియా, మీ స్వరంలో",
+            heroSub: "భాష మరియు అక్షరాస్యత అడ్డంకులను అధిగమించండి. మీ మాతృభాష లో ప్రభుత్వ సేవలు పొందండి.",
+            inputPlaceholder: "మీ భాషలో ఏదైనా అడగండి...",
+            trendingSchemes: "ట్రెండింగ్ పథకాలు", trendingSub: "అత్యధికంగా దరఖాస్తు చేసిన కార్యక్రమాలు.",
+            health: "ఆరోగ్యం", agriculture: "వ్యవసాయం", education: "విద్య",
+            healthScheme: "జాతీయ ఆరోగ్య రక్షణ పథకం", healthDesc: "కుటుంబానికి ₹5 లక్షల ఆరోగ్య బీమా.",
+            farmerScheme: "రైతు ఆదాయ మద్దతు", farmerDesc: "సంవత్సరానికి ₹6,000 ఆదాయ మద్దతు.",
+            girlScheme: "బాలిక విద్య స్కాలర్‌షిప్", girlDesc: "బాలికల విద్యకు ఆర్థిక సహాయం.",
+            whoCanApply: "ఎవరు దరఖాస్తు చేయవచ్చు?", lowIncome: "తక్కువ ఆదాయ కుటుంబాలు",
+            smallFarmers: "చిన్న రైతులు", girlStudents: "విద్యార్థినులు (9-12 తరగతి)",
+            readDetails: "📄 వివరాలు చదవండి", applyNow: "ఇప్పుడే దరఖాస్తు చేయండి",
+            exploreByCategory: "వర్గం వారీగా అన్వేషించండి", categorySub: "మీ అవసరాలకు అనువైన పథకాలు కనుగొనండి.",
+            socialWelfare: "సామాజిక సంక్షేమం", activeSchemes: "చురుకైన పథకాలు", viewAll: "అన్నీ చూడండి ›",
+            speakYourLang: "మీ భాషలో మాట్లాడండి", empowering: "ప్రతి పౌరుడిని సాధికారం చేయడం",
+            voiceFirst: "వాయిస్-ఫస్ట్ డిజైన్", voiceDesc: "మీ భాషలో సహజంగా మాట్లాడండి.",
+            langs15: "15 భారతీయ భాషలు", langsDesc: "హిందీ నుండి తమిళం వరకు.",
+            worksAnywhere: "ఎక్కడైనా పని చేస్తుంది", worksDesc: "స్మార్ట్‌ఫోన్‌లో అందుబాటులో ఉంది.",
+            govServices: "ప్రభుత్వ సేవలు", govDesc: "పథకాలకు దరఖాస్తు చేయండి.",
+            secure: "సురక్షితం మరియు ప్రైవేట్", secureDesc: "మీ డేటా బ్యాంక్-స్థాయి భద్రతలో ఉంది.",
+            instant: "తక్షణ స్పందనలు", instantDesc: "రియల్-టైమ్ సమాధానాలు పొందండి.",
+            footer1: "© 2026 Saarthi AI - అందరికీ డిజిటల్ ఇండియా",
+            footer2: "1.4 బిలియన్ స్వరాలను సాధికారం చేయడం",
+            langSwitchToast: "భాష తెలుగుకు మార్చబడింది"
+        },
+        mr: {
+            allSchemes: "योजना", languages: "भाषा", features: "वैशिष्ट्ये",
+            heroTitle: "डिजिटल भारत, तुमच्या आवाजात",
+            heroSub: "भाषा आणि साक्षरतेच्या अडथळ्यांना तोडा. तुमच्या मातृभाषेत सरकारी सेवा मिळवा.",
+            inputPlaceholder: "तुमच्या भाषेत काहीही विचारा...",
+            trendingSchemes: "ट्रेंडिंग योजना", trendingSub: "सर्वाधिक अर्ज केलेले कार्यक्रम.",
+            health: "आरोग्य", agriculture: "शेती", education: "शिक्षण",
+            healthScheme: "राष्ट्रीय आरोग्य संरक्षण योजना", healthDesc: "कुटुंबासाठी ₹5 लाख आरोग्य विमा.",
+            farmerScheme: "शेतकरी उत्पन्न सहाय्य", farmerDesc: "वार्षिक ₹6,000 उत्पन्न सहाय्य.",
+            girlScheme: "मुलींसाठी शिक्षण शिष्यवृत्ती", girlDesc: "मुलींच्या शिक्षणासाठी आर्थिक मदत.",
+            whoCanApply: "कोण अर्ज करू शकतो?", lowIncome: "कमी उत्पन्न कुटुंबे",
+            smallFarmers: "लहान शेतकरी", girlStudents: "विद्यार्थिनी (इ. 9-12)",
+            readDetails: "📄 तपशील वाचा", applyNow: "आत्ता अर्ज करा",
+            exploreByCategory: "श्रेणीनुसार शोधा", categorySub: "तुमच्या गरजेनुसार योजना शोधा.",
+            socialWelfare: "समाज कल्याण", activeSchemes: "सक्रिय योजना", viewAll: "सर्व पहा ›",
+            speakYourLang: "तुमच्या भाषेत बोला", empowering: "प्रत्येक नागरिकाला सक्षम बनवणे",
+            voiceFirst: "व्हॉईस-फर्स्ट डिझाइन", voiceDesc: "तुमच्या भाषेत नैसर्गिकपणे बोला.",
+            langs15: "15 भारतीय भाषा", langsDesc: "हिंदीपासून तमिळपर्यंत.",
+            worksAnywhere: "कुठेही काम करते", worksDesc: "स्मार्टफोनवर उपलब्ध.",
+            govServices: "सरकारी सेवा", govDesc: "योजनांसाठी अर्ज करा.",
+            secure: "सुरक्षित आणि खाजगी", secureDesc: "बँक-स्तरीय सुरक्षिततेत डेटा.",
+            instant: "तात्काळ प्रतिसाद", instantDesc: "रिअल-टाइम उत्तरे मिळवा.",
+            footer1: "© 2026 Saarthi AI - सर्वांसाठी डिजिटल भारत",
+            footer2: "1.4 अब्ज आवाजांना सक्षम करणे",
+            langSwitchToast: "भाषा मराठीत बदलली"
+        },
+        ta: {
+            allSchemes: "திட்டங்கள்", languages: "மொழிகள்", features: "அம்சங்கள்",
+            heroTitle: "டிஜிட்டல் இந்தியா, உங்கள் குரலில்",
+            heroSub: "மொழி மற்றும் கல்வியறிவின் தடைகளை உடையுங்கள். உங்கள் தாய்மொழியில் அரசாங்க சேவைகளை அணுகுங்கள்.",
+            inputPlaceholder: "உங்கள் மொழியில் எதையும் கேளுங்கள்...",
+            trendingSchemes: "பிரபலமான திட்டங்கள்", trendingSub: "அதிகம் விண்ணப்பிக்கப்பட்ட திட்டங்கள்.",
+            health: "சுகாதாரம்", agriculture: "விவசாயம்", education: "கல்வி",
+            healthScheme: "தேசிய சுகாதார பாதுகாப்பு திட்டம்", healthDesc: "குடும்பத்திற்கு ₹5 லட்சம் சுகாதார காப்பீடு.",
+            farmerScheme: "விவசாயி வருமான ஆதரவு", farmerDesc: "ஆண்டுக்கு ₹6,000 வருமான ஆதரவு.",
+            girlScheme: "சிறுமி கல்வி உதவித்தொகை", girlDesc: "சிறுமிகளின் கல்விக்கு நிதி உதவி.",
+            whoCanApply: "யார் விண்ணப்பிக்கலாம்?", lowIncome: "குறைந்த வருமான குடும்பங்கள்",
+            smallFarmers: "சிறு விவசாயிகள்", girlStudents: "மாணவிகள் (வகுப்பு 9-12)",
+            readDetails: "📄 விவரங்களை படிக்கவும்", applyNow: "இப்போது விண்ணப்பிக்கவும்",
+            exploreByCategory: "வகை வாரியாக ஆராயுங்கள்", categorySub: "உங்கள் தேவைக்கேற்ப திட்டங்களை கண்டறியுங்கள்.",
+            socialWelfare: "சமூக நலன்", activeSchemes: "செயலில் உள்ள திட்டங்கள்", viewAll: "அனைத்தையும் காண்க ›",
+            speakYourLang: "உங்கள் மொழியில் பேசுங்கள்", empowering: "ஒவ்வொரு குடிமகனையும் மேம்படுத்துதல்",
+            voiceFirst: "குரல்-முதல் வடிவமைப்பு", voiceDesc: "உங்கள் மொழியில் இயல்பாக பேசுங்கள்.",
+            langs15: "15 இந்திய மொழிகள்", langsDesc: "இந்தி முதல் தமிழ் வரை.",
+            worksAnywhere: "எங்கும் வேலை செய்கிறது", worksDesc: "ஸ்மார்ட்போனில் கிடைக்கும்.",
+            govServices: "அரசாங்க சேவைகள்", govDesc: "திட்டங்களுக்கு விண்ணப்பிக்கவும்.",
+            secure: "பாதுகாப்பான மற்றும் தனியார்", secureDesc: "வங்கி-நிலை பாதுகாப்பில் தரவு.",
+            instant: "உடனடி பதில்கள்", instantDesc: "நிகழ்நேர பதில்கள் பெறுங்கள்.",
+            footer1: "© 2026 Saarthi AI - அனைவருக்கும் டிஜிட்டல் இந்தியா",
+            footer2: "1.4 பில்லியன் குரல்களை மேம்படுத்துதல்",
+            langSwitchToast: "மொழி தமிழுக்கு மாற்றப்பட்டது"
+        },
+        gu: {
+            allSchemes: "યોજનાઓ", languages: "ભાષાઓ", features: "સુવિધાઓ",
+            heroTitle: "ડિજિટલ ઇન્ડિયા, તમારા અવાજમાં",
+            heroSub: "ભાષા અને સાક્ષરતાના અવરોધો તોડો. તમારી માતૃભાષામાં સરકારી સેવાઓ મેળવો.",
+            inputPlaceholder: "તમારી ભાષામાં કંઈ પણ પૂછો...",
+            trendingSchemes: "ટ્રેન્ડિંગ યોજનાઓ", trendingSub: "સૌથી વધુ અરજી કરેલ કાર્યક્રમો.",
+            health: "સ્વાસ્થ્ય", agriculture: "કૃષિ", education: "શિક્ષણ",
+            healthScheme: "રાષ્ટ્રીય સ્વાસ્થ્ય સુરક્ષા યોજના", healthDesc: "પરિવાર માટે ₹5 લાખ સ્વાસ્થ્ય વીમો.",
+            farmerScheme: "ખેડૂત આવક સહાય", farmerDesc: "વાર્ષિક ₹6,000 આવક સહાય.",
+            girlScheme: "છોકરીઓ માટે શિક્ષણ શિષ્યવૃત્તિ", girlDesc: "છોકરીઓના શિક્ષણ માટે આર્થિક સહાય.",
+            whoCanApply: "કોણ અરજી કરી શકે?", lowIncome: "ઓછી આવક ધરાવતા પરિવારો",
+            smallFarmers: "નાના ખેડૂતો", girlStudents: "વિદ્યાર્થિનીઓ (ધોરણ 9-12)",
+            readDetails: "📄 વિગતો વાંચો", applyNow: "હવે અરજી કરો",
+            exploreByCategory: "શ્રેણી દ્વારા શોધો", categorySub: "તમારી જરૂરિયાત અનુસાર યોજનાઓ શોધો.",
+            socialWelfare: "સામાજિક કલ્યાણ", activeSchemes: "સક્રિય યોજનાઓ", viewAll: "બધું જુઓ ›",
+            speakYourLang: "તમારી ભાષામાં બોલો", empowering: "દરેક નાગરિકને સશક્ત બનાવવું",
+            voiceFirst: "વૉઇસ-ફર્સ્ટ ડિઝાઇન", voiceDesc: "તમારી ભાષામાં સ્વાભાવિક રીતે બોલો.",
+            langs15: "15 ભારતીય ભાષાઓ", langsDesc: "હિન્દીથી તમિળ સુધી.",
+            worksAnywhere: "ગમે ત્યાં કામ કરે છે", worksDesc: "સ્માર્ટફોન પર ઉપલબ્ધ.",
+            govServices: "સરકારી સેવાઓ", govDesc: "યોજનાઓ માટે અરજી કરો.",
+            secure: "સુરક્ષિત અને ખાનગી", secureDesc: "બેન્ક-સ્તરની સુરક્ષામાં ડેટા.",
+            instant: "તાત્કાલિક જવાબો", instantDesc: "રિઅલ-ટાઇમ જવાબો મેળવો.",
+            footer1: "© 2026 Saarthi AI - બધા માટે ડિજિટલ ઇન્ડિયા",
+            footer2: "1.4 અબજ અવાજોને સશક્ત બનાવવું",
+            langSwitchToast: "ભાષા ગુજરાતીમાં બદલાઈ"
+        },
+        kn: {
+            allSchemes: "ಯೋಜನೆಗಳು", languages: "ಭಾಷೆಗಳು", features: "ವೈಶಿಷ್ಟ್ಯಗಳು",
+            heroTitle: "ಡಿಜಿಟಲ್ ಭಾರತ, ನಿಮ್ಮ ಧ್ವನಿಯಲ್ಲಿ",
+            heroSub: "ಭಾಷೆ ಮತ್ತು ಸಾಕ್ಷರತೆಯ ಅಡೆತಡೆಗಳನ್ನು ಮುರಿಯಿರಿ. ನಿಮ್ಮ ಮಾತೃಭಾಷೆಯಲ್ಲಿ ಸರ್ಕಾರಿ ಸೇವೆಗಳನ್ನು ಪಡೆಯಿರಿ.",
+            inputPlaceholder: "ನಿಮ್ಮ ಭಾಷೆಯಲ್ಲಿ ಏನಾದರೂ ಕೇಳಿ...",
+            trendingSchemes: "ಟ್ರೆಂಡಿಂಗ್ ಯೋಜನೆಗಳು", trendingSub: "ಹೆಚ್ಚು ಅರ್ಜಿ ಸಲ್ಲಿಸಿದ ಕಾರ್ಯಕ್ರಮಗಳು.",
+            health: "ಆರೋಗ್ಯ", agriculture: "ಕೃಷಿ", education: "ಶಿಕ್ಷಣ",
+            healthScheme: "ರಾಷ್ಟ್ರೀಯ ಆರೋಗ್ಯ ರಕ್ಷಣಾ ಯೋಜನೆ", healthDesc: "ಕುಟುಂಬಕ್ಕೆ ₹5 ಲಕ್ಷ ಆರೋಗ್ಯ ವಿಮೆ.",
+            farmerScheme: "ರೈತ ಆದಾಯ ಬೆಂಬಲ", farmerDesc: "ವಾರ್ಷಿಕ ₹6,000 ಆದಾಯ ಬೆಂಬಲ.",
+            girlScheme: "ಬಾಲಕಿ ಶಿಕ್ಷಣ ವಿದ್ಯಾರ್ಥಿವೇತನ", girlDesc: "ಹೆಣ್ಣುಮಕ್ಕಳ ಶಿಕ್ಷಣಕ್ಕೆ ಆರ್ಥಿಕ ನೆರವು.",
+            whoCanApply: "ಯಾರು ಅರ್ಜಿ ಸಲ್ಲಿಸಬಹುದು?", lowIncome: "ಕಡಿಮೆ ಆದಾಯದ ಕುಟುಂಬಗಳು",
+            smallFarmers: "ಸಣ್ಣ ರೈತರು", girlStudents: "ವಿದ್ಯಾರ್ಥಿನಿಯರು (9-12 ತರಗತಿ)",
+            readDetails: "📄 ವಿವರ ಓದಿ", applyNow: "ಈಗಲೇ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ",
+            exploreByCategory: "ವರ್ಗದ ಪ್ರಕಾರ ಅನ್ವೇಷಿಸಿ", categorySub: "ನಿಮ್ಮ ಅಗತ್ಯಕ್ಕೆ ತಕ್ಕ ಯೋಜನೆಗಳನ್ನು ಹುಡುಕಿ.",
+            socialWelfare: "ಸಮಾಜ ಕಲ್ಯಾಣ", activeSchemes: "ಸಕ್ರಿಯ ಯೋಜನೆಗಳು", viewAll: "ಎಲ್ಲಾ ನೋಡಿ ›",
+            speakYourLang: "ನಿಮ್ಮ ಭಾಷೆಯಲ್ಲಿ ಮಾತನಾಡಿ", empowering: "ಪ್ರತಿ ನಾಗರಿಕರನ್ನು ಸಬಲೀಕರಿಸುವುದು",
+            voiceFirst: "ವಾಯ್ಸ್-ಫಸ್ಟ್ ವಿನ್ಯಾಸ", voiceDesc: "ನಿಮ್ಮ ಭಾಷೆಯಲ್ಲಿ ಸ್ವಾಭಾವಿಕವಾಗಿ ಮಾತನಾಡಿ.",
+            langs15: "15 ಭಾರತೀಯ ಭಾಷೆಗಳು", langsDesc: "ಹಿಂದಿಯಿಂದ ತಮಿಳಿನವರೆಗೆ.",
+            worksAnywhere: "ಎಲ್ಲೂ ಕೆಲಸ ಮಾಡುತ್ತದೆ", worksDesc: "ಸ್ಮಾರ್ಟ್‌ಫೋನ್‌ನಲ್ಲಿ ಲಭ್ಯ.",
+            govServices: "ಸರ್ಕಾರಿ ಸೇವೆಗಳು", govDesc: "ಯೋಜನೆಗಳಿಗೆ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ.",
+            secure: "ಸುರಕ್ಷಿತ ಮತ್ತು ಖಾಸಗಿ", secureDesc: "ಬ್ಯಾಂಕ್-ಮಟ್ಟದ ಭದ್ರತೆಯಲ್ಲಿ ಡೇಟಾ.",
+            instant: "ತಕ್ಷಣದ ಪ್ರತಿಕ್ರಿಯೆ", instantDesc: "ರಿಯಲ್-ಟೈಮ್ ಉತ್ತರಗಳನ್ನು ಪಡೆಯಿರಿ.",
+            footer1: "© 2026 Saarthi AI - ಎಲ್ಲರಿಗೂ ಡಿಜಿಟಲ್ ಭಾರತ",
+            footer2: "1.4 ಶತಕೋಟಿ ಧ್ವನಿಗಳನ್ನು ಸಬಲೀಕರಿಸುವುದು",
+            langSwitchToast: "ಭಾಷೆ ಕನ್ನಡಕ್ಕೆ ಬದಲಾಯಿಸಲಾಗಿದೆ"
+        },
+        ml: {
+            allSchemes: "പദ്ധതികൾ", languages: "ഭാഷകൾ", features: "സവിശേഷതകൾ",
+            heroTitle: "ഡിജിറ്റൽ ഇന്ത്യ, നിങ്ങളുടെ ശബ്ദത്തിൽ",
+            heroSub: "ഭാഷയുടെയും സാക്ഷരതയുടെയും തടസ്സങ്ങൾ തകർക്കൂ. മാതൃഭാഷയിൽ സർക്കാർ സേവനങ്ങൾ നേടൂ.",
+            inputPlaceholder: "നിങ്ങളുടെ ഭാഷയിൽ എന്തും ചോദിക്കൂ...",
+            trendingSchemes: "ട്രെൻഡിംഗ് പദ്ധതികൾ", trendingSub: "ഏറ്റവും കൂടുതൽ അപേക്ഷിച്ച പദ്ധതികൾ.",
+            health: "ആരോഗ്യം", agriculture: "കൃഷി", education: "വിദ്യാഭ്യാസം",
+            healthScheme: "ദേശീയ ആരോഗ്യ സംരക്ഷണ പദ്ധതി", healthDesc: "കുടുംബത്തിന് ₹5 ലക്ഷം ആരോഗ്യ ഇൻഷുറൻസ്.",
+            farmerScheme: "കർഷക വരുമാന പിന്തുണ", farmerDesc: "വർഷം ₹6,000 വരുമാന പിന്തുണ.",
+            girlScheme: "പെൺകുട്ടി വിദ്യഭ്യാസ സ്കോളർഷിപ്പ്", girlDesc: "പെൺകുട്ടികളുടെ വിദ്യാഭ്യാസത്തിന് സഹായം.",
+            whoCanApply: "ആർക്ക് അപേക്ഷിക്കാം?", lowIncome: "കുറഞ്ഞ വരുമാനമുള്ള കുടുംബങ്ങൾ",
+            smallFarmers: "ചെറുകർഷകർ", girlStudents: "വിദ്യാർഥിനികൾ (ക്ലാസ് 9-12)",
+            readDetails: "📄 വിശദാംശങ്ങൾ വായിക്കൂ", applyNow: "ഇപ്പോൾ അപേക്ഷിക്കൂ",
+            exploreByCategory: "വിഭാഗം അനുസരിച്ച് പര്യവേക്ഷണം ചെയ്യൂ", categorySub: "നിങ്ങളുടെ ആവശ്യം അനുസരിച്ച് പദ്ധതികൾ കണ്ടെത്തൂ.",
+            socialWelfare: "സാമൂഹ്യ ക്ഷേമം", activeSchemes: "സജീവ പദ്ധതികൾ", viewAll: "എല്ലാം കാണൂ ›",
+            speakYourLang: "നിങ്ങളുടെ ഭാഷയിൽ സംസാരിക്കൂ", empowering: "ഓരോ പൗരനെയും ശക്തിപ്പെടുത്തുക",
+            voiceFirst: "വോയ്സ്-ഫസ്റ്റ് ഡിസൈൻ", voiceDesc: "നിങ്ങളുടെ ഭാഷയിൽ സ്വാഭാവികമായി സംസാരിക്കൂ.",
+            langs15: "15 ഭാരതീയ ഭാഷകൾ", langsDesc: "ഹിന്ദി മുതൽ തമിഴ് വരെ.",
+            worksAnywhere: "എവിടെയും പ്രവർത്തിക്കുന്നു", worksDesc: "സ്മാർട്ട്ഫോണിൽ ലഭ്യം.",
+            govServices: "സർക്കാർ സേവനങ്ങൾ", govDesc: "പദ്ധതികൾക്ക് അപേക്ഷിക്കൂ.",
+            secure: "സുരക്ഷിതവും സ്വകാര്യവും", secureDesc: "ബാങ്ക്-നിലവാര സുരക്ഷയിൽ ഡേറ്റ.",
+            instant: "തൽക്ഷണ പ്രതികരണങ്ങൾ", instantDesc: "റിയൽ-ടൈം ഉത്തരങ്ങൾ നേടൂ.",
+            footer1: "© 2026 Saarthi AI - എല്ലാവർക്കും ഡിജിറ്റൽ ഇന്ത്യ",
+            footer2: "1.4 ബില്യൺ ശബ്ദങ്ങളെ ശക്തിപ്പെടുത്തുക",
+            langSwitchToast: "ഭാഷ മലയാളത്തിലേക്ക് മാറ്റി"
+        },
+        pa: {
+            allSchemes: "ਯੋਜਨਾਵਾਂ", languages: "ਭਾਸ਼ਾਵਾਂ", features: "ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ",
+            heroTitle: "ਡਿਜੀਟਲ ਭਾਰਤ, ਤੁਹਾਡੀ ਆਵਾਜ਼ ਵਿੱਚ",
+            heroSub: "ਭਾਸ਼ਾ ਅਤੇ ਸਾਖਰਤਾ ਦੀਆਂ ਰੁਕਾਵਟਾਂ ਤੋੜੋ। ਆਪਣੀ ਮਾਤ੍ਰਭਾਸ਼ਾ ਵਿੱਚ ਸਰਕਾਰੀ ਸੇਵਾਵਾਂ ਲਓ।",
+            inputPlaceholder: "ਆਪਣੀ ਭਾਸ਼ਾ ਵਿੱਚ ਕੁਝ ਵੀ ਪੁੱਛੋ...",
+            trendingSchemes: "ਟ੍ਰੈਂਡਿੰਗ ਯੋਜਨਾਵਾਂ", trendingSub: "ਸਭ ਤੋਂ ਵੱਧ ਅਰਜ਼ੀਆਂ ਵਾਲੇ ਪ੍ਰੋਗਰਾਮ।",
+            health: "ਸਿਹਤ", agriculture: "ਖੇਤੀਬਾੜੀ", education: "ਸਿੱਖਿਆ",
+            healthScheme: "ਰਾਸ਼ਟਰੀ ਸਿਹਤ ਸੁਰੱਖਿਆ ਯੋਜਨਾ", healthDesc: "ਪਰਿਵਾਰ ਲਈ ₹5 ਲੱਖ ਸਿਹਤ ਬੀਮਾ।",
+            farmerScheme: "ਕਿਸਾਨ ਆਮਦਨ ਸਹਾਇਤਾ", farmerDesc: "ਸਾਲਾਨਾ ₹6,000 ਆਮਦਨ ਸਹਾਇਤਾ।",
+            girlScheme: "ਲੜਕੀਆਂ ਲਈ ਵਜ਼ੀਫ਼ਾ", girlDesc: "ਲੜਕੀਆਂ ਦੀ ਪੜ੍ਹਾਈ ਲਈ ਵਿੱਤੀ ਮਦਦ।",
+            whoCanApply: "ਕੌਣ ਅਰਜ਼ੀ ਦੇ ਸਕਦਾ ਹੈ?", lowIncome: "ਘੱਟ ਆਮਦਨ ਵਾਲੇ ਪਰਿਵਾਰ",
+            smallFarmers: "ਛੋਟੇ ਕਿਸਾਨ", girlStudents: "ਵਿਦਿਆਰਥਣਾਂ (ਜਮਾਤ 9-12)",
+            readDetails: "📄 ਵੇਰਵੇ ਪੜ੍ਹੋ", applyNow: "ਹੁਣੇ ਅਰਜ਼ੀ ਦਿਓ",
+            exploreByCategory: "ਸ਼੍ਰੇਣੀ ਅਨੁਸਾਰ ਖੋਜੋ", categorySub: "ਆਪਣੀਆਂ ਲੋੜਾਂ ਅਨੁਸਾਰ ਯੋਜਨਾਵਾਂ ਲੱਭੋ।",
+            socialWelfare: "ਸਮਾਜ ਭਲਾਈ", activeSchemes: "ਸਰਗਰਮ ਯੋਜਨਾਵਾਂ", viewAll: "ਸਭ ਦੇਖੋ ›",
+            speakYourLang: "ਆਪਣੀ ਭਾਸ਼ਾ ਵਿੱਚ ਬੋਲੋ", empowering: "ਹਰ ਨਾਗਰਿਕ ਨੂੰ ਸਸ਼ਕਤ ਬਣਾਉਣਾ",
+            voiceFirst: "ਵੌਇਸ-ਫਸਟ ਡਿਜ਼ਾਈਨ", voiceDesc: "ਆਪਣੀ ਭਾਸ਼ਾ ਵਿੱਚ ਕੁਦਰਤੀ ਤਰੀਕੇ ਨਾਲ ਬੋਲੋ।",
+            langs15: "15 ਭਾਰਤੀ ਭਾਸ਼ਾਵਾਂ", langsDesc: "ਹਿੰਦੀ ਤੋਂ ਤਮਿਲ ਤੱਕ।",
+            worksAnywhere: "ਕਿਤੇ ਵੀ ਕੰਮ ਕਰਦਾ ਹੈ", worksDesc: "ਸਮਾਰਟਫੋਨ 'ਤੇ ਉਪਲਬਧ।",
+            govServices: "ਸਰਕਾਰੀ ਸੇਵਾਵਾਂ", govDesc: "ਯੋਜਨਾਵਾਂ ਲਈ ਅਰਜ਼ੀ ਦਿਓ।",
+            secure: "ਸੁਰੱਖਿਅਤ ਅਤੇ ਨਿੱਜੀ", secureDesc: "ਬੈਂਕ-ਪੱਧਰ ਦੀ ਸੁਰੱਖਿਆ।",
+            instant: "ਤੁਰੰਤ ਜਵਾਬ", instantDesc: "ਅਸਲ-ਸਮੇਂ ਦੇ ਜਵਾਬ ਪ੍ਰਾਪਤ ਕਰੋ।",
+            footer1: "© 2026 Saarthi AI - ਸਭ ਲਈ ਡਿਜੀਟਲ ਭਾਰਤ",
+            footer2: "1.4 ਅਰਬ ਆਵਾਜ਼ਾਂ ਨੂੰ ਸਸ਼ਕਤ ਬਣਾਉਣਾ",
+            langSwitchToast: "ਭਾਸ਼ਾ ਪੰਜਾਬੀ ਵਿੱਚ ਬਦਲੀ ਗਈ"
+        },
+        ur: {
+            allSchemes: "اسکیمیں", languages: "زبانیں", features: "خصوصیات",
+            heroTitle: "ڈیجیٹل انڈیا، آپ کی آواز میں",
+            heroSub: "زبان اور خواندگی کی رکاوٹیں توڑیں۔ اپنی مادری زبان میں سرکاری خدمات حاصل کریں۔",
+            inputPlaceholder: "اپنی زبان میں کچھ بھی پوچھیں...",
+            trendingSchemes: "ٹرینڈنگ اسکیمیں", trendingSub: "سب سے زیادہ درخواست دی گئی اسکیمیں۔",
+            health: "صحت", agriculture: "زراعت", education: "تعلیم",
+            healthScheme: "قومی صحت تحفظ اسکیم", healthDesc: "خاندان کے لیے ₹5 لاکھ صحت بیمہ۔",
+            farmerScheme: "کسان آمدنی معاونت", farmerDesc: "سالانہ ₹6,000 آمدنی معاونت۔",
+            girlScheme: "بچیوں کی تعلیم وظیفہ", girlDesc: "بچیوں کی تعلیم کے لیے مالی مدد۔",
+            whoCanApply: "کون درخواست دے سکتا ہے؟", lowIncome: "کم آمدنی والے خاندان",
+            smallFarmers: "چھوٹے کسان", girlStudents: "طالبات (جماعت 9-12)",
+            readDetails: "📄 تفصیلات پڑھیں", applyNow: "ابھی درخواست دیں",
+            exploreByCategory: "زمرے کے مطابق تلاش کریں", categorySub: "اپنی ضروریات کے مطابق اسکیمیں تلاش کریں۔",
+            socialWelfare: "سماجی بہبود", activeSchemes: "فعال اسکیمیں", viewAll: "سب دیکھیں ›",
+            speakYourLang: "اپنی زبان میں بولیں", empowering: "ہر شہری کو بااختیار بنانا",
+            voiceFirst: "وائس فرسٹ ڈیزائن", voiceDesc: "اپنی زبان میں قدرتی طریقے سے بولیں۔",
+            langs15: "15 ہندوستانی زبانیں", langsDesc: "ہندی سے تمل تک۔",
+            worksAnywhere: "کہیں بھی کام کرتا ہے", worksDesc: "اسمارٹ فون پر دستیاب۔",
+            govServices: "سرکاری خدمات", govDesc: "اسکیموں کے لیے درخواست دیں۔",
+            secure: "محفوظ اور نجی", secureDesc: "بینک سطح کی سیکورٹی میں ڈیٹا۔",
+            instant: "فوری جوابات", instantDesc: "ریئل ٹائم جوابات حاصل کریں۔",
+            footer1: "© 2026 Saarthi AI - سب کے لیے ڈیجیٹل انڈیا",
+            footer2: "1.4 ارب آوازوں کو بااختیار بنانا",
+            langSwitchToast: "زبان اردو میں تبدیل ہوئی"
+        },
+        or: { allSchemes: "ଯୋଜନା", languages: "ଭାଷା", features: "ବୈଶିଷ୍ଟ୍ୟ", heroTitle: "ଡିଜିଟାଲ ଭାରତ, ଆପଣଙ୍କ ସ୍ୱରରେ", heroSub: "ଭାଷା ଏବଂ ସାକ୍ଷରତାର ପ୍ରତିବନ୍ଧକ ଭାଙ୍ଗନ୍ତୁ।", inputPlaceholder: "ଆପଣଙ୍କ ଭାଷାରେ ଯାହା ଚାହୁଁଛନ୍ତି ପଚାରନ୍ତୁ...", trendingSchemes: "ଟ୍ରେଣ୍ଡିଂ ଯୋଜନା", trendingSub: "ସର୍ବାଧିକ ଆବେଦନ ଯୋଜନା।", health: "ସ୍ୱାସ୍ଥ୍ୟ", agriculture: "କୃଷି", education: "ଶିକ୍ଷା", healthScheme: "ଜାତୀୟ ସ୍ୱାସ୍ଥ୍ୟ ସୁରକ୍ଷା ଯୋଜନା", healthDesc: "ପରିବାର ପାଇଁ ₹5 ଲକ୍ଷ ସ୍ୱାସ୍ଥ୍ୟ ବୀମା।", farmerScheme: "କୃଷକ ଆୟ ସହାୟତା", farmerDesc: "ବାର୍ଷିକ ₹6,000 ସହାୟତା।", girlScheme: "ବାଳିକା ଶିକ୍ଷା ବୃତ୍ତି", girlDesc: "ଝିଅଙ୍କ ଶିକ୍ଷା ପାଇଁ ଆର୍ଥିକ ସହାୟତା।", whoCanApply: "କିଏ ଆବେଦନ କରିପାରିବ?", lowIncome: "ନ୍ୟୂନ ଆୟ ପରିବାର", smallFarmers: "ଛୋଟ କୃଷକ", girlStudents: "ଛାତ୍ରୀ (ଶ୍ରେଣୀ 9-12)", readDetails: "📄 ବିବରଣୀ ପଢ଼ନ୍ତୁ", applyNow: "ଏବେ ଆବେଦନ କରନ୍ତୁ", exploreByCategory: "ବର୍ଗ ଅନୁସାରେ ଅନ୍ୱେଷଣ", categorySub: "ଆପଣଙ୍କ ଆବଶ୍ୟକତା ଅନୁଯାୟୀ ଯୋଜନା।", socialWelfare: "ସାମାଜିକ କଲ୍ୟାଣ", activeSchemes: "ସକ୍ରିୟ ଯୋଜନା", viewAll: "ସମସ୍ତ ଦେଖନ୍ତୁ ›", speakYourLang: "ଆପଣଙ୍କ ଭାଷାରେ କଥା ହୁଅନ୍ତୁ", empowering: "ପ୍ରତ୍ୟେକ ନାଗରିକଙ୍କୁ ଶକ୍ତିଶାଳୀ ବନାଅ", voiceFirst: "ଭଏସ-ଫାର୍ସ୍ଟ ଡିଜ଼ାଇନ", voiceDesc: "ଆପଣଙ୍କ ଭାଷାରେ ସ୍ୱାଭାବିକ ଭାବେ କଥା ହୁଅନ୍ତୁ।", langs15: "15 ଭାରତୀୟ ଭାଷା", langsDesc: "ହିନ୍ଦୀରୁ ତାମିଲ ପର୍ଯ୍ୟନ୍ତ।", worksAnywhere: "ଯେକୌଣସି ଜାଗାରେ", worksDesc: "ସ୍ମାର୍ଟଫୋନ୍‌ରେ ଉପଲବ୍ଧ।", govServices: "ସରକାରୀ ସେବା", govDesc: "ଯୋଜନା ପାଇଁ ଆବେଦନ କରନ୍ତୁ।", secure: "ସୁରକ୍ଷିତ", secureDesc: "ବ୍ୟାଙ୍କ ସ୍ତରୀୟ ସୁରକ୍ଷା।", instant: "ତୁରନ୍ତ ଉତ୍ତର", instantDesc: "ରିଅଲ-ଟାଇମ ଉତ୍ତର ପ୍ରାପ୍ତ କରନ୍ତୁ।", footer1: "© 2026 Saarthi AI", footer2: "1.4 ବିଲିୟନ ସ୍ୱରଙ୍କୁ ଶକ୍ତି ଦିଅ", langSwitchToast: "ଭାଷା ଓଡ଼ିଆକୁ ପରିବର୍ତ୍ତନ ହେଲା" },
+        as: { allSchemes: "আঁচনিসমূহ", languages: "ভাষাসমূহ", features: "বৈশিষ্ট্যসমূহ", heroTitle: "ডিজিটেল ভাৰত, আপোনাৰ কণ্ঠত", heroSub: "ভাষা আৰু সাক্ষৰতাৰ বাধা ভাঙক।", inputPlaceholder: "আপোনাৰ ভাষাত যিকোনো কথা সোধক...", trendingSchemes: "ট্ৰেণ্ডিং আঁচনি", trendingSub: "সৰ্বাধিক আবেদন কৰা আঁচনি।", health: "স্বাস্থ্য", agriculture: "কৃষি", education: "শিক্ষা", healthScheme: "ৰাষ্ট্ৰীয় স্বাস্থ্য সুৰক্ষা আঁচনি", healthDesc: "পৰিয়ালৰ বাবে ₹5 লাখ স্বাস্থ্য বীমা।", farmerScheme: "কৃষক আয় সহায়তা", farmerDesc: "বাৰ্ষিক ₹6,000 সহায়তা।", girlScheme: "ছোৱালী শিক্ষা বৃত্তি", girlDesc: "ছোৱালীৰ শিক্ষাৰ বাবে আৰ্থিক সহায়তা।", whoCanApply: "কোনে আবেদন কৰিব পাৰে?", lowIncome: "কম আয়ৰ পৰিয়াল", smallFarmers: "সৰু কৃষক", girlStudents: "ছাত্ৰী (শ্ৰেণী 9-12)", readDetails: "📄 বিৱৰণ পঢ়ক", applyNow: "এতিয়াই আবেদন কৰক", exploreByCategory: "শ্ৰেণী অনুযায়ী অন্বেষণ কৰক", categorySub: "আপোনাৰ প্ৰয়োজন অনুযায়ী আঁচনি বিচাৰক।", socialWelfare: "সামাজিক কল্যাণ", activeSchemes: "সক্ৰিয় আঁচনি", viewAll: "সকলো চাওক ›", speakYourLang: "আপোনাৰ ভাষাত কথা কওক", empowering: "প্ৰতিটো নাগৰিকক সবলীকৰণ", voiceFirst: "ভয়েচ-ফাৰ্ষ্ট ডিজাইন", voiceDesc: "আপোনাৰ ভাষাত স্বাভাৱিকভাৱে কথা কওক।", langs15: "15 ভাৰতীয় ভাষা", langsDesc: "হিন্দীৰ পৰা তামিললৈ।", worksAnywhere: "যিকোনো ঠাইত কাম কৰে", worksDesc: "স্মাৰ্টফোনত উপলব্ধ।", govServices: "চৰকাৰী সেৱা", govDesc: "আঁচনিৰ বাবে আবেদন কৰক।", secure: "সুৰক্ষিত", secureDesc: "বেংক-স্তৰৰ সুৰক্ষা।", instant: "তাৎক্ষণিক সঁহাৰি", instantDesc: "ৰিয়েল-টাইম উত্তৰ পাওক।", footer1: "© 2026 Saarthi AI", footer2: "1.4 বিলিয়ন কণ্ঠক সবলীকৰণ", langSwitchToast: "ভাষা অসমীয়ালৈ সলনি হ'ল" },
+        ne: { allSchemes: "योजनाहरू", languages: "भाषाहरू", features: "सुविधाहरू", heroTitle: "डिजिटल भारत, तपाईंको आवाजमा", heroSub: "भाषा र साक्षरताको बाधा तोड्नुहोस्।", inputPlaceholder: "आफ्नो भाषामा जे पनि सोध्नुहोस्...", trendingSchemes: "ट्रेन्डिङ योजनाहरू", trendingSub: "सबैभन्दा बढी आवेदन गरिएका कार्यक्रमहरू।", health: "स्वास्थ्य", agriculture: "कृषि", education: "शिक्षा", healthScheme: "राष्ट्रिय स्वास्थ्य सुरक्षा योजना", healthDesc: "परिवारका लागि ₹5 लाख स्वास्थ्य बिमा।", farmerScheme: "किसान आय सहायता", farmerDesc: "वार्षिक ₹6,000 सहायता।", girlScheme: "छात्रवृत्ति", girlDesc: "बालिका शिक्षाका लागि सहायता।", whoCanApply: "कसले आवेदन गर्न सक्छ?", lowIncome: "कम आय भएका परिवार", smallFarmers: "साना किसान", girlStudents: "विद्यार्थिनीहरू (कक्षा 9-12)", readDetails: "📄 विवरण पढ्नुहोस्", applyNow: "अहिले आवेदन गर्नुहोस्", exploreByCategory: "श्रेणी अनुसार खोज्नुहोस्", categorySub: "आफ्नो आवश्यकता अनुसार योजना खोज्नुहोस्।", socialWelfare: "सामाजिक कल्याण", activeSchemes: "सक्रिय योजनाहरू", viewAll: "सबै हेर्नुहोस् ›", speakYourLang: "आफ्नो भाषामा बोल्नुहोस्", empowering: "हरेक नागरिकलाई सशक्त बनाउने", voiceFirst: "भ्वाइस-फर्स्ट डिजाइन", voiceDesc: "आफ्नो भाषामा स्वाभाविक रूपमा बोल्नुहोस्।", langs15: "15 भारतीय भाषाहरू", langsDesc: "हिन्दीदेखि तमिलसम्म।", worksAnywhere: "जहाँ पनि काम गर्छ", worksDesc: "स्मार्टफोनमा उपलब्ध।", govServices: "सरकारी सेवाहरू", govDesc: "योजनाहरूका लागि आवेदन गर्नुहोस्।", secure: "सुरक्षित", secureDesc: "बैंक-स्तरको सुरक्षा।", instant: "तत्काल प्रतिक्रिया", instantDesc: "रियल-टाइम उत्तर पाउनुहोस्।", footer1: "© 2026 Saarthi AI", footer2: "1.4 अर्ब आवाजहरूलाई सशक्त बनाउने", langSwitchToast: "भाषा नेपालीमा परिवर्तन भयो" },
+        sd: { allSchemes: "اسڪيمون", languages: "ٻوليون", features: "خاصيتون", heroTitle: "ڊجيٽل انڊيا، توهان جي آواز ۾", heroSub: "ٻولي جا رنڊا ٽوڙيو.", inputPlaceholder: "پنهنجي ٻوليءَ ۾ ڪجهه به پڇو...", trendingSchemes: "ٽرينڊنگ اسڪيمون", trendingSub: "سڀ کان وڌيڪ درخواست ڏنل.", health: "صحت", agriculture: "زراعت", education: "تعليم", healthScheme: "قومي صحت تحفظ اسڪيم", healthDesc: "خاندان لاءِ ₹5 لک صحت بيمو.", farmerScheme: "ڪسان آمدني مدد", farmerDesc: "سالياني ₹6,000 مدد.", girlScheme: "ڇوڪريون وظيفو", girlDesc: "ڇوڪرين جي تعليم لاءِ مدد.", whoCanApply: "ڪير درخواست ڪري سگهي؟", lowIncome: "گهٽ آمدني وارا خاندان", smallFarmers: "ننڍا ڪسان", girlStudents: "شاگرديون (ڪلاس 9-12)", readDetails: "📄 تفصيل پڙهو", applyNow: "هاڻي درخواست ڏيو", exploreByCategory: "زمري موجب ڳولھيو", categorySub: "پنهنجي ضرورت موجب اسڪيمون ڳولھيو.", socialWelfare: "سماجي ڀلائي", activeSchemes: "فعال اسڪيمون", viewAll: "سڀ ڏسو ›", speakYourLang: "پنهنجي ٻوليءَ ۾ ڳالهايو", empowering: "هر شهري کي طاقتور بڻائڻ", voiceFirst: "وائيس فرسٽ ڊيزائن", voiceDesc: "پنهنجي ٻوليءَ ۾ فطري طرح ڳالهايو.", langs15: "15 هندستاني ٻوليون", langsDesc: "هندي کان تامل تائين.", worksAnywhere: "ڪٿي به ڪم ڪري ٿو", worksDesc: "اسمارٽ فون تي موجود.", govServices: "سرڪاري خدمتون", govDesc: "اسڪيمن لاءِ درخواست ڏيو.", secure: "محفوظ", secureDesc: "بئنڪ سطح جي حفاظت.", instant: "فوري جواب", instantDesc: "ريئل ٽائيم جواب حاصل ڪريو.", footer1: "© 2026 Saarthi AI", footer2: "1.4 ارب آوازن کي طاقتور بڻائڻ", langSwitchToast: "ٻولي سنڌيءَ ۾ بدلي" }
+    };
+
+    function switchPageLanguage(langCode) {
+        const t = PAGE_TRANSLATIONS[langCode] || PAGE_TRANSLATIONS['en'];
+
+        // 1. Update all data-i18n elements
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (t[key]) el.textContent = t[key];
+        });
+
+        // 2. Hero title & subtitle
+        const heroH1 = document.querySelector('.hero h1');
+        const heroP  = document.querySelector('.hero p');
+        if (heroH1) heroH1.textContent = t.heroTitle;
+        if (heroP)  heroP.textContent  = t.heroSub;
+
+        // 3. Input placeholder
+        const inp = document.getElementById('textInputSimple');
+        if (inp) inp.placeholder = t.inputPlaceholder;
+
+        // 4. #languages section heading
+        const langH2 = document.querySelector('#languages h2');
+        if (langH2) langH2.textContent = t.speakYourLang;
+
+        // 5. #features section heading
+        const featH2 = document.querySelector('#features h2');
+        if (featH2) featH2.textContent = t.empowering;
+
+        // 6. Feature cards (in order: voice, langs, works, gov, secure, instant)
+        const fcards = document.querySelectorAll('.feature-card');
+        const fkeys = [
+            ['voiceFirst','voiceDesc'],['langs15','langsDesc'],
+            ['worksAnywhere','worksDesc'],['govServices','govDesc'],
+            ['secure','secureDesc'],['instant','instantDesc']
+        ];
+        fcards.forEach((card, i) => {
+            if (fkeys[i]) {
+                const h3 = card.querySelector('h3');
+                const p  = card.querySelector('p');
+                if (h3 && t[fkeys[i][0]]) h3.textContent = t[fkeys[i][0]];
+                if (p  && t[fkeys[i][1]]) p.textContent  = t[fkeys[i][1]];
+            }
+        });
+
+        // 7. Footer
+        const footerPs = document.querySelectorAll('footer p');
+        if (footerPs[0]) footerPs[0].textContent = t.footer1;
+        if (footerPs[1]) footerPs[1].textContent = t.footer2;
+
+        // 8. RTL support for Urdu / Sindhi
+        document.documentElement.dir = ['ur','sd'].includes(langCode) ? 'rtl' : 'ltr';
+
+        // 9. Highlight active language tag
+        document.querySelectorAll('.language-tag').forEach(tag => {
+            tag.classList.toggle('active', tag.dataset.lang === langCode);
+        });
+
+        // 10. Persist choice & sync with chat language selector
+        localStorage.setItem('saarthi_lang', langCode);
+        if (typeof selectChatLang === 'function') {
+            const btn = document.querySelector(`.lang-opt[data-val="${langCode}-IN"]`);
+            if (btn) selectChatLang(btn);
+        }
+
+        // 11. Toast notification
+        showLangToast(t.langSwitchToast || `Language changed`);
+    }
+
+    function showLangToast(msg) {
+        let toast = document.getElementById('langSwitchToast');
+        if (!toast) {
+            toast = document.createElement('div');
+            toast.id = 'langSwitchToast';
+            toast.style.cssText = `
+                position:fixed; bottom:24px; left:50%; transform:translateX(-50%);
+                background:#1e3a8a; color:#fff; padding:10px 24px; border-radius:24px;
+                font-size:0.9rem; font-weight:600; z-index:99999;
+                box-shadow:0 4px 20px rgba(0,0,0,0.25);
+                transition:opacity 0.3s; pointer-events:none;
+            `;
+            document.body.appendChild(toast);
+        }
+        toast.textContent = msg;
+        toast.style.opacity = '1';
+        clearTimeout(toast._timer);
+        toast._timer = setTimeout(() => { toast.style.opacity = '0'; }, 2500);
+    }
+
+    // Highlight active tag on language-tag active style
+    const langTagStyle = document.createElement('style');
+    langTagStyle.textContent = `
+        .language-tag { cursor: pointer; transition: background 0.2s, color 0.2s, transform 0.15s; }
+        .language-tag:hover { background: #1e3a8a !important; color: #fff !important; transform: scale(1.06); }
+        .language-tag.active { background: #2563eb !important; color: #fff !important;
+            box-shadow: 0 2px 12px rgba(37,99,235,0.4); transform: scale(1.06); }
+    `;
+    document.head.appendChild(langTagStyle);
+
+    // Auto-apply saved language on page load
+    const _savedLang = localStorage.getItem('saarthi_lang');
+    if (_savedLang && PAGE_TRANSLATIONS[_savedLang]) {
+        switchPageLanguage(_savedLang);
+    }
+    </script>
+</body>
+</html>

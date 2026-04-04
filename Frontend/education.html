@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saarthi AI - Education</title>
+    <link rel="stylesheet" href="CSS/main.css">
+    <link rel="stylesheet" href="CSS/responsive.css">
+</head>
+<body>
+    <header id="header">
+        <nav class="container">
+            <div class="logo" onclick="window.location.href='index.html';" style="cursor:pointer;">
+                Saarthi AI
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+              <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="schemes.html">Schemes</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container" style="padding-top: 40px; padding-bottom: 40px; min-height: 80vh;">
+        <!-- education.html — Exam Calendar -->
+        <section class="exam-section">
+          <h2>📝 Upcoming Exam Forms</h2>
+
+          <div class="exam-filters">
+            <button class="exam-filter active" data-type="all">All</button>
+            <button class="exam-filter" data-type="board">Board Exams</button>
+            <button class="exam-filter" data-type="entrance">Entrance Tests</button>
+            <button class="exam-filter" data-type="govt-jobs">Govt Jobs</button>
+            <button class="exam-filter" data-type="scholarship">Scholarship</button>
+          </div>
+
+          <div class="exam-grid" id="examGrid">
+            <!-- Dynamically filled from exams.js -->
+          </div>
+        </section>
+    </main>
+
+    <script src="data/exams.js"></script>
+    <script src="JS/education.js"></script>
+    <script src="JS/mobile.js"></script>
+</body>
+</html>

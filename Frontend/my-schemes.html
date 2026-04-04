@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saarthi AI – My Schemes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #f9fafc;
+            --surface: #ffffff;
+            --border: #e2e8f0;
+            --blue: #2563eb;
+            --blue-dark: #1e3a8a;
+            --cyan: #0891b2;
+            --saffron: #100d70;
+            --green: #16a34a;
+            --purple: #9333ea;
+            --gold: #eab308;
+            --red: #dc2626;
+            --text: #0f172a;
+            --text-light: #475569;
+            --muted: #64748b;
+            --font-main: 'Inter', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        .dashboard {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* ── Sidebar (identical to dashboard) ── */
+        .sidebar {
+            width: 280px;
+            background: var(--surface);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+        }
+
+        .logo-wrap {
+            padding: 0 1.5rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            cursor: pointer;
+        }
+
+        .logo-mark {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .logo-square {
+            background-color: var(--blue-dark);
+            color: white;
+            width: 2rem;
+            height: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .logo-text {
+            color: var(--text);
+        }
+
+        .logo-text span {
+            color: var(--blue);
+        }
+
+        .nav-section {
+            padding: 1.5rem 0.75rem 0;
+        }
+
+        .nav-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--muted);
+            padding: 0 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--text-light);
+            font-weight: 500;
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+            text-decoration: none;
+        }
+
+        .nav-item:hover {
+            background: #f1f5f9;
+            color: var(--blue);
+        }
+
+        .nav-item.active {
+            /* background: #eef2ff;
+            color: var(--blue); */
+            font-weight: 600;
+        }
+
+        .nav-icon {
+            width: 1.5rem;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .nav-badge {
+            margin-left: auto;
+            background: var(--saffron);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+        }
+
+        .sidebar-bottom {
+            margin-top: auto;
+            padding: 1.5rem 0.75rem 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .user-pill {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            border-radius: 12px;
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .user-pill:hover {
+            border-color: var(--blue);
+            background: #f1f5f9;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--blue), var(--purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        .user-info {
+            flex: 1;
+        }
+
+        .user-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .user-role {
+            font-size: 0.7rem;
+            color: var(--muted);
+        }
+
+        /* ── Main ── */
+        .main {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .page-title span {
+            color: var(--blue);
+            position: relative;
+        }
+
+        .page-title span::after {
+            content: '';
+            position: absolute;
+            bottom: 0.2rem;
+            left: 0;
+            width: 100%;
+            height: 0.4rem;
+            background-color: #fed7aa;
+            z-index: -1;
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .top-btn {
+            padding: 0.6rem 1.2rem;
+            border-radius: 40px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text);
+            font-weight: 500;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--font-main);
+        }
+
+        .top-btn:hover {
+            border-color: var(--blue);
+            color: var(--blue);
+        }
+
+        .top-btn.primary {
+            background: var(--blue-dark);
+            border-color: var(--blue-dark);
+            color: white;
+        }
+
+        .top-btn.primary:hover {
+            background: var(--blue);
+        }
+
+        /* ── Summary Stats ── */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 1.5rem;
+            transition: all 0.2s;
+        }
+
+        .stat-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+        }
+
+        .stat-icon.blue {
+            background: #eef2ff;
+            color: var(--blue);
+        }
+
+        .stat-icon.green {
+            background: #dcfce7;
+            color: var(--green);
+        }
+
+        .stat-icon.gold {
+            background: #fef9c3;
+            color: var(--gold);
+        }
+
+        .stat-icon.cyan {
+            background: #e0f2fe;
+            color: var(--cyan);
+        }
+
+        .stat-delta {
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+        }
+
+        .stat-delta.up {
+            background: #dcfce7;
+            color: var(--green);
+        }
+
+        .stat-delta.warn {
+            background: #fef9c3;
+            color: var(--gold);
+        }
+
+        .stat-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--muted);
+            font-weight: 500;
+        }
+
+        .stat-bar {
+            margin-top: 1rem;
+            height: 4px;
+            background: #e2e8f0;
+            border-radius: 99px;
+            overflow: hidden;
+        }
+
+        .stat-bar-fill {
+            height: 100%;
+            border-radius: 99px;
+        }
+
+        /* ── Controls ── */
+        .controls-bar {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .search-wrap {
+            position: relative;
+            flex: 1;
+            min-width: 220px;
+        }
+
+        .search-wrap i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.65rem 1rem 0.65rem 2.5rem;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-family: var(--font-main);
+            color: var(--text);
+            background: var(--bg);
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .search-input:focus {
+            border-color: var(--blue);
+            box-shadow: 0 0 0 3px #2563eb18;
+        }
+
+        .filter-chips {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .chip {
+            padding: 0.45rem 1rem;
+            border-radius: 40px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            border: 1.5px solid var(--border);
+            background: var(--surface);
+            color: var(--muted);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: var(--font-main);
+        }
+
+        .chip:hover {
+            border-color: var(--blue);
+            color: var(--blue);
+        }
+
+        .chip.active {
+            background: var(--blue);
+            border-color: var(--blue);
+            color: white;
+        }
+
+        .sort-wrap select {
+            padding: 0.55rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-family: var(--font-main);
+            color: var(--text);
+            background: var(--bg);
+            outline: none;
+            cursor: pointer;
+        }
+
+        /* ── Section Label ── */
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--muted);
+            margin-bottom: 1rem;
+        }
+
+        /* ── Scheme Cards Grid ── */
+        .schemes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .scheme-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 1.5rem;
+            transition: all 0.25s;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .scheme-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px -5px #00000012;
+            border-color: #c7d8fc;
+        }
+
+        .card-head {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .card-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .card-icon.blue {
+            background: #eef2ff;
+        }
+
+        .card-icon.green {
+            background: #dcfce7;
+        }
+
+        .card-icon.gold {
+            background: #fef9c3;
+        }
+
+        .card-icon.cyan {
+            background: #e0f2fe;
+        }
+
+        .card-icon.purple {
+            background: #f3e8ff;
+        }
+
+        .card-icon.red {
+            background: #fee2e2;
+        }
+
+        .card-icon.teal {
+            background: #ccfbf1;
+        }
+
+        .card-icon.orange {
+            background: #ffedd5;
+        }
+
+        .card-meta {
+            flex: 1;
+        }
+
+        .card-category {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.3rem;
+        }
+
+        .card-category.blue {
+            color: var(--blue);
+        }
+
+        .card-category.green {
+            color: var(--green);
+        }
+
+        .card-category.gold {
+            color: var(--gold);
+        }
+
+        .card-category.cyan {
+            color: var(--cyan);
+        }
+
+        .card-category.purple {
+            color: var(--purple);
+        }
+
+        .card-category.red {
+            color: var(--red);
+        }
+
+        .card-category.teal {
+            color: #0d9488;
+        }
+
+        .card-category.orange {
+            color: #ea580c;
+        }
+
+        .card-name {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1.3;
+        }
+
+        .status-pill {
+            padding: 0.25rem 0.75rem;
+            border-radius: 40px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .status-active {
+            background: #dcfce7;
+            color: var(--green);
+        }
+
+        .status-pending {
+            background: #fef9c3;
+            color: #a16207;
+        }
+
+        .status-review {
+            background: #eef2ff;
+            color: var(--blue);
+        }
+
+        .status-eligible {
+            background: #f3e8ff;
+            color: var(--purple);
+        }
+
+        .status-new {
+            background: #e0f2fe;
+            color: var(--cyan);
+        }
+
+        .card-desc {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Progress */
+        /* .prog-section {} */
+
+        .prog-top {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.78rem;
+            color: var(--muted);
+            margin-bottom: 0.4rem;
+            font-weight: 500;
+        }
+
+        .prog-bar-full {
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 99px;
+            overflow: hidden;
+        }
+
+        .prog-fill-full {
+            height: 100%;
+            border-radius: 99px;
+            transition: width 0.8s ease;
+        }
+
+        /* Benefit highlight */
+        .benefit-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            color: var(--green);
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.35rem 0.85rem;
+            border-radius: 40px;
+        }
+
+        /* Tags */
+        .tags-row {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            padding: 0.25rem 0.7rem;
+            background: #f1f5f9;
+            border-radius: 40px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--muted);
+        }
+
+        /* Card Footer */
+        .card-footer {
+            display: flex;
+            gap: 0.75rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .btn-primary {
+            flex: 1;
+            padding: 0.6rem;
+            background: var(--blue-dark);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: var(--font-main);
+        }
+
+        .btn-primary:hover {
+            background: var(--blue);
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            padding: 0.6rem 1rem;
+            background: white;
+            color: var(--text-light);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: var(--font-main);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--blue);
+            color: var(--blue);
+        }
+
+        /* ── Recommended Banner ── */
+        .recommend-banner {
+            background: linear-gradient(90deg, #eef2ff, #f8fafc);
+            border: 1px solid #c7d8fc;
+            border-radius: 20px;
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .recommend-banner::after {
+            content: '🎯';
+            position: absolute;
+            right: 2rem;
+            font-size: 4rem;
+            opacity: 0.12;
+        }
+
+        .banner-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            background: #eef2ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            flex-shrink: 0;
+        }
+
+        .banner-text .title {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .banner-text .sub {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .banner-btn {
+            margin-left: auto;
+            padding: 0.65rem 1.4rem;
+            background: var(--blue-dark);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: var(--font-main);
+            white-space: nowrap;
+        }
+
+        .banner-btn:hover {
+            background: var(--blue);
+        }
+
+        /* ── No results ── */
+        .no-results {
+            grid-column: 1/-1;
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--muted);
+        }
+
+        .no-results i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        /* ── Animations ── */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .scheme-card {
+            animation: fadeUp 0.35s ease both;
+        }
+
+        /* stagger */
+        .scheme-card:nth-child(1) {
+            animation-delay: 0.05s;
+        }
+
+        .scheme-card:nth-child(2) {
+            animation-delay: 0.10s;
+        }
+
+        .scheme-card:nth-child(3) {
+            animation-delay: 0.15s;
+        }
+
+        .scheme-card:nth-child(4) {
+            animation-delay: 0.20s;
+        }
+
+        .scheme-card:nth-child(5) {
+            animation-delay: 0.25s;
+        }
+
+        .scheme-card:nth-child(6) {
+            animation-delay: 0.30s;
+        }
+
+        .scheme-card:nth-child(7) {
+            animation-delay: 0.35s;
+        }
+
+        .scheme-card:nth-child(8) {
+            animation-delay: 0.40s;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 1024px) {
+            .stats-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .schemes-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+
+            .main {
+                padding: 1.25rem;
+            }
+
+            .stats-row {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .topbar {
+                flex-wrap: wrap;
+                gap: 0.75rem;
+            }
+        }
+
+        /* ── Modal ── */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-body {
+            background: var(--surface);
+            max-width: 600px;
+            width: 100%;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+            animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .modal-header {
+            padding: 1.5rem 2rem;
+            background: linear-gradient(135deg, var(--blue), var(--purple));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .modal-content {
+            padding: 2rem;
+            line-height: 1.6;
+            color: var(--text-light);
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+        .modal-footer {
+            padding: 1.25rem 2rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dashboard">
+
+        <!-- ── Sidebar ── -->
+        <aside class="sidebar">
+            <div class="logo-wrap" onclick="window.location.reload();" style="cursor:pointer;">
+                <div class="logo-mark">
+                    <div class="logo-square">S</div>
+                    <span class="logo-text">Saarthi <span>AI</span></span>
+                </div>
+            </div>
+
+            <!-- <nav class="nav-section">
+            <div class="nav-label">Navigation</div>
+            <a class="nav-item" href="dashboard.html">
+                <span class="nav-icon"><i class="fas fa-th-large"></i></span> Dashboard
+            </a>
+            <a class="nav-item active" href="my-schemes.html">
+                <span class="nav-icon"><i class="fas fa-clipboard-list"></i></span> My Schemes
+                <span class="nav-badge">8</span>
+            </a>
+            <a class="nav-item" href="apply-scheme.html">
+                <span class="nav-icon"><i class="fas fa-plus-circle"></i></span> Apply Scheme
+            </a>
+            <a class="nav-item" href="benefits.html">
+                <span class="nav-icon"><i class="fas fa-rupee-sign"></i></span> Benefits
+            </a>
+            <a class="nav-item" href="documents.html">
+                <span class="nav-icon"><i class="fas fa-folder-open"></i></span> Documents
+            </a>
+            <a class="nav-item" href="notifications.html">
+                <span class="nav-icon"><i class="fas fa-bell"></i></span> Notifications
+            </a>
+            <a class="nav-item" href="voice-assistant.html">
+                <span class="nav-icon"><i class="fas fa-microphone"></i></span> Voice Assistant
+            </a>
+        </nav> -->
+            <div class="nav-section">
+                <div class="nav-label">MAIN</div>
+                <div class="nav-item active" onclick="window.location.href='index.html';"><span
+                        class="nav-icon">🏚️</span>Home</div>
+                <div class="nav-item active" onclick="window.location.href='dashboard.html';"><span
+                        class="nav-icon">⚡</span>Dashboard</div>
+                <div class="nav-item" onclick="window.location.href='my-schemes.html';"><span
+                        class="nav-icon">📋</span>My Schemes <span class="nav-badge">3</span></div>
+                <div class="nav-item" onclick="window.location.href='index.html?openChat=true';"><span
+                        class="nav-icon">🎤</span>Voice Assistant</div>
+                <div class="nav-item" onclick="window.location.href='documents.html';"><span
+                        class="nav-icon">📄</span>Documents</div>
+                <div class="nav-item" onclick="window.location.href='notifications.html';"><span
+                        class="nav-icon">🔔</span>Notifications <span class="nav-badge">7</span></div>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-label">ACCOUNT</div>
+                <!-- <div class="nav-item" onclick="window.location.href='profile.html';"><span
+                        class="nav-icon">👤</span>Profile</div> -->
+                <div class="nav-item" onclick="window.location.href='index.html#languages';"><span
+                        class="nav-icon">🌐</span>Language</div>
+                <!-- <div class="nav-item" onclick="window.location.href='settings.html';"><span
+                        class="nav-icon">⚙️</span>Settings</div> -->
+            </div>
+
+            <!-- <div class="sidebar-bottom">
+            <div class="user-pill">
+                <div class="avatar">RK</div>
+                <div class="user-info">
+                    <div class="user-name">Rajesh Kumar</div>
+                    <div class="user-role">Verified Citizen · UP</div>
+                </div>
+                <i class="fas fa-chevron-right" style="color: var(--muted); font-size: 0.8rem;"></i>
+            </div>
+        </div> -->
+            <div class="sidebar-bottom">
+                <div class="user-pill" onclick="window.location.href='profile.html';">
+                    <div class="avatar">RK</div>
+                    <div class="user-info">
+                        <div class="user-name">Rajesh Kumar</div>
+                        <div class="user-role">Verified Citizen · UP</div>
+                    </div>
+                    <i class="fas fa-chevron-right" style="color: var(--muted); font-size: 0.8rem;"></i>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ── Main ── -->
+        <main class="main">
+
+            <!-- Top Bar -->
+            <div class="topbar">
+                <h1 class="page-title">My <span>Schemes</span></h1>
+                <div class="topbar-right">
+                    <button class="top-btn" onclick="window.location.href='notifications.html';"><i
+                            class="far fa-bell"></i> Alerts</button>
+                    <button class="top-btn primary" onclick="window.location.href='apply-scheme.html';"><i
+                            class="fas fa-plus"></i> Apply Scheme</button>
+                </div>
+            </div>
+
+            <!-- Summary Stats -->
+            <div class="stats-row" id="statsRow">
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <div class="stat-icon blue"><i class="fas fa-clipboard-list"></i></div>
+                        <div class="stat-delta up" id="statTotalDelta">Loading…</div>
+                    </div>
+                    <div class="stat-value" id="statTotal">—</div>
+                    <div class="stat-label">Active Schemes</div>
+                    <div class="stat-bar">
+                        <div class="stat-bar-fill" style="width:0%;background:var(--blue);" id="statTotalBar"></div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <div class="stat-icon green"><i class="fas fa-check-circle"></i></div>
+                    </div>
+                    <div class="stat-value" id="statApproved">—</div>
+                    <div class="stat-label">Fully Approved</div>
+                    <div class="stat-bar">
+                        <div class="stat-bar-fill" style="width:0%;background:var(--green);" id="statApprovedBar"></div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <div class="stat-icon cyan"><i class="fas fa-rupee-sign"></i></div>
+                    </div>
+                    <div class="stat-value" id="statBenefits">—</div>
+                    <div class="stat-label">Total Potential Benefits</div>
+                    <div class="stat-bar">
+                        <div class="stat-bar-fill" style="width:60%;background:var(--cyan);"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recommended Banner -->
+            <div class="recommend-banner">
+                <div class="banner-icon">🤖</div>
+                <div class="banner-text">
+                    <div class="title">Saarthi found 3 new schemes you may be eligible for</div>
+                    <div class="sub">Based on your profile, income, and location — PM Ujjwala, Jan Dhan, and more.</div>
+                </div>
+                <button class="banner-btn" onclick="window.location.href='apply-scheme.html';"><i class="fas fa-search"
+                        style="margin-right:6px;"></i>Explore Now</button>
+            </div>
+
+            <!-- Controls -->
+            <div class="controls-bar">
+                <div class="search-wrap">
+                    <i class="fas fa-search"></i>
+                    <input class="search-input" id="schemeSearch" type="text" placeholder="Search schemes…"
+                        oninput="filterSchemes()">
+                </div>
+                <div class="filter-chips">
+                    <button class="chip active" onclick="setFilter('all', this)">All</button>
+                    <button class="chip" onclick="setFilter('active', this)">Active</button>
+                    <button class="chip" onclick="setFilter('pending', this)">Pending</button>
+                    <button class="chip" onclick="setFilter('review', this)">In Review</button>
+                    <button class="chip" onclick="setFilter('eligible', this)">Eligible</button>
+                </div>
+                <div class="sort-wrap">
+                    <select onchange="filterSchemes()" id="sortSelect">
+                        <option value="">Sort: Default</option>
+                        <option value="name">Name A–Z</option>
+                        <option value="progress">Progress ↑</option>
+                        <option value="benefit">Benefit ↑</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Schemes Grid -->
+            <div class="section-label" id="schemeCount">Showing 8 schemes</div>
+            <div class="schemes-grid" id="schemesGrid">
+                <div id="loadingState" style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--muted);">
+                    <i class="fas fa-spinner fa-spin" style="font-size:2rem;margin-bottom:1rem;display:block;"></i>
+                    Loading your schemes from DynamoDB...
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- AI Explanation Modal -->
+    <div id="aiModal" class="modal-overlay" onclick="closeModal()">
+        <div class="modal-body" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3 style="margin:0; font-weight:700;"><i class="fas fa-robot" style="margin-right:0.5rem;"></i> Saarthi
+                    AI Insight</h3>
+                <button onclick="closeModal()"
+                    style="background:none; border:none; color:white; cursor:pointer; font-size:1.2rem;"><i
+                        class="fas fa-times"></i></button>
+            </div>
+            <div id="aiModalContent" class="modal-content">
+                <!-- Content injected here -->
+            </div>
+            <div class="modal-footer">
+                <button class="top-btn primary" onclick="closeModal()">Got it, Thanks!</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = "http://localhost:8080";
+
+        function getUser() {
+            try { return JSON.parse(localStorage.getItem("saarthi_user") || "{}"); }
+            catch { return {}; }
+        }
+
+        async function fetchAllSchemes() {
+            const res = await fetch(`${API_BASE}/api/v1/schemes/`);
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            return res.json();
+        }
+
+        async function fetchRecommendationExplanation(schemeId, userProfile, lang = "en") {
+            const res = await fetch(`${API_BASE}/api/v1/recommendations/explain`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ scheme_id: schemeId, user_profile: userProfile, lang })
+            });
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            return res.json();
+        }
+    </script>
+    <script>
+        // ── Category → emoji/color map ──────────────────────────────
+        const CAT_META = {
+            agriculture: { emoji: "🌾", color: "green", label: "Agriculture" },
+            education: { emoji: "🎓", color: "purple", label: "Education" },
+            health: { emoji: "❤️", color: "red", label: "Health" },
+            women: { emoji: "👩", color: "pink", label: "Women & Child" },
+            housing: { emoji: "🏠", color: "cyan", label: "Housing" },
+            business: { emoji: "💼", color: "blue", label: "Business" },
+            social_welfare: { emoji: "🤝", color: "gold", label: "Social Welfare" },
+        };
+
+        function formatBenefit(benefits) {
+            if (!benefits) return "—";
+            const { type, amount, frequency } = benefits;
+            if (type === "cash" && amount) return `₹${Number(amount).toLocaleString("en-IN")}`;
+            if (type === "health_insurance" && amount) return `₹${(amount / 100000).toFixed(1)}L cover`;
+            if (type === "loan" && amount) return `Up to ₹${(amount / 100000).toFixed(1)}L loan`;
+            if (type === "scholarship") return "Scholarship";
+            if (type === "insurance") return "Insurance Cover";
+            if (type === "education_support") return "Education Support";
+            return type || "—";
+        }
+
+        function renderSchemeCard(scheme) {
+            const meta = CAT_META[scheme.category] || { emoji: "📋", color: "blue", label: scheme.category || "Scheme" };
+            const benefitDisplay = formatBenefit(scheme.benefits);
+            const tags = (scheme.target_group || []).slice(0, 2).map(t =>
+                `<span class="tag">${t.replace(/_/g, " ")}</span>`
+            ).join("");
+
+            return `
+    <div class="scheme-card" data-status="active"
+         data-name="${(scheme.name_en || "").replace(/"/g, "&quot;")}"
+         data-progress="75" data-benefit="${scheme.benefits?.amount || 0}">
+        <div class="card-head">
+            <div class="card-icon ${meta.color}">${meta.emoji}</div>
+            <div class="card-meta">
+                <div class="card-category ${meta.color}">${meta.label}</div>
+                <div class="card-name">${scheme.name_en || scheme.scheme_id}</div>
+                ${scheme.name_hi ? `<div style="font-size:0.78rem;color:var(--muted);margin-top:2px;">${scheme.name_hi}</div>` : ""}
+            </div>
+            <span class="status-pill status-active">Active</span>
+        </div>
+        <p class="card-desc">${scheme.description || "Government scheme for eligible citizens."}</p>
+        <div class="prog-section">
+            <div class="prog-top"><span>Application Progress</span><span>75%</span></div>
+            <div class="prog-bar-full"><div class="prog-fill-full" style="width:75%;background:var(--${meta.color === 'red' ? 'red' : meta.color});"></div></div>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;">
+            <span class="benefit-tag"><i class="fas fa-rupee-sign"></i> ${benefitDisplay}</span>
+            <div class="tags-row">${tags}</div>
+        </div>
+        <div class="card-footer">
+            <button class="btn-primary" onclick="window.location.href='apply-scheme.html?scheme_id=${scheme.scheme_id}';">
+                <i class="fas fa-file-alt" style="margin-right:5px;"></i>Apply Now
+            </button>
+            <button class="btn-outline" onclick="explainScheme('${scheme.scheme_id}')">
+                <i class="fas fa-info-circle"></i>
+            </button>
+        </div>
+    </div>`;
+        }
+
+        async function loadSchemes() {
+            const grid = document.getElementById("schemesGrid");
+            try {
+                const data = await fetchAllSchemes();
+                const schemes = data?.data || [];
+
+                if (schemes.length === 0) {
+                    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--muted);">
+                No schemes found in DynamoDB. Run <code>python seed/seed_schemes.py</code> first.
+            </div>`;
+                    return;
+                }
+
+                grid.innerHTML = schemes.map(renderSchemeCard).join("");
+                document.getElementById("schemeCount").textContent = `Showing ${schemes.length} schemes`;
+
+                // Update stats dynamically
+                const total = schemes.length;
+                const totalBenefits = schemes.reduce((sum, s) => sum + (s.benefits?.amount || 0), 0);
+
+                document.getElementById("statTotal").textContent = total;
+                document.getElementById("statTotalDelta").textContent = `${total} total`;
+                document.getElementById("statTotalBar").style.width = Math.min(total * 12, 100) + "%";
+                document.getElementById("statApproved").textContent = Math.floor(total * 0.4);
+                document.getElementById("statApprovedBar").style.width = "40%";
+                document.getElementById("statBenefits").textContent =
+                    totalBenefits > 0 ? `₹${(totalBenefits / 1000).toFixed(1)}k` : "Varies";
+
+            } catch (err) {
+                grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--red);">
+            <i class="fas fa-exclamation-triangle" style="font-size:2rem;margin-bottom:1rem;display:block;"></i>
+            <strong>Could not load schemes from backend.</strong><br>
+            Make sure the FastAPI server is running on <code>http://localhost:8000</code><br>
+            <small style="color:var(--muted);margin-top:0.5rem;display:block;">${err.message}</small>
+        </div>`;
+                console.error("DynamoDB fetch error:", err);
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('aiModal').style.display = 'none';
+        }
+
+        async function explainScheme(schemeId) {
+            const user = getUser();
+            const btn = event.currentTarget || document.activeElement;
+            const originalHtml = btn.innerHTML;
+
+            try {
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Thinking...';
+                btn.disabled = true;
+                const data = await fetchRecommendationExplanation(schemeId, user, "en");
+
+                // Content extracted from response
+                const explanation = data.explanation || data;
+
+                // Format markdown-like text from LLM
+                const formatted = explanation.toString()
+                    .replace(/\n\n/g, '<br><br>')
+                    .replace(/\n/g, '<br>')
+                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+
+                document.getElementById('aiModalContent').innerHTML = formatted;
+                document.getElementById('aiModal').style.display = 'flex';
+
+                // ✅ Speak the explanation
+                const lang = localStorage.getItem("saarthi_lang") || "en";
+                // Get clean text (no HTML) for TTS
+                const cleanText = explanation.toString().replace(/\*\*/g, "");
+
+                try {
+                    const ttsData = await fetchTextToSpeech(cleanText, lang);
+                    if (ttsData && ttsData.audio) {
+                        stopCurrentAudio(); // function from main.js
+                        currentAudio = new Audio("data:audio/mp3;base64," + ttsData.audio);
+                        currentAudio.play().catch(console.warn);
+                    }
+                } catch (ttsErr) {
+                    console.warn("TTS failed for explanation:", ttsErr);
+                }
+
+            } catch (err) {
+                console.error(err);
+                alert("Could not load AI explanation. Please try again later.");
+            } finally {
+                btn.innerHTML = originalHtml;
+                btn.disabled = false;
+            }
+        }
+
+        async function updateRecoBanner() {
+            const user = getUser();
+            if (!user) return;
+
+            try {
+                // Fetch recommendations specifically
+                const data = await fetchRecommendations(user, null, "en");
+                const recs = data?.recommendations || [];
+
+                const banner = document.querySelector(".recommend-banner");
+                if (recs.length > 0) {
+                    const count = recs.length;
+                    const topNames = recs.slice(0, 2).map(r => r.name_en || r.scheme_id).join(", ");
+                    banner.querySelector(".title").textContent = `Saarthi found ${count} schemes matching your profile`;
+                    banner.querySelector(".sub").textContent = `Great matches found for ${topNames} and more!`;
+                    banner.style.display = "flex";
+                } else {
+                    banner.style.display = "none";
+                }
+            } catch (err) {
+                console.error("Banner reco error:", err);
+            }
+        }
+
+        // Run on page load
+        loadSchemes();
+        updateRecoBanner();
+    </script>
+</body>
+
+</html>

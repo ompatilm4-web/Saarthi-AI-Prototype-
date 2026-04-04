@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saarthi AI - Admin Login</title>
+    <link rel="stylesheet" href="CSS/login.css">
+    <style>
+        .admin-badge {
+            display: inline-block;
+            background: #1e3a8a;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="login.html" class="back-to-home">
+        <span class="back-arrow">←</span>
+        <span>Back to Login</span>
+    </a>
+    <div class="login-container">
+        <div class="login-header">
+            <span class="admin-badge">ADMIN PORTAL</span>
+            <h1>Saarthi AI</h1>
+            <p>Secure Admin Access</p>
+        </div>
+
+        <div class="login-body">
+            <div class="success-message" id="successMessage"
+                style="display: none; background: #dcfce7; color: #16a34a; padding: 10px; border-radius: 8px; margin-bottom: 15px; text-align: center; border: 1px solid #16a34a;">
+                ✓ Login Successful! Redirecting to Dashboard...
+            </div>
+            <div class="error-message" id="errorMessage"
+                style="display: none; background: #fee2e2; color: #dc2626; padding: 10px; border-radius: 8px; margin-bottom: 15px; text-align: center; border: 1px solid #dc2626;">
+                Invalid credentials. Please try again.
+            </div>
+
+            <div class="form-section active">
+                <div class="info-box">
+                    <p>🔒 Enter your administrator credentials to access the Saarthi AI dashboard.</p>
+                </div>
+
+                <form id="adminLoginForm">
+                    <div class="form-group">
+                        <label for="adminEmail">Email / Username</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">👤</span>
+                            <input type="text" id="adminEmail" class="form-input" placeholder="Enter admin email"
+                                required>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top: 15px;">
+                        <label for="adminPassword">Password</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">🔑</span>
+                            <input type="password" id="adminPassword" class="form-input" placeholder="Enter password"
+                                required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-button" style="margin-top: 25px; background: #1e3a8a;">
+                        Secure Login
+                    </button>
+                </form>
+
+            </div>
+
+            <div class="security-badge">
+                <span>🔐</span>
+                <span>Secured by Saarthi Internal Systems</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('adminLoginForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const email = document.getElementById('adminEmail').value;
+            const password = document.getElementById('adminPassword').value;
+
+            // Simple client side check for prototype
+            if (email && password) {
+                document.getElementById('errorMessage').style.display = 'none';
+                document.getElementById('successMessage').style.display = 'block';
+                setTimeout(() => {
+                    window.location.href = 'admin.html';
+                }, 1000);
+            } else {
+                document.getElementById('errorMessage').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+supabase==2.3.4
+boto3
+pillow
+pytesseract
+pydantic<2
+python-dotenv
+httpx==0.24.1

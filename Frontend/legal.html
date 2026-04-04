@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saarthi AI - Legal Help</title>
+    <link rel="stylesheet" href="CSS/main.css">
+    <link rel="stylesheet" href="CSS/responsive.css">
+</head>
+<body>
+    <header id="header">
+        <nav class="container">
+            <div class="logo" onclick="window.location.href='index.html';" style="cursor:pointer;">
+                Saarthi AI
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+              <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="schemes.html">Schemes</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container" style="padding-top: 40px; padding-bottom: 40px; min-height: 80vh;">
+        <!-- legal.html -->
+        <section class="legal-section">
+          <div class="legal-header">
+            <h2>⚖️ Legal Help</h2>
+            <p>Describe your problem. We will analyze, explain, and guide you — in your language.</p>
+          </div>
+
+          <!-- Step indicators -->
+          <div class="legal-steps">
+            <div class="step active" id="step-analyze">🔍 Analyze</div>
+            <div class="step" id="step-explain">📖 Explain</div>
+            <div class="step" id="step-solve">✅ Solution</div>
+          </div>
+
+          <!-- Input -->
+          <div class="legal-input-area">
+            <textarea id="legalQuery" rows="4"
+              placeholder="Describe your problem... e.g. 'My employer has not paid salary for 3 months'"></textarea>
+            <div class="legal-input-actions">
+              <button class="mic-btn" id="legalMicBtn">🎤 Speak</button>
+              <button class="btn-primary" id="analyzeLegalBtn">Analyze My Problem →</button>
+            </div>
+          </div>
+
+          <!-- Results -->
+          <div class="legal-results" id="legalResults" style="display:none;">
+            <div class="legal-card analysis-card">
+              <h4>🔍 Your Issue</h4>
+              <p id="legalIssueText"></p>
+            </div>
+            <div class="legal-card explanation-card">
+              <h4>📖 Your Rights</h4>
+              <p id="legalExplanationText"></p>
+            </div>
+            <div class="legal-card solution-card">
+              <h4>✅ What You Should Do</h4>
+              <p id="legalSolutionText"></p>
+              <div class="legal-actions-btns">
+                <button class="btn-secondary" id="draftComplaintBtn">📝 Draft Complaint</button>
+                <button class="btn-secondary" id="findLegalAidBtn">🏛️ Find Legal Aid Near Me</button>
+                <button class="btn-secondary" id="callHelplineBtn">📞 Call Helpline</button>
+              </div>
+            </div>
+          </div>
+        </section>
+    </main>
+
+    <script src="JS/legal.js"></script>
+    <script src="JS/mobile.js"></script>
+</body>
+</html>

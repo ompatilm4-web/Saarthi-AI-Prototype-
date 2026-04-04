@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saarthi AI- Secure Login</title>
+    <link rel="stylesheet" href="CSS/login.css">
+    <!-- Google Translate Script (language persistence) -->
+    <!-- <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                autoDisplay: false,
+                includedLanguages: 'hi,bn,te,ta,mr,gu,kn,ml,pa,or,as,en'
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript"
+        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+        </script> -->
+</head>
+
+<body>
+    <a href="index.html" class="back-to-home">
+        <span class="back-arrow">←</span>
+        <span>Back to Home</span>
+    </a>
+    <div class="login-container">
+        <div class="login-header">
+            <h1>Saarthi AI</h1>
+            <p>Secure Login to Digital Services</p>
+        </div>
+
+        <div class="login-body">
+            <div class="language-selector-login">
+                <select id="loginLanguage">
+                    <option value="en">English</option>
+                    <option value="hi">हिंदी (Hindi)</option>
+                    <option value="bn">বাংলা (Bengali)</option>
+                    <option value="te">తెలుగు (Telugu)</option>
+                    <option value="mr">मराठी (Marathi)</option>
+                    <option value="ta">தமிழ் (Tamil)</option>
+                </select>
+            </div>
+
+            <div class="success-message" id="successMessage">
+                ✓ Login Successful! Redirecting...
+            </div>
+
+            <!-- Tab Buttons -->
+            <div class="tab-buttons">
+                <button class="tab-button active" data-tab="aadhaar">
+                    🆔 Aadhaar
+                </button>
+                <button class="tab-button" data-tab="mobile">
+                    📱 Mobile
+                </button>
+            </div>
+
+            <!-- Aadhaar Login Form -->
+            <div class="form-section active" id="aadhaar-form">
+                <div class="info-box">
+                    <p>🔒 Your Aadhaar details are secure and encrypted. We follow government security standards.</p>
+                </div>
+
+                <form id="aadhaarLoginForm">
+                    <div class="form-group">
+                        <label for="aadhaarNumber">Aadhaar Number</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">🆔</span>
+                            <input type="text" id="aadhaarNumber" class="form-input"
+                                placeholder="Enter 12-digit Aadhaar number" maxlength="14" required>
+                        </div>
+                        <div class="error-message" id="aadhaarError">Please enter a valid 12-digit Aadhaar number</div>
+                        <div class="helper-text">Format: XXXX-XXXX-XXXX</div>
+                    </div>
+
+                    <button type="submit" class="submit-button" id="aadhaarSendOtp">
+                        Send OTP
+                    </button>
+                </form>
+
+                <!-- OTP Section for Aadhaar -->
+                <div class="otp-container" id="aadhaarOtpContainer">
+                    <div class="form-group">
+                        <label>Enter 6-Digit OTP</label>
+                        <p class="helper-text" style="margin-bottom: 10px;">OTP sent to mobile linked with Aadhaar:
+                            <strong id="aadhaarMaskedMobile"></strong>
+                        </p>
+
+                        <div class="otp-inputs">
+                            <input type="text" class="otp-input" maxlength="1" data-index="0">
+                            <input type="text" class="otp-input" maxlength="1" data-index="1">
+                            <input type="text" class="otp-input" maxlength="1" data-index="2">
+                            <input type="text" class="otp-input" maxlength="1" data-index="3">
+                            <input type="text" class="otp-input" maxlength="1" data-index="4">
+                            <input type="text" class="otp-input" maxlength="1" data-index="5">
+                        </div>
+
+                        <div class="resend-container">
+                            <span id="aadhaarTimer">Resend OTP in <strong>30</strong> seconds</span>
+                            <a href="#" class="resend-link disabled" id="aadhaarResend">Resend OTP</a>
+                        </div>
+                    </div>
+
+                    <button type="button" class="submit-button" id="aadhaarVerifyOtp">
+                        Verify & Login
+                    </button>
+                    <button type="button" class="back-button" id="aadhaarBack">
+                        ← Back
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Login Form -->
+            <div class="form-section" id="mobile-form">
+                <div class="info-box">
+                    <p>📱 We'll send a 6-digit OTP to verify your mobile number.</p>
+                </div>
+
+                <form id="mobileLoginForm">
+                    <div class="form-group">
+                        <label for="mobileNumber">Mobile Number</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">📱</span>
+                            <input type="tel" id="mobileNumber" class="form-input"
+                                placeholder="Enter 10-digit mobile number" maxlength="10" required>
+                        </div>
+                        <div class="error-message" id="mobileError">Please enter a valid 10-digit mobile number</div>
+                    </div>
+
+                    <button type="submit" class="submit-button" id="mobileSendOtp">
+                        Send OTP
+                    </button>
+                </form>
+
+                <!-- OTP Section for Mobile -->
+                <div class="otp-container" id="mobileOtpContainer">
+                    <div class="form-group">
+                        <label>Enter 6-Digit OTP</label>
+                        <p class="helper-text" style="margin-bottom: 10px;">OTP sent to: <strong
+                                id="mobileMaskedNumber"></strong></p>
+
+                        <div class="otp-inputs">
+                            <input type="text" class="otp-input" maxlength="1" data-index="0">
+                            <input type="text" class="otp-input" maxlength="1" data-index="1">
+                            <input type="text" class="otp-input" maxlength="1" data-index="2">
+                            <input type="text" class="otp-input" maxlength="1" data-index="3">
+                            <input type="text" class="otp-input" maxlength="1" data-index="4">
+                            <input type="text" class="otp-input" maxlength="1" data-index="5">
+                        </div>
+
+                        <div class="resend-container">
+                            <span id="mobileTimer">Resend OTP in <strong>30</strong> seconds</span>
+                            <a href="#" class="resend-link disabled" id="mobileResend">Resend OTP</a>
+                        </div>
+                    </div>
+
+                    <button type="button" class="submit-button" id="mobileVerifyOtp">
+                        Verify & Login
+                    </button>
+                    <button type="button" class="back-button" id="mobileBack">
+                        ← Back
+                    </button>
+                </div>
+            </div>
+
+            <div class="signup-divider">
+                <span>Don't have an account?</span>
+            </div>
+            <a href="register.html" class="signup-button">
+                ✨ Create New Account
+            </a>
+
+            <a href="admin-login.html" class="signup-button"
+                style="margin-top: 10px; background-color: #f1f5f9; color: #1e3a8a; border: 1px solid #cbd5e1;">
+                🛡️ Admin Login
+            </a>
+
+            <div class="security-badge">
+                <span>🔐</span>
+                <span>Secured by Government of India</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden Google Translate mount point (required by widget) -->
+    <div id="google_translate_element" style="display:none;"></div>
+
+    <!-- Language persistence: restore saved language on this page -->
+    <script src="JS/api.js"></script>
+    <script src="JS/main.js"></script>
+    <script src="JS/login.js"></script>
+</body>
+
+</html>

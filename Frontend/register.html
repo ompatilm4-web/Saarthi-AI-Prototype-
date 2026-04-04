@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saarthi AI - Register</title>
+    <!-- Google Translate Script (language persistence) -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                autoDisplay: false,
+                includedLanguages: 'hi,bn,te,ta,mr,gu,kn,ml,pa,or,as,en'
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript"
+        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+        </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ffffff 0%, #f7f7f8 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .back-to-home {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            color: #020202;
+            padding: 12px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(0, 0, 0, 0.3);
+            z-index: 100;
+        }
+
+        .back-to-home:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateX(-5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-arrow {
+            font-size: 1.2rem;
+        }
+
+        .register-container {
+            background: rgb(255, 255, 255);
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            max-width: 520px;
+            width: 100%;
+            overflow: hidden;
+            margin-top: 60px;
+            margin-bottom: 20px;
+        }
+
+        .register-header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .register-header h1 {
+            font-size: 2rem;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .register-header p {
+            font-size: 0.95rem;
+            opacity: 0.95;
+            font-weight: 400;
+        }
+
+        /* Step Indicator */
+        .step-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            margin-top: 24px;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .step-circle {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.25);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .step.active .step-circle {
+            background: white;
+            color: #3498db;
+            border-color: white;
+        }
+
+        .step.completed .step-circle {
+            background: #27ae60;
+            border-color: #27ae60;
+            color: white;
+        }
+
+        .step-label {
+            font-size: 0.75rem;
+            opacity: 0.8;
+            white-space: nowrap;
+        }
+
+        .step.active .step-label {
+            opacity: 1;
+            font-weight: 600;
+        }
+
+        .step-line {
+            width: 50px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.3);
+            margin-bottom: 20px;
+            transition: background 0.3s;
+        }
+
+        .step-line.completed {
+            background: #27ae60;
+        }
+
+        .register-body {
+            padding: 40px 35px;
+        }
+
+        .language-selector-login {
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .language-selector-login select {
+            padding: 12px 24px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            outline: none;
+            cursor: pointer;
+            background: white;
+            color: #2c3e50;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .language-selector-login select:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.1);
+        }
+
+        /* Form Steps */
+        .form-step {
+            display: none;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .form-step.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .step-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 6px;
+        }
+
+        .step-subtitle {
+            font-size: 0.88rem;
+            color: #6c757d;
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.1rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px 14px 14px 44px;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            outline: none;
+            background: #f8f9fa;
+            color: #2c3e50;
+        }
+
+        .form-input:focus {
+            border-color: #3498db;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.1);
+        }
+
+        .form-input.error {
+            border-color: #e74c3c;
+            background: #fff5f5;
+        }
+
+        .form-input.success {
+            border-color: #27ae60;
+            background: #f0fff4;
+        }
+
+        select.form-input {
+            cursor: pointer;
+            appearance: none;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.82rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .helper-text {
+            font-size: 0.82rem;
+            color: #6c757d;
+            margin-top: 5px;
+        }
+
+        /* Password Strength */
+        .password-strength {
+            margin-top: 8px;
+        }
+
+        .strength-bar {
+            height: 4px;
+            border-radius: 4px;
+            background: #e9ecef;
+            overflow: hidden;
+            margin-bottom: 4px;
+        }
+
+        .strength-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: all 0.3s;
+            width: 0%;
+        }
+
+        .strength-text {
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* OTP */
+        .otp-container {
+            display: none;
+        }
+
+        .otp-container.show {
+            display: block;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .otp-inputs {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .otp-input {
+            width: 52px;
+            height: 58px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            outline: none;
+            transition: all 0.3s;
+            background: #f8f9fa;
+            color: #2c3e50;
+        }
+
+        .otp-input:focus {
+            border-color: #3498db;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.1);
+        }
+
+        .resend-container {
+            text-align: center;
+            margin-top: 12px;
+            font-size: 0.88rem;
+            color: #6c757d;
+        }
+
+        .resend-link {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .resend-link.disabled {
+            color: #adb5bd;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        /* Buttons */
+        .submit-button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 12px;
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+        }
+
+        .submit-button:active {
+            transform: translateY(0);
+        }
+
+        .submit-button:disabled {
+            background: #adb5bd;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .back-button {
+            width: 100%;
+            padding: 14px;
+            background: white;
+            color: #6c757d;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+
+        .back-button:hover {
+            background: #f8f9fa;
+            border-color: #dee2e6;
+            color: #495057;
+        }
+
+        .info-box {
+            background: #e8f4fd;
+            border-left: 4px solid #3498db;
+            padding: 14px 16px;
+            border-radius: 10px;
+            margin-bottom: 22px;
+            font-size: 0.88rem;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        /* Terms Checkbox */
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+            accent-color: #3498db;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .checkbox-group label {
+            font-size: 0.88rem;
+            color: #495057;
+            cursor: pointer;
+            line-height: 1.5;
+        }
+
+        .checkbox-group a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .checkbox-group a:hover {
+            text-decoration: underline;
+        }
+
+        /* Success */
+        .success-message {
+            background: linear-gradient(135deg, #27ae60, #229954);
+            color: white;
+            padding: 18px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 20px;
+            display: none;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+        }
+
+        .success-message.show {
+            display: block;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .security-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 24px;
+            padding: 14px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            color: #6c757d;
+            font-weight: 500;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+
+        .login-link a {
+            color: #3498db;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Show/hide password toggle */
+        .toggle-password {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 1.1rem;
+            user-select: none;
+        }
+
+        .form-input.with-toggle {
+            padding-right: 44px;
+        }
+
+        @media (max-width: 480px) {
+            .register-header {
+                padding: 32px 24px;
+            }
+
+            .register-header h1 {
+                font-size: 1.6rem;
+            }
+
+            .register-body {
+                padding: 32px 20px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .otp-input {
+                width: 46px;
+                height: 52px;
+                font-size: 1.3rem;
+            }
+
+            .otp-inputs {
+                gap: 7px;
+            }
+
+            .step-line {
+                width: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <a href="index.html" class="back-to-home">
+        <span class="back-arrow">←</span>
+        <span>Back to Home</span>
+    </a>
+
+    <div class="register-container">
+        <div class="register-header">
+            <h1>Saarthi AI</h1>
+            <p>Create Your Account</p>
+
+            <div class="step-indicator">
+                <div class="step active" id="stepIndicator1">
+                    <div class="step-circle">1</div>
+                    <div class="step-label">Personal Info</div>
+                </div>
+                <div class="step-line" id="stepLine1"></div>
+                <div class="step active" id="stepIndicator2">
+                    <div class="step-circle">2</div>
+                    <div class="step-label">Verify Mobile</div>
+                </div>
+                <div class="step-line" id="stepLine2"></div>
+                <div class="step" id="stepIndicator3">
+                    <div class="step-circle">3</div>
+                    <div class="step-label">Set Password</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="register-body">
+            <div class="language-selector-login">
+                <select id="registerLanguage">
+                    <option value="en">English</option>
+                    <option value="hi">हिंदी (Hindi)</option>
+                    <option value="bn">বাংলা (Bengali)</option>
+                    <option value="te">తెలుగు (Telugu)</option>
+                    <option value="mr">मराठी (Marathi)</option>
+                    <option value="ta">தமிழ் (Tamil)</option>
+                </select>
+            </div>
+
+            <div class="success-message" id="successMessage">
+                ✓ Registration Successful! Redirecting to Login...
+            </div>
+
+            <!-- Step 1: Personal Information -->
+            <div class="form-step active" id="step1">
+                <div class="step-title">Personal Information</div>
+                <div class="step-subtitle">Enter your basic details to get started</div>
+
+                <div class="info-box">
+                    🔒 Your information is securely stored and protected under government data privacy standards.
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">👤</span>
+                            <input type="text" id="firstName" class="form-input" placeholder="First name" required>
+                        </div>
+                        <div class="error-message" id="firstNameError">Please enter your first name</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">👤</span>
+                            <input type="text" id="lastName" class="form-input" placeholder="Last name" required>
+                        </div>
+                        <div class="error-message" id="lastNameError">Please enter your last name</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="dob">Date of Birth</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">📅</span>
+                        <input type="date" id="dob" class="form-input" required>
+                    </div>
+                    <div class="error-message" id="dobError">Please enter a valid date of birth</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">⚧</span>
+                        <select id="gender" class="form-input" required>
+                            <option value="">Select gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                            <option value="prefer_not">Prefer not to say</option>
+                        </select>
+                    </div>
+                    <div class="error-message" id="genderError">Please select your gender</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="aadhaarReg">Aadhaar Number</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">🆔</span>
+                        <input type="text" id="aadhaarReg" class="form-input" placeholder="XXXX-XXXX-XXXX"
+                            maxlength="14" required>
+                    </div>
+                    <div class="error-message" id="aadhaarRegError">Please enter a valid 12-digit Aadhaar number</div>
+                    <div class="helper-text">Format: XXXX-XXXX-XXXX</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="state">State</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">📍</span>
+                        <select id="state" class="form-input" required>
+                            <option value="">Select your state</option>
+                            <option>Andhra Pradesh</option>
+                            <option>Arunachal Pradesh</option>
+                            <option>Assam</option>
+                            <option>Bihar</option>
+                            <option>Chhattisgarh</option>
+                            <option>Goa</option>
+                            <option>Gujarat</option>
+                            <option>Haryana</option>
+                            <option>Himachal Pradesh</option>
+                            <option>Jharkhand</option>
+                            <option>Karnataka</option>
+                            <option>Kerala</option>
+                            <option>Madhya Pradesh</option>
+                            <option>Maharashtra</option>
+                            <option>Manipur</option>
+                            <option>Meghalaya</option>
+                            <option>Mizoram</option>
+                            <option>Nagaland</option>
+                            <option>Odisha</option>
+                            <option>Punjab</option>
+                            <option>Rajasthan</option>
+                            <option>Sikkim</option>
+                            <option>Tamil Nadu</option>
+                            <option>Telangana</option>
+                            <option>Tripura</option>
+                            <option>Uttar Pradesh</option>
+                            <option>Uttarakhand</option>
+                            <option>West Bengal</option>
+                            <option>Delhi</option>
+                            <option>Jammu & Kashmir</option>
+                            <option>Ladakh</option>
+                            <option>Puducherry</option>
+                        </select>
+                    </div>
+                    <div class="error-message" id="stateError">Please select your state</div>
+                </div>
+
+                <button type="button" class="submit-button" id="step1Next">
+                    Continue →
+                </button>
+            </div>
+
+            <!-- Step 2: Mobile Verification -->
+            <div class="form-step" id="step2">
+                <div class="step-title">Mobile Verification</div>
+                <div class="step-subtitle">Verify your mobile number with an OTP</div>
+
+                <div class="info-box">
+                    📱 A 6-digit OTP will be sent to your mobile number for verification.
+                </div>
+
+                <!-- Mobile Input -->
+                <div id="mobileInputSection">
+                    <div class="form-group">
+                        <label for="regMobile">Mobile Number</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">📱</span>
+                            <input type="tel" id="regMobile" class="form-input"
+                                placeholder="Enter 10-digit mobile number" maxlength="10" required>
+                        </div>
+                        <div class="error-message" id="regMobileError">Please enter a valid 10-digit mobile number</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="regEmail">Email Address <span
+                                style="color:#6c757d; font-weight:400">(Optional)</span></label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">✉️</span>
+                            <input type="email" id="regEmail" class="form-input" placeholder="Enter your email address">
+                        </div>
+                        <div class="error-message" id="regEmailError">Please enter a valid email address</div>
+                    </div>
+
+                    <button type="button" class="submit-button" id="sendRegOtp">
+                        Send OTP
+                    </button>
+                    <button type="button" class="back-button" id="step2Back">
+                        ← Back
+                    </button>
+                </div>
+
+                <!-- OTP Verification -->
+                <div class="otp-container" id="regOtpContainer">
+                    <div class="form-group">
+                        <label>Enter 6-Digit OTP</label>
+                        <p class="helper-text" style="margin-bottom: 10px;">OTP sent to: <strong
+                                id="regMaskedMobile"></strong></p>
+
+                        <div class="otp-inputs">
+                            <input type="text" class="otp-input reg-otp-input" maxlength="1" data-index="0">
+                            <input type="text" class="otp-input reg-otp-input" maxlength="1" data-index="1">
+                            <input type="text" class="otp-input reg-otp-input" maxlength="1" data-index="2">
+                            <input type="text" class="otp-input reg-otp-input" maxlength="1" data-index="3">
+                            <input type="text" class="otp-input reg-otp-input" maxlength="1" data-index="4">
+                            <input type="text" class="otp-input reg-otp-input" maxlength="1" data-index="5">
+                        </div>
+
+                        <div class="resend-container">
+                            <span id="regTimer">Resend OTP in <strong>30</strong> seconds</span>
+                            <a href="#" class="resend-link disabled" id="regResend">Resend OTP</a>
+                        </div>
+                    </div>
+
+                    <button type="button" class="submit-button" id="verifyRegOtp">
+                        Verify OTP
+                    </button>
+                    <button type="button" class="back-button" id="otpBack">
+                        ← Change Number
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 3: Set Password -->
+            <div class="form-step" id="step3">
+                <div class="step-title">Create Password</div>
+                <div class="step-subtitle">Set a strong password to secure your account</div>
+
+                <div class="form-group">
+                    <label for="regPassword">Password</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">🔒</span>
+                        <input type="password" id="regPassword" class="form-input with-toggle"
+                            placeholder="Create a strong password" required>
+                        <span class="toggle-password" id="togglePassword">👁</span>
+                    </div>
+                    <div class="password-strength" id="passwordStrength" style="display:none">
+                        <div class="strength-bar">
+                            <div class="strength-fill" id="strengthFill"></div>
+                        </div>
+                        <span class="strength-text" id="strengthText"></span>
+                    </div>
+                    <div class="error-message" id="passwordError">Password must be at least 8 characters</div>
+                    <div class="helper-text">Min. 8 characters with letters, numbers & symbols</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">🔒</span>
+                        <input type="password" id="confirmPassword" class="form-input with-toggle"
+                            placeholder="Re-enter your password" required>
+                        <span class="toggle-password" id="toggleConfirm">👁</span>
+                    </div>
+                    <div class="error-message" id="confirmPasswordError">Passwords do not match</div>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="termsCheck">
+                    <label for="termsCheck">
+                        I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a> of Saarthi AI
+                        and the Government of India Digital Services.
+                    </label>
+                </div>
+                <div class="error-message" id="termsError">Please accept the terms to continue</div>
+
+                <button type="button" class="submit-button" id="completeRegister">
+                    Create Account
+                </button>
+                <button type="button" class="back-button" id="step3Back">
+                    ← Back
+                </button>
+            </div>
+
+            <div class="security-badge">
+                <span>🔐</span>
+                <span>Secured by Government of India</span>
+            </div>
+
+            <div class="login-link">
+                Already have an account? <a href="login.html">Login here</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ─── Step State ───────────────────────────────────────────────
+        let currentStep = 1;
+
+        function goToStep(step) {
+            document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+            document.getElementById(`step${step}`).classList.add('active');
+            updateStepIndicator(step);
+            currentStep = step;
+        }
+
+        function updateStepIndicator(step) {
+            for (let i = 1; i <= 3; i++) {
+                const indicator = document.getElementById(`stepIndicator${i}`);
+                const circle = indicator.querySelector('.step-circle');
+                indicator.classList.remove('active', 'completed');
+
+                if (i < step) {
+                    indicator.classList.add('completed');
+                    circle.textContent = '✓';
+                } else if (i === step) {
+                    indicator.classList.add('active');
+                    circle.textContent = i;
+                } else {
+                    circle.textContent = i;
+                }
+            }
+            for (let i = 1; i <= 2; i++) {
+                const line = document.getElementById(`stepLine${i}`);
+                line.classList.toggle('completed', i < step);
+            }
+        }
+
+        // Initialize step indicator correctly
+        updateStepIndicator(1);
+
+        // ─── Aadhaar Formatting ───────────────────────────────────────
+        document.getElementById('aadhaarReg').addEventListener('input', (e) => {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 12) value = value.slice(0, 12);
+            let formatted = '';
+            for (let i = 0; i < value.length; i++) {
+                if (i > 0 && i % 4 === 0) formatted += '-';
+                formatted += value[i];
+            }
+            e.target.value = formatted;
+        });
+
+        // ─── Mobile Formatting ────────────────────────────────────────
+        document.getElementById('regMobile').addEventListener('input', (e) => {
+            e.target.value = e.target.value.replace(/\D/g, '').slice(0, 10);
+        });
+
+        // ─── Step 1 Validation & Next ─────────────────────────────────
+        document.getElementById('step1Next').addEventListener('click', () => {
+            let valid = true;
+
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const dob = document.getElementById('dob').value;
+            const gender = document.getElementById('gender').value;
+            const aadhaar = document.getElementById('aadhaarReg').value.replace(/-/g, '');
+            const state = document.getElementById('state').value;
+
+            const setError = (id, inputId, show) => {
+                document.getElementById(id).classList.toggle('show', show);
+                document.getElementById(inputId).classList.toggle('error', show);
+                if (show) valid = false;
+            };
+
+            setError('firstNameError', 'firstName', !firstName);
+            setError('lastNameError', 'lastName', !lastName);
+            setError('dobError', 'dob', !dob);
+            setError('genderError', 'gender', !gender);
+            setError('aadhaarRegError', 'aadhaarReg', aadhaar.length !== 12);
+            setError('stateError', 'state', !state);
+
+            if (valid) goToStep(2);
+        });
+
+        // ─── Send OTP ─────────────────────────────────────────────────
+        document.getElementById('sendRegOtp').addEventListener('click', () => {
+            const mobile = document.getElementById('regMobile').value;
+            const email = document.getElementById('regEmail').value.trim();
+
+            if (mobile.length !== 10) {
+                document.getElementById('regMobileError').classList.add('show');
+                document.getElementById('regMobile').classList.add('error');
+                return;
+            }
+
+            if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                document.getElementById('regEmailError').classList.add('show');
+                document.getElementById('regEmail').classList.add('error');
+                return;
+            }
+
+            document.getElementById('regMobileError').classList.remove('show');
+            document.getElementById('regMobile').classList.remove('error');
+            document.getElementById('regEmailError').classList.remove('show');
+
+            const btn = document.getElementById('sendRegOtp');
+            btn.innerHTML = 'Sending OTP... <span class="loading"></span>';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                document.getElementById('regMaskedMobile').textContent = `******${mobile.slice(-4)}`;
+                document.getElementById('mobileInputSection').style.display = 'none';
+                document.getElementById('regOtpContainer').classList.add('show');
+                document.querySelector('.reg-otp-input').focus();
+                startRegTimer();
+                btn.innerHTML = 'Send OTP';
+                btn.disabled = false;
+            }, 1500);
+        });
+
+        // ─── OTP Inputs ───────────────────────────────────────────────
+        document.querySelectorAll('.reg-otp-input').forEach((input, index, inputs) => {
+            input.addEventListener('input', (e) => {
+                e.target.value = e.target.value.replace(/\D/g, '');
+                if (e.target.value.length === 1 && index < inputs.length - 1) {
+                    inputs[index + 1].focus();
+                }
+            });
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && !e.target.value && index > 0) {
+                    inputs[index - 1].focus();
+                }
+            });
+        });
+
+        // ─── Timer ────────────────────────────────────────────────────
+        function startRegTimer() {
+            let timeLeft = 30;
+            const timerEl = document.getElementById('regTimer');
+            const resendLink = document.getElementById('regResend');
+            resendLink.classList.add('disabled');
+            timerEl.style.display = 'inline';
+
+            const countdown = setInterval(() => {
+                timeLeft--;
+                timerEl.innerHTML = `Resend OTP in <strong>${timeLeft}</strong> seconds`;
+                if (timeLeft <= 0) {
+                    clearInterval(countdown);
+                    timerEl.style.display = 'none';
+                    resendLink.classList.remove('disabled');
+                }
+            }, 1000);
+        }
+
+        document.getElementById('regResend').addEventListener('click', (e) => {
+            e.preventDefault();
+            if (!e.target.classList.contains('disabled')) {
+                startRegTimer();
+                document.querySelectorAll('.reg-otp-input').forEach(i => i.value = '');
+                document.querySelector('.reg-otp-input').focus();
+            }
+        });
+
+        // ─── Verify OTP ───────────────────────────────────────────────
+        document.getElementById('verifyRegOtp').addEventListener('click', () => {
+            const otp = Array.from(document.querySelectorAll('.reg-otp-input')).map(i => i.value).join('');
+            if (otp.length !== 6) {
+                alert('Please enter the complete 6-digit OTP');
+                return;
+            }
+            const btn = document.getElementById('verifyRegOtp');
+            btn.innerHTML = 'Verifying... <span class="loading"></span>';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                btn.innerHTML = 'Verify OTP';
+                btn.disabled = false;
+                goToStep(3);
+            }, 1500);
+        });
+
+        // ─── Back Buttons ─────────────────────────────────────────────
+        document.getElementById('step2Back').addEventListener('click', () => goToStep(1));
+
+        document.getElementById('otpBack').addEventListener('click', () => {
+            document.getElementById('mobileInputSection').style.display = 'block';
+            document.getElementById('regOtpContainer').classList.remove('show');
+            document.querySelectorAll('.reg-otp-input').forEach(i => i.value = '');
+        });
+
+        document.getElementById('step3Back').addEventListener('click', () => goToStep(2));
+
+        // ─── Password Strength ────────────────────────────────────────
+        document.getElementById('regPassword').addEventListener('input', (e) => {
+            const val = e.target.value;
+            const strengthDiv = document.getElementById('passwordStrength');
+            const fill = document.getElementById('strengthFill');
+            const text = document.getElementById('strengthText');
+
+            if (!val) { strengthDiv.style.display = 'none'; return; }
+            strengthDiv.style.display = 'block';
+
+            let score = 0;
+            if (val.length >= 8) score++;
+            if (/[A-Z]/.test(val)) score++;
+            if (/[0-9]/.test(val)) score++;
+            if (/[^A-Za-z0-9]/.test(val)) score++;
+
+            const configs = [
+                { pct: '25%', color: '#e74c3c', label: 'Weak' },
+                { pct: '50%', color: '#e67e22', label: 'Fair' },
+                { pct: '75%', color: '#f1c40f', label: 'Good' },
+                { pct: '100%', color: '#27ae60', label: 'Strong' },
+            ];
+            const cfg = configs[score - 1] || configs[0];
+            fill.style.width = cfg.pct;
+            fill.style.background = cfg.color;
+            text.textContent = cfg.label;
+            text.style.color = cfg.color;
+        });
+
+        // ─── Toggle Password Visibility ───────────────────────────────
+        document.getElementById('togglePassword').addEventListener('click', () => {
+            const input = document.getElementById('regPassword');
+            const icon = document.getElementById('togglePassword');
+            input.type = input.type === 'password' ? 'text' : 'password';
+            icon.textContent = input.type === 'password' ? '👁' : '🙈';
+        });
+
+        document.getElementById('toggleConfirm').addEventListener('click', () => {
+            const input = document.getElementById('confirmPassword');
+            const icon = document.getElementById('toggleConfirm');
+            input.type = input.type === 'password' ? 'text' : 'password';
+            icon.textContent = input.type === 'password' ? '👁' : '🙈';
+        });
+
+        // ─── Complete Registration ─────────────────────────────────────
+        document.getElementById('completeRegister').addEventListener('click', async () => {
+            const password = document.getElementById('regPassword').value;
+            const confirm = document.getElementById('confirmPassword').value;
+            const terms = document.getElementById('termsCheck').checked;
+            let valid = true;
+
+            if (password.length < 8) {
+                document.getElementById('passwordError').classList.add('show');
+                document.getElementById('regPassword').classList.add('error');
+                valid = false;
+            } else {
+                document.getElementById('passwordError').classList.remove('show');
+                document.getElementById('regPassword').classList.remove('error');
+            }
+
+            if (password !== confirm || !confirm) {
+                document.getElementById('confirmPasswordError').classList.add('show');
+                document.getElementById('confirmPassword').classList.add('error');
+                valid = false;
+            } else {
+                document.getElementById('confirmPasswordError').classList.remove('show');
+                document.getElementById('confirmPassword').classList.remove('error');
+            }
+
+            if (!terms) {
+                document.getElementById('termsError').classList.add('show');
+                valid = false;
+            } else {
+                document.getElementById('termsError').classList.remove('show');
+            }
+
+            if (!valid) return;
+
+            const btn = document.getElementById('completeRegister');
+            btn.innerHTML = 'Creating Account... <span class="loading"></span>';
+            btn.disabled = true;
+
+            // ── Collect all profile data ──
+            const firstName = document.getElementById('firstName')?.value.trim() || '';
+            const lastName = document.getElementById('lastName')?.value.trim() || '';
+            const dob = document.getElementById('dob')?.value || '';
+            const gender = document.getElementById('gender')?.value || '';
+            const state = document.getElementById('state')?.value || '';
+            const mobile = document.getElementById('regMobile')?.value || '';
+            const email = document.getElementById('regEmail')?.value || '';
+
+            // Calculate age from DOB
+            let age = null;
+            if (dob) {
+                const today = new Date();
+                const birthDate = new Date(dob);
+                age = today.getFullYear() - birthDate.getFullYear();
+                const m = today.getMonth() - birthDate.getMonth();
+                if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) age--;
+            }
+
+            const aadhaar = document.getElementById('aadhaarReg')?.value.replace(/-/g, '') || '';
+
+            const fullName = `${firstName} ${lastName}`.trim();
+            const profileData = {
+                full_name: fullName,
+                name:      fullName,   // DB has both 'name' and 'full_name' columns
+                age:       age,
+                gender:    gender,
+                state:     state,
+                mobile:    mobile,
+                email:     email,
+                aadhaar:   aadhaar,
+            };
+
+            // ── Save to localStorage IMMEDIATELY — profile page reads this ──
+            // This ensures data is visible even if backend call fails/is slow
+            localStorage.setItem('saarthi_user', JSON.stringify(profileData));
+
+            try {
+                // First, ensure the user row exists in DB
+                await fetch('http://localhost:8080/send-otp', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ mobile })
+                });
+
+                // Save all profile fields to DB
+                const res = await fetch(`http://localhost:8080/profile?mobile=${encodeURIComponent(mobile)}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        full_name:  profileData.full_name,
+                        name:       profileData.full_name, // mirrors DB 'name' column
+                        age:        profileData.age,
+                        gender:     profileData.gender,
+                        state:      profileData.state,
+                        email:      profileData.email,
+                        aadhaar:    profileData.aadhaar,
+                    })
+                });
+
+                if (res.ok) {
+                    const data = await res.json();
+                    // Merge DB response — keep mobile/email/aadhaar which backend may omit
+                    const savedUser = { ...profileData, ...(data.user || {}) };
+                    localStorage.setItem('saarthi_user', JSON.stringify(savedUser));
+                }
+            } catch (e) {
+                // Backend unreachable — localStorage already has full data, safe to proceed
+                console.warn('Profile save to backend failed, data already saved locally:', e);
+            }
+
+            document.getElementById('successMessage').classList.add('show');
+            btn.innerHTML = 'Create Account';
+            btn.disabled = false;
+
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 2500);
+        });
+    </script>
+    <!-- Hidden Google Translate mount point (required by widget) -->
+    <div id="google_translate_element" style="display:none;"></div>
+
+    <!-- Language persistence: restore saved language on this page -->
+    <script src="JS/main.js"></script>
+</body>
+
+</html>
