@@ -1,30 +1,55 @@
 <div align="center">
 
-<!-- Banner -->
+<!-- Header Banner -->
 <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=220&section=header&text=Saarthi%20AI&fontSize=72&fontColor=fff&animation=twinkling&fontAlignY=36&desc=Digital%20India%2C%20In%20Every%20Voice&descAlignY=58&descSize=22" width="100%"/>
 
-# 🇮🇳 Saarthi AI — *Bridging the Last Mile*
+<br/>
 
-### **Government Services. Any Language. Every Voice.**
+### 🇮🇳 *Bridging the Last Mile — Government Services in Every Voice*
 
 <br/>
 
-[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-Visit_Site-22c55e?style=for-the-badge&labelColor=16a34a)](https://saarthi-ai-frontend.vercel.app)
-[![Demo Video](https://img.shields.io/badge/▶️_Demo-Watch_Now-ef4444?style=for-the-badge&labelColor=dc2626)](https://your-demo-link.com)
-[![MIT License](https://img.shields.io/badge/📜_License-MIT-3b82f6?style=for-the-badge&labelColor=2563eb)](./LICENSE)
+<!-- Primary Action Badges -->
+<p align="center">
+  <a href="https://saarthi-ai-frontend.vercel.app">
+    <img src="https://img.shields.io/badge/🌐_Live_Demo-Visit_Site-22c55e?style=for-the-badge&labelColor=16a34a" alt="Live Site"/>
+  </a>
+  &nbsp;
+  <a href="https://your-demo-link.com">
+    <img src="https://img.shields.io/badge/▶_Demo_Video-Watch_Now-ef4444?style=for-the-badge&labelColor=dc2626" alt="Demo Video"/>
+  </a>
+  &nbsp;
+  <img src="https://img.shields.io/badge/📜_License-MIT-3b82f6?style=for-the-badge&labelColor=2563eb" alt="MIT License"/>
+</p>
 
 <br/>
 
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
-![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white)
-![AWS Bedrock](https://img.shields.io/badge/AWS_Bedrock-FF9900?style=flat-square&logo=amazonaws&logoColor=white)
-![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=flat-square&logo=supabase&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=flat-square&logo=postgresql&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
-![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white)
-![WhatsApp](https://img.shields.io/badge/WhatsApp-25D366?style=flat-square&logo=whatsapp&logoColor=white)
+<!-- Tech Stack Row 1 -->
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python"/>
+  <img src="https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white" alt="FastAPI"/>
+  <img src="https://img.shields.io/badge/Amazon_AWS-FF9900?style=flat-square&logo=amazonaws&logoColor=white" alt="AWS"/>
+  <img src="https://img.shields.io/badge/Supabase-3ECF8E?style=flat-square&logo=supabase&logoColor=white" alt="Supabase"/>
+  <img src="https://img.shields.io/badge/PostgreSQL-316192?style=flat-square&logo=postgresql&logoColor=white" alt="PostgreSQL"/>
+</p>
+
+<!-- Tech Stack Row 2 -->
+<p align="center">
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" alt="JavaScript"/>
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" alt="HTML5"/>
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white" alt="CSS3"/>
+  <img src="https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white" alt="Vercel"/>
+  <img src="https://img.shields.io/badge/WhatsApp-25D366?style=flat-square&logo=whatsapp&logoColor=white" alt="WhatsApp"/>
+</p>
+
+<!-- Repo Stats -->
+<p align="center">
+  <img src="https://img.shields.io/github/stars/ompatilm4-web/Saarthi-AI-Prototype-?style=flat-square&color=f59e0b&label=⭐%20Stars" alt="Stars"/>
+  <img src="https://img.shields.io/github/forks/ompatilm4-web/Saarthi-AI-Prototype-?style=flat-square&color=6366f1&label=🍴%20Forks" alt="Forks"/>
+  <img src="https://img.shields.io/github/issues/ompatilm4-web/Saarthi-AI-Prototype-?style=flat-square&color=ef4444&label=🐛%20Issues" alt="Issues"/>
+  <img src="https://img.shields.io/github/last-commit/ompatilm4-web/Saarthi-AI-Prototype-?style=flat-square&color=22c55e&label=🕐%20Last%20Commit" alt="Last Commit"/>
+  <img src="https://img.shields.io/badge/PRs-Welcome-brightgreen?style=flat-square&logo=github" alt="PRs Welcome"/>
+</p>
 
 <br/>
 
@@ -32,9 +57,9 @@
 
 <br/>
 
----
-
 </div>
+
+---
 
 ## 📌 Table of Contents
 
@@ -75,7 +100,7 @@ India's digital transformation has accelerated — yet **millions of citizens re
 | 📖 **Literacy Gap** | Dense legal jargon blocks eligible citizens from understanding and claiming benefits |
 | 📵 **UX Inaccessibility** | Interfaces designed for tech-savvy users, not first-time or low-literacy users |
 | 🧭 **Scheme Complexity** | 100+ welfare schemes with different eligibility criteria — impossible to navigate alone |
-| 🏛️ **Middlemen & Corruption** | Eligible citizens are exploited by intermediaries who charge fees for "assistance" |
+| 🏛️ **Middlemen & Corruption** | Eligible citizens exploited by intermediaries who charge fees for "assistance" |
 
 > **The result:** Eligible citizens miss welfare, subsidies, and legal protections — not because the schemes don't exist, but because **the system was never designed for them.**
 
@@ -85,9 +110,13 @@ India's digital transformation has accelerated — yet **millions of citizens re
 
 Saarthi AI is a **multilingual, voice-first AI companion** that removes every barrier between a citizen and their rights — with zero intermediaries.
 
+<div align="center">
+
 | 🗣️ Speak | 🔍 Discover | 📄 Understand | 🎧 Hear Back |
 |---|---|---|---|
 | Ask in any Indian language — spoken or typed | Find schemes matching your exact profile | Upload documents, get plain-language summaries | Responses in natural, regional-accent audio |
+
+</div>
 
 **Saarthi removes the intermediary.** No middlemen. No confusion. No exclusion. Just a citizen and their rights.
 
@@ -114,8 +143,8 @@ Saarthi uses a **dual-model AI strategy** built on AWS Bedrock in the `ap-south-
 Powered by **Microsoft Edge TTS**, Saarthi speaks India's languages with natural prosody and regional accents:
 
 ![Hindi](https://img.shields.io/badge/Hindi-हिंदी-FF9933?style=flat-square)
-![Marathi](https://img.shields.io/badge/Marathi-मराठी-ff5733?style=flat-square)
 ![Bengali](https://img.shields.io/badge/Bengali-বাংলা-007bff?style=flat-square)
+![Marathi](https://img.shields.io/badge/Marathi-मराठी-ff5733?style=flat-square)
 ![Telugu](https://img.shields.io/badge/Telugu-తెలుగు-6f42c1?style=flat-square)
 ![Tamil](https://img.shields.io/badge/Tamil-தமிழ்-28a745?style=flat-square)
 ![Kannada](https://img.shields.io/badge/Kannada-ಕನ್ನಡ-dc3545?style=flat-square)
@@ -140,7 +169,7 @@ Saarthi's knowledge base uses **Retrieval-Augmented Generation (RAG)** to delive
 
 - **Vector Embeddings** — All scheme documents are embedded and stored in a custom vector store
 - **Semantic Search** — User queries are embedded and matched against the knowledge base using cosine similarity
-- **Context Injection** — Top-3 relevant scheme chunks are injected into the Nova Pro prompt for grounded, hallucination-resistant answers
+- **Context Injection** — Top-3 relevant scheme chunks injected into the Nova Pro prompt for grounded, hallucination-resistant answers
 - **Profile Filtering** — Eligibility criteria (state, income, age, occupation) pre-filter retrieved chunks before LLM reasoning
 
 **Supported Scheme Categories:**
@@ -158,7 +187,7 @@ Saarthi's knowledge base uses **Retrieval-Augmented Generation (RAG)** to delive
 
 ![Pytesseract](https://img.shields.io/badge/Pytesseract-OCR_Engine-4caf50?style=flat-square&logo=python&logoColor=white)
 ![Pillow](https://img.shields.io/badge/Pillow-Image_Processing-2196f3?style=flat-square&logo=python&logoColor=white)
-![PDF Supported](https://img.shields.io/badge/PDF-Supported-red?style=flat-square&logo=adobeacrobatreader&logoColor=white)
+![PDF](https://img.shields.io/badge/PDF-Supported-red?style=flat-square&logo=adobeacrobatreader&logoColor=white)
 
 Citizens can upload any government document and receive a plain-language summary:
 
@@ -172,17 +201,19 @@ Citizens can upload any government document and receive a plain-language summary
 
 ### 📊 Admin & Analytics Dashboard
 
+![Analytics](https://img.shields.io/badge/Supabase-Real--time_Analytics-3ECF8E?style=flat-square&logo=supabase&logoColor=white)
+
 Built for government stakeholders and programme managers to understand citizen needs at scale:
 
 | Metric | Description |
 |---|---|
 | 🔥 **Trending Queries** | Most searched schemes and questions in real time — showing which schemes citizens are most confused about |
-| 🗺️ **Language Distribution Map** | Active languages and query volumes by region |
+| 🗺️ **Language Distribution Map** | Active languages and query volumes visualized by region |
 | ❌ **Failed/Unresolved Queries** | Queries where Saarthi couldn't find an answer — signals knowledge base gaps |
 | 📈 **Engagement Trends** | Daily/weekly active citizens segmented by state, language, and scheme category |
 | 👥 **User Demographics** | Anonymized income band, occupation, and age distribution of active users |
 
-All analytics are powered by Supabase's real-time PostgreSQL and accessible via a protected admin route (`/admin`).
+All analytics powered by Supabase's real-time PostgreSQL, accessible via the protected `/admin` route.
 
 ---
 
@@ -212,146 +243,203 @@ A low-latency WhatsApp bot for citizens without smartphone access or high-speed 
 
 > End-to-end view of how Saarthi AI processes a citizen's request — from voice input to spoken response.
 
-```
-                        ┌─────────────────────────────────────┐
-                        │         👤 CITIZEN                  │
-                        │   Voice · Text · Document Upload    │
-                        └──────────────┬──────────────────────┘
-                                       │
-                        ┌─────────────▼──────────────────────────────────┐
-                        │         🖥️ FRONTEND LAYER — Vanilla JS          │
-                        │                                                  │
-                        │  ┌──────────┐  ┌──────────┐  ┌──────────────┐  │
-                        │  │ index.html│  │ voice.js │  │    api.js    │  │
-                        │  │  UI Shell │  │ STT/TTS  │  │  API Client  │  │
-                        │  └──────────┘  └──────────┘  └──────────────┘  │
-                        │             Hosted on Vercel                     │
-                        └─────────────────┬──────────────────────────────┘
-                                          │ REST API (HTTP/HTTPS)
-                        ┌─────────────────▼──────────────────────────────┐
-                        │       ⚡ FastAPI Server — Uvicorn Port 8080     │
-                        │                                                  │
-                        │  /auth   /ai/chat   /schemes   /admin           │
-                        └──────┬───────────────────┬───────────┬──────────┘
-                               │                   │           │
-             ┌─────────────────▼──┐   ┌────────────▼──┐  ┌────▼────────────────┐
-             │  🤖 AI LAYER       │   │  📚 RAG LAYER  │  │  🗃️ DATA LAYER       │
-             │                    │   │                │  │                     │
-             │  ┌──────────────┐  │   │  ┌──────────┐ │  │  ┌───────────────┐  │
-             │  │ Nova Lite    │  │   │  │ Embedder │ │  │  │ Supabase Auth │  │
-             │  │ Intent Classif│  │   │  │(Vectorize│ │  │  │ JWT Sessions  │  │
-             │  └──────┬───────┘  │   │  └────┬─────┘ │  │  └───────────────┘  │
-             │         │          │   │       │        │  │                     │
-             │  ┌──────▼───────┐  │   │  ┌────▼─────┐ │  │  ┌───────────────┐  │
-             │  │ Nova Pro     │  │   │  │ Vector DB│ │  │  │ Chat History  │  │
-             │  │ Reasoning    │  │   │  │ Semantic │ │  │  │  PostgreSQL   │  │
-             │  │ Generation   │  │   │  │ Search   │ │  │  └───────────────┘  │
-             │  └──────┬───────┘  │   │  └────┬─────┘ │  │                     │
-             │         │          │   │       │Context │  │  ┌───────────────┐  │
-             │  ┌──────▼───────┐  │   └───────┘        │  │  │ Query Logs    │  │
-             │  │ Edge TTS     │  │                     │  │  │ Analytics     │  │
-             │  │ 15+ Languages│  │                     │  │  └───────────────┘  │
-             │  └──────────────┘  │                     │  │ Supabase Cloud      │
-             └────────────────────┘                     │  └─────────────────────┘
-                        │                               │
-             ┌──────────▼───────────────────────────────────────┐
-             │          ☁️ AWS BEDROCK — ap-south-1              │
-             │                                                    │
-             │   amazon.nova-pro-v1:0      amazon.nova-lite-v1:0 │
-             │   Deep Reasoning            Fast Intent Classify   │
-             │   Multilingual Generation   Sub-100ms Response     │
-             └────────────────────────────────────────────────────┘
-                        │
-             ┌──────────▼──────────────────┐
-             │    🔗 INTEGRATIONS          │
-             │                             │
-             │  💬 WhatsApp Bot (Beta)     │
-             │  🛡️ Admin Dashboard         │
-             └─────────────────────────────┘
+```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#1e3a5f', 'primaryTextColor': '#ffffff', 'primaryBorderColor': '#4a90d9', 'lineColor': '#4a90d9', 'secondaryColor': '#0d2137', 'tertiaryColor': '#132d4a', 'background': '#0a1929', 'mainBkg': '#1e3a5f', 'nodeBorder': '#4a90d9', 'clusterBkg': '#0d2137', 'titleColor': '#ffffff', 'edgeLabelBackground': '#1e3a5f', 'fontFamily': 'monospace'}}}%%
+
+graph TB
+    CITIZEN(["👤 Citizen\n─────────\nVoice · Text · Upload"])
+
+    subgraph FRONTEND ["🖥️  FRONTEND LAYER — Vanilla JS"]
+        direction TB
+        UI["📱 UI Shell\nindex.html"]
+        VOICE_IN["🎙️ Speech Recognition\nvoice.js"]
+        API_MOD["🔌 API Module\napi.js"]
+        AUDIO_OUT["🔊 Audio Playback\nTTS Player"]
+    end
+
+    GATEWAY["⚡ FastAPI Server\nuvicorn · port 8080"]
+
+    subgraph AI_LAYER ["🤖  AI & PROCESSING LAYER"]
+        direction TB
+        INTENT["🧠 Intent Detection\nNova Lite · Fast"]
+        REASON["💡 Deep Reasoning\nNova Pro · Complex"]
+        TTS["🎵 Edge TTS Engine\n15+ Indian Languages"]
+        OCR["📷 OCR Pipeline\nPytesseract + Pillow"]
+    end
+
+    subgraph RAG_LAYER ["📚  RAG KNOWLEDGE LAYER"]
+        direction LR
+        EMBEDDER["🔢 Embedding Model\nText Vectorization"]
+        VECTOR_DB[("🗄️ Vector Store\nScheme Knowledge Base")]
+        RETRIEVER["🔍 Retriever\nSemantic Search"]
+    end
+
+    subgraph BEDROCK ["☁️  AWS BEDROCK — ap-south-1"]
+        NOVA_PRO["amazon.nova-pro-v1:0\n───────────────────\nReasoning · Summarization\nMultilingual Generation"]
+        NOVA_LITE["amazon.nova-lite-v1:0\n───────────────────\nIntent Classification\nFast Response"]
+    end
+
+    subgraph DATA_LAYER ["🗃️  DATA LAYER — Supabase"]
+        direction LR
+        AUTH["🔐 Auth\nJWT · Sessions"]
+        HISTORY[("💬 Chat History\nPostgreSQL")]
+        ANALYTICS[("📊 Analytics\nQuery Logs")]
+    end
+
+    subgraph INTEGRATIONS ["🔗  INTEGRATIONS"]
+        direction LR
+        WHATSAPP["💬 WhatsApp Bot\nBeta"]
+        ADMIN["🛡️ Admin Dashboard\nGov Stakeholders"]
+    end
+
+    CITIZEN -->|"🎤 Speaks / Types"| VOICE_IN
+    CITIZEN -->|"📄 Uploads Doc"| UI
+    VOICE_IN --> API_MOD
+    UI --> API_MOD
+    API_MOD -->|"REST API Request"| GATEWAY
+
+    GATEWAY -->|"Route Intent"| INTENT
+    GATEWAY -->|"Complex Query"| REASON
+    GATEWAY -->|"Document Image"| OCR
+    GATEWAY -->|"Generate Audio"| TTS
+
+    INTENT -->|"nova-lite"| NOVA_LITE
+    REASON -->|"nova-pro"| NOVA_PRO
+
+    GATEWAY -->|"Embed Query"| EMBEDDER
+    EMBEDDER --> VECTOR_DB
+    VECTOR_DB --> RETRIEVER
+    RETRIEVER -->|"Context Chunks"| NOVA_PRO
+
+    NOVA_PRO -->|"Generated Text"| TTS
+    NOVA_LITE -->|"Intent Label"| GATEWAY
+
+    GATEWAY <-->|"Auth Verify"| AUTH
+    GATEWAY <-->|"Read/Write History"| HISTORY
+    GATEWAY -->|"Log Query"| ANALYTICS
+
+    TTS -->|"Audio Stream"| AUDIO_OUT
+    AUDIO_OUT -->|"🔊 Spoken Response"| CITIZEN
+    GATEWAY -->|"Text Response"| API_MOD
+
+    GATEWAY <-->|"Webhook"| WHATSAPP
+    ANALYTICS --> ADMIN
+
+    classDef citizen fill:#FF9933,stroke:#FF6600,color:#000,font-weight:bold
+    classDef frontend fill:#1a4a7a,stroke:#4a90d9,color:#fff
+    classDef gateway fill:#0d5e40,stroke:#22c55e,color:#fff,font-weight:bold
+    classDef ai fill:#3b1f6e,stroke:#8b5cf6,color:#fff
+    classDef bedrock fill:#7a3000,stroke:#FF9900,color:#fff
+    classDef rag fill:#1a3a5c,stroke:#60a5fa,color:#fff
+    classDef data fill:#1a2f1a,stroke:#4ade80,color:#fff
+    classDef integration fill:#2d1a3a,stroke:#c084fc,color:#fff
+
+    class CITIZEN citizen
+    class UI,VOICE_IN,API_MOD,AUDIO_OUT frontend
+    class GATEWAY gateway
+    class INTENT,REASON,TTS,OCR ai
+    class NOVA_PRO,NOVA_LITE bedrock
+    class EMBEDDER,VECTOR_DB,RETRIEVER rag
+    class AUTH,HISTORY,ANALYTICS data
+    class WHATSAPP,ADMIN integration
 ```
 
 ---
 
 ## 🔄 Request Lifecycle
 
-> A single voice query — from Marathi speech to spoken audio response.
+> How a single voice query flows through the system — from speech to spoken response.
 
-```
-Citizen          Frontend           FastAPI          Supabase           Nova Lite       RAG            Nova Pro         Edge TTS
-   │                 │                  │                │                   │             │                │                │
-   │── Speaks in ───►│                  │                │                   │             │                │                │
-   │   Marathi       │                  │                │                   │             │                │                │
-   │                 │── STT (Browser)──┤                │                   │             │                │                │
-   │                 │   (text ready)   │                │                   │             │                │                │
-   │                 │── POST /ai/chat ─►                │                   │             │                │                │
-   │                 │   {text, lang,   │                │                   │             │                │                │
-   │                 │    user_id}      │                │                   │             │                │                │
-   │                 │                  │── Verify JWT ──►                   │             │                │                │
-   │                 │                  │                │── ✅ Authenticated─┤             │                │                │
-   │                 │                  │                │                   │             │                │                │
-   │                 │                  │── Classify ────────────────────────►             │                │                │
-   │                 │                  │   Intent       │                   │             │                │                │
-   │                 │                  │                │                   │─intent:────►│                │                │
-   │                 │                  │                │                   │ scheme_disc │                │                │
-   │                 │                  │                │                   │             │                │                │
-   │                 │                  │── Embed Query ─────────────────────────────────►│                │                │
-   │                 │                  │                │                   │             │── Top 3 ───────┤                │
-   │                 │                  │                │                   │             │   Chunks       │                │
-   │                 │                  │                │                   │             │                │                │
-   │                 │                  │── Generate ────────────────────────────────────────────────────►│                │
-   │                 │                  │   Response     │                   │             │                │                │
-   │                 │                  │   (nova-pro    │                   │             │                │── Marathi ─────┤
-   │                 │                  │    + context)  │                   │             │                │   Text         │
-   │                 │                  │                │                   │             │                │                │
-   │                 │                  │── TTS Synthesize───────────────────────────────────────────────────────────────►│
-   │                 │                  │   (mr-IN voice)│                   │             │                │                │
-   │                 │                  │                │                   │             │                │◄── Audio ──────┤
-   │                 │                  │                │                   │             │                │    Stream      │
-   │                 │                  │── Save History ►                   │             │                │                │
-   │                 │                  │                │                   │             │                │                │
-   │◄── 🔊 Spoken ───│◄── {text, audio}─┤                │                   │             │                │                │
-   │    Marathi      │                  │                │                   │             │                │                │
-   │    Response     │                  │                │                   │             │                │                │
+```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#1e3a5f', 'primaryTextColor': '#fff', 'primaryBorderColor': '#4a90d9', 'lineColor': '#4a90d9', 'background': '#0a1929', 'fontFamily': 'monospace'}}}%%
+
+sequenceDiagram
+    actor Citizen
+    participant Frontend as 🖥️ Frontend
+    participant API as ⚡ FastAPI
+    participant Auth as 🔐 Supabase Auth
+    participant Lite as 🧠 Nova Lite
+    participant RAG as 📚 RAG / VectorDB
+    participant Pro as 💡 Nova Pro
+    participant TTS as 🎵 Edge TTS
+
+    Citizen->>Frontend: Speaks query in Marathi
+    Frontend->>Frontend: Speech → Text (Browser API)
+    Frontend->>API: POST /ai/chat { text, lang, user_id }
+    API->>Auth: Verify JWT token
+    Auth-->>API: ✅ Authenticated
+
+    API->>Lite: Classify intent (nova-lite)
+    Lite-->>API: intent = "scheme_discovery"
+
+    API->>RAG: Embed query → semantic search
+    RAG-->>API: Top 3 relevant scheme chunks
+
+    API->>Pro: Generate response (nova-pro + context)
+    Pro-->>API: Structured Marathi response text
+
+    API->>TTS: Synthesize audio (mr-IN voice)
+    TTS-->>API: Audio stream (.mp3)
+
+    API->>Auth: Save to chat history
+    API-->>Frontend: { text_response, audio_url }
+    Frontend->>Citizen: 🔊 Plays spoken Marathi response
 ```
 
 ---
 
 ## 🗺️ Data Model
 
-> Core database entities powering Saarthi's personalized scheme recommendations and session management.
+> Core entities powering Saarthi's personalized scheme recommendations.
 
-```
-┌──────────────────────────────────────────────────────────────────────────────────┐
-│                          SUPABASE POSTGRESQL SCHEMA                             │
-└──────────────────────────────────────────────────────────────────────────────────┘
+```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#1e3a5f', 'primaryTextColor': '#fff', 'primaryBorderColor': '#4a90d9', 'lineColor': '#60a5fa', 'fontFamily': 'monospace'}}}%%
 
-  ┌─────────────────────────┐           ┌───────────────────────────┐
-  │         CITIZEN          │           │          SESSION           │
-  ├─────────────────────────┤           ├───────────────────────────┤
-  │ 🔑 id          UUID PK  │───────────│ 🔑 id         UUID PK     │
-  │    name        STRING   │    1:N    │ 🔗 citizen_id  UUID FK    │
-  │    state       STRING   │           │    messages    JSONB       │
-  │    language    STRING   │           │    language    STRING      │
-  │    age         INT      │           │    updated_at  TIMESTAMP  │
-  │    income_band STRING   │           └───────────────────────────┘
-  │    occupation  STRING   │
-  │    phone       STRING   │           ┌───────────────────────────┐
-  │    created_at  TIMESTAMP│           │         SCHEME             │
-  └─────────────────────────┘           ├───────────────────────────┤
-              │                         │ 🔑 id         UUID PK     │
-              │ 1:N                     │    name        STRING      │
-              ▼                         │    ministry    STRING      │
-  ┌─────────────────────────┐           │    category    STRING      │
-  │        QUERY_LOG         │           │    eligibility JSONB       │
-  ├─────────────────────────┤           │    benefit_type STRING     │
-  │ 🔑 id         UUID PK   │           │    languages   STRING[]    │
-  │ 🔗 citizen_id  UUID FK  │           │    embedding   VECTOR      │
-  │    query_text  STRING   │           └───────────────────────────┘
-  │    language    STRING   │
-  │    intent      STRING   │
-  │    resolved    BOOLEAN  │
-  │    logged_at   TIMESTAMP│
-  └─────────────────────────┘
+erDiagram
+    CITIZEN {
+        uuid      id           PK
+        string    name
+        string    state
+        string    language
+        int       age
+        string    income_band
+        string    occupation
+        string    phone
+        timestamp created_at
+    }
+
+    SESSION {
+        uuid      id           PK
+        uuid      citizen_id   FK
+        jsonb     messages
+        string    language
+        timestamp updated_at
+    }
+
+    SCHEME {
+        uuid      id           PK
+        string    name
+        string    ministry
+        string    category
+        jsonb     eligibility_criteria
+        string    benefit_type
+        string[]  languages
+        vector    embedding
+    }
+
+    QUERY_LOG {
+        uuid      id           PK
+        uuid      citizen_id   FK
+        string    query_text
+        string    language
+        string    intent
+        bool      resolved
+        timestamp logged_at
+    }
+
+    CITIZEN ||--o{ SESSION    : "has"
+    CITIZEN ||--o{ QUERY_LOG  : "generates"
+    SESSION }o--o{ SCHEME     : "references"
 ```
 
 **Entity Relationships:**
@@ -364,42 +452,26 @@ Citizen          Frontend           FastAPI          Supabase           Nova Lit
 
 ## 🛠️ Tech Stack
 
+<div align="center">
+
 ### Backend
 
 | Technology | Version | Purpose |
 |---|---|---|
-| **Python** | 3.10+ | Core backend runtime |
-| **FastAPI** | Latest | Async REST API framework |
-| **Uvicorn** | Latest | ASGI server (port 8080) |
-| **AWS Bedrock** | `ap-south-1` | LLM inference (Nova Pro + Nova Lite) |
-| **boto3** | Latest | AWS SDK for Python |
-| **Supabase** | Latest | Auth, PostgreSQL, real-time analytics |
-| **Edge TTS** | Latest | Microsoft multilingual voice synthesis |
-| **Pytesseract** | Latest | OCR engine for document analysis |
-| **Pillow** | Latest | Image preprocessing for OCR pipeline |
-| **python-jose** | Latest | JWT token handling |
-| **python-multipart** | Latest | File upload handling |
-| **asyncio** | Built-in | Async I/O for concurrent requests |
+| ![Python](https://img.shields.io/badge/-Python_3.10+-3776AB?style=flat-square&logo=python&logoColor=white) | **Python 3.10+** | Core backend runtime |
+| ![FastAPI](https://img.shields.io/badge/-FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white) | **FastAPI + Uvicorn** | Async REST API server |
+| ![AWS](https://img.shields.io/badge/-AWS_Bedrock-FF9900?style=flat-square&logo=amazonaws&logoColor=white) | **Nova Pro & Nova Lite** | LLM inference and intent detection |
+| ![Supabase](https://img.shields.io/badge/-Supabase-3ECF8E?style=flat-square&logo=supabase&logoColor=white) | **Supabase PostgreSQL** | Auth, sessions, analytics |
+| ![Vector](https://img.shields.io/badge/-Vector_DB-6366f1?style=flat-square&logo=databricks&logoColor=white) | **Custom Vector Store** | RAG knowledge retrieval |
+| ![Edge TTS](https://img.shields.io/badge/-Edge_TTS-0078d4?style=flat-square&logo=microsoft&logoColor=white) | **Microsoft Edge TTS** | Multilingual voice synthesis |
+| ![OCR](https://img.shields.io/badge/-Pytesseract-4caf50?style=flat-square&logo=python&logoColor=white) | **Pytesseract + Pillow** | Document OCR pipeline |
 
 ### Frontend
 
 | Technology | Version | Purpose |
 |---|---|---|
-| **HTML5** | — | Application shell (`index.html`) |
-| **CSS3** | — | Responsive design system (`styles.css`) |
-| **Vanilla JavaScript** | ES2022+ | Zero-dependency UI layer |
-| **Web Speech API** | Browser | Real-time speech-to-text recognition |
-| **Fetch API** | Browser | Backend communication (`api.js`) |
-| **Audio API** | Browser | TTS audio playback (`voice.js`) |
-
-### Infrastructure & Deployment
-
-| Service | Purpose |
-|---|---|
-| **Vercel** | Frontend deployment (CDN, edge functions) |
-| **AWS Bedrock** (`ap-south-1`) | LLM inference — Nova Pro & Nova Lite |
-| **Supabase** | Managed PostgreSQL + Auth + Realtime |
-| **Meta WhatsApp Cloud API** | WhatsApp Bot webhook integration |
+| ![JS](https://img.shields.io/badge/-Vanilla_JS-F7DF1E?style=flat-square&logo=javascript&logoColor=black) | **HTML5 / CSS3 / JS** | Zero-dependency frontend |
+| ![Vercel](https://img.shields.io/badge/-Vercel-000000?style=flat-square&logo=vercel&logoColor=white) | **Vercel** | Frontend deployment & CDN |
 
 ### AI/ML Models
 
@@ -410,15 +482,16 @@ Citizen          Frontend           FastAPI          Supabase           Nova Lit
 | Microsoft Edge TTS | — | Voice synthesis in 15+ Indian languages |
 | Pytesseract (Tesseract 5) | — | OCR on government documents and scanned PDFs |
 
+</div>
+
 ---
 
 ## 📂 Project Structure
 
-```
+```bash
 Saarthi-AI-Prototype/
 │
 ├── 📁 Backend/                          # Python / FastAPI Core
-│   │
 │   ├── 🐍 main.py                       # Application entry point
 │   │                                    #   - FastAPI app initialization
 │   │                                    #   - CORS middleware configuration
@@ -449,12 +522,12 @@ Saarthi-AI-Prototype/
 │   │                                    #   GET  /admin/languages  — Language distribution
 │   │
 │   ├── 📁 core/                         # Shared Infrastructure Clients
-│   │   ├── ☁️ bedrock_client.py          # AWS Bedrock connection & model invocation
+│   │   ├── ☁️  bedrock_client.py         # AWS Bedrock connection & model invocation
 │   │   │                                #   - Nova Pro inference
 │   │   │                                #   - Nova Lite intent classification
 │   │   │                                #   - Streaming response handling
 │   │   │
-│   │   └── 🗄️ supabase_client.py        # Supabase connection & query helpers
+│   │   └── 🗄️  supabase_client.py        # Supabase connection & query helpers
 │   │                                    #   - Auth verification
 │   │                                    #   - Chat history read/write
 │   │                                    #   - Query log insertion
@@ -473,7 +546,6 @@ Saarthi-AI-Prototype/
 │                                        #   - Embedding generation pipeline
 │
 ├── 📁 Frontend/                         # Static HTML / CSS / JS Interface
-│   │
 │   ├── 🌐 index.html                    # Application shell
 │   │                                    #   - Single-page application structure
 │   │                                    #   - Language selector component
@@ -482,7 +554,7 @@ Saarthi-AI-Prototype/
 │   │                                    #   - User profile panel
 │   │
 │   ├── 📁 JS/
-│   │   ├── 🎙️ voice.js                  # Speech Recognition & Audio Playback
+│   │   ├── 🎙️  voice.js                 # Speech Recognition & Audio Playback
 │   │   │                                #   - Web Speech API integration
 │   │   │                                #   - Language-aware STT configuration
 │   │   │                                #   - Audio stream management
@@ -508,8 +580,8 @@ Saarthi-AI-Prototype/
 │                                        #   - Dark/light mode variables
 │                                        #   - Accessibility styles
 │
-├── 📄 .gitignore                        # Git ignore rules (excludes .env, venv, __pycache__)
-├── 📄 requirements.txt                  # Python dependencies (pip install)
+├── 📄 .env.example                      # Environment variable template (safe to commit)
+├── 📄 requirements.txt                  # Python dependencies
 └── 📄 README.md                         # This file
 ```
 
@@ -537,8 +609,8 @@ sudo apt-get install tesseract-ocr tesseract-ocr-hin tesseract-ocr-mar
 # macOS
 brew install tesseract
 
-# Windows
-# Download installer from: https://github.com/UB-Mannheim/tesseract/wiki
+# Windows — download installer from:
+# https://github.com/UB-Mannheim/tesseract/wiki
 ```
 
 ---
@@ -549,8 +621,6 @@ brew install tesseract
 git clone https://github.com/ompatilm4-web/Saarthi-AI-Prototype-.git
 cd Saarthi-AI-Prototype-/Backend
 ```
-
----
 
 ### Step 2 — Create & Activate Virtual Environment
 
@@ -567,8 +637,6 @@ source venv/bin/activate
 venv\Scripts\activate.bat
 ```
 
----
-
 ### Step 3 — Install Dependencies
 
 ```bash
@@ -584,17 +652,13 @@ Key packages installed:
 - `python-jose[cryptography]` — JWT handling
 - `python-multipart` — File upload support
 
----
-
 ### Step 4 — Configure Environment Variables
 
 ```bash
 cp .env.example .env
 ```
 
-Then edit `.env` with your credentials (see [Environment Variables](#-environment-variables) section below).
-
----
+> See the [Environment Variables](#-environment-variables) section below for all required values.
 
 ### Step 5 — Seed the Knowledge Base *(Optional but recommended)*
 
@@ -602,9 +666,7 @@ Then edit `.env` with your credentials (see [Environment Variables](#-environmen
 python seed/schemes_data.py
 ```
 
-This populates the vector knowledge base with 100+ government scheme documents and pre-computes embeddings.
-
----
+Populates the vector knowledge base with 100+ government scheme documents and pre-computes embeddings.
 
 ### Step 6 — Start the Backend Server
 
@@ -615,34 +677,32 @@ uvicorn main:app --reload --port 8080
 | Endpoint | URL |
 |---|---|
 | 🔌 API Base | `http://localhost:8080` |
-| 📖 Swagger UI | `http://localhost:8080/docs` |
+| 📖 Swagger Docs | `http://localhost:8080/docs` |
 | 📘 ReDoc | `http://localhost:8080/redoc` |
 | 💓 Health Check | `http://localhost:8080/health` |
-
----
 
 ### Step 7 — Launch the Frontend
 
 ```bash
 cd ../Frontend
 
-# Option A: Using npx serve (recommended)
+# Option A: npx serve (recommended)
 npx serve .
 
-# Option B: Using Python's built-in server
+# Option B: Python built-in server
 python -m http.server 3000
 
-# Option C: Open directly in browser
+# Option C: Open directly
 open index.html
 ```
 
-Navigate to `http://localhost:3000` (or the serve URL) to use the application.
+> ⚠️ **Security**: Never commit your `.env` file. It is excluded via `.gitignore` by default.
 
 ---
 
 ## 🌐 Environment Variables
 
-Create a `.env` file in the `Backend/` directory with the following variables:
+Create a `.env` file in the `Backend/` directory:
 
 ```env
 # ── Server Configuration ─────────────────────────────────────────────────
@@ -675,7 +735,7 @@ WHATSAPP_VERIFY_TOKEN=your_webhook_verify_token
 WHATSAPP_PHONE_NUMBER_ID=your_phone_number_id
 ```
 
-> ⚠️ **Security Warning:** Never commit your `.env` file. It is already listed in `.gitignore`. Use environment secrets in production (Vercel, AWS Secrets Manager, etc.).
+> ⚠️ **Security Warning:** Never commit `.env`. Use environment secrets in production (Vercel dashboard, AWS Secrets Manager, etc.).
 
 ---
 
@@ -683,7 +743,7 @@ WHATSAPP_PHONE_NUMBER_ID=your_phone_number_id
 
 ### Authentication (`/auth`)
 
-| Method | Endpoint | Description | Auth Required |
+| Method | Endpoint | Description | Auth |
 |---|---|---|---|
 | `POST` | `/auth/register` | Register new citizen | ❌ |
 | `POST` | `/auth/login` | Login and receive JWT | ❌ |
@@ -692,7 +752,7 @@ WHATSAPP_PHONE_NUMBER_ID=your_phone_number_id
 
 ### AI Chat & Voice (`/ai`)
 
-| Method | Endpoint | Description | Auth Required |
+| Method | Endpoint | Description | Auth |
 |---|---|---|---|
 | `POST` | `/ai/chat` | Send text/voice query, receive AI response | ✅ |
 | `POST` | `/ai/voice` | Generate TTS audio for given text + language | ✅ |
@@ -700,7 +760,7 @@ WHATSAPP_PHONE_NUMBER_ID=your_phone_number_id
 | `GET` | `/ai/history` | Retrieve conversation history | ✅ |
 | `DELETE` | `/ai/history` | Clear conversation history | ✅ |
 
-**`POST /ai/chat` Request Body:**
+**`POST /ai/chat` — Request:**
 ```json
 {
   "text": "पीएम किसान योजना के लिए मैं पात्र हूं?",
@@ -715,7 +775,7 @@ WHATSAPP_PHONE_NUMBER_ID=your_phone_number_id
 }
 ```
 
-**`POST /ai/chat` Response:**
+**`POST /ai/chat` — Response:**
 ```json
 {
   "text_response": "हाँ, आप PM-KISAN योजना के लिए पात्र हो सकते हैं...",
@@ -728,7 +788,7 @@ WHATSAPP_PHONE_NUMBER_ID=your_phone_number_id
 
 ### Scheme Discovery (`/schemes`)
 
-| Method | Endpoint | Description | Auth Required |
+| Method | Endpoint | Description | Auth |
 |---|---|---|---|
 | `GET` | `/schemes/` | List all schemes (paginated) | ❌ |
 | `GET` | `/schemes/search?q=...` | Semantic search + profile filter | ✅ |
@@ -737,7 +797,7 @@ WHATSAPP_PHONE_NUMBER_ID=your_phone_number_id
 
 ### Admin Analytics (`/admin`)
 
-| Method | Endpoint | Description | Auth Required |
+| Method | Endpoint | Description | Auth |
 |---|---|---|---|
 | `GET` | `/admin/analytics` | Dashboard metrics (queries, languages, trends) | ✅ Admin |
 | `GET` | `/admin/queries` | Paginated query log with resolution status | ✅ Admin |
@@ -755,33 +815,35 @@ WHATSAPP_PHONE_NUMBER_ID=your_phone_number_id
 
 ## 🗺️ Roadmap
 
-### ✅ Completed (v1.0 — Current)
+```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#1e3a5f', 'primaryTextColor': '#fff', 'primaryBorderColor': '#4a90d9', 'lineColor': '#4a90d9', 'fontFamily': 'monospace'}}}%%
 
-- [x] Voice chat engine with 15+ Indian language support
-- [x] AWS Bedrock Nova Pro + Nova Lite dual-model integration
-- [x] Profile-based scheme discovery with RAG pipeline
-- [x] Legal document OCR + AI summarization
-- [x] Admin analytics dashboard (trending queries, language map, failed queries)
-- [x] JWT authentication with Supabase
-- [x] Persistent multi-turn conversation history
-- [x] Vanilla JS frontend hosted on Vercel
-- [x] Core RAG vector knowledge base
+timeline
+    title Saarthi AI — Development Milestones
 
-### 🔄 In Progress (v1.1)
+    section ✅ Completed
+        Voice Chat Engine         : Multilingual input in 15+ Indian languages
+        Scheme Discovery          : Profile-based eligibility filtering
+        Legal OCR Analysis        : Document summarization pipeline
+        Admin Dashboard           : Analytics for government stakeholders
+        Core RAG Pipeline         : Vector knowledge base with semantic search
 
-- [ ] WhatsApp Bot — low-latency bot for feature phones (Beta testing)
-- [ ] Expanded Scheme Coverage — scaling from 100 to 500+ schemes
-- [ ] Improved OCR accuracy for regional language documents
+    section 🔄 In Progress
+        WhatsApp Bot              : Low-latency bot for feature phones
+        Expanded Scheme Coverage  : Scaling from 100 to 500+ schemes
 
-### 🔮 Upcoming (v2.0)
+    section 🔮 Upcoming
+        Offline Mode              : Low-bandwidth and offline-first support
+        Aadhaar Autofill          : Profile population via Aadhaar verification
+        React Native App          : Native mobile application for iOS and Android
+        Voice Biometrics          : Speaker identification for secure sessions
+```
 
-- [ ] **Offline Mode** — Service Worker + cached responses for low-bandwidth areas
-- [ ] **Aadhaar Autofill** — Profile population via DigiLocker / Aadhaar verification API
-- [ ] **React Native App** — Native mobile application for iOS and Android
-- [ ] **Voice Biometrics** — Speaker identification for secure, passwordless login
+**v2.0 Planned Features:**
 - [ ] **Grievance Filing** — Direct integration with state government grievance portals
 - [ ] **Sarpanch Dashboard** — Village-level admin panel for gram panchayat officials
 - [ ] **Multi-Agent System** — Specialized agents per ministry (Agriculture, Education, Health)
+- [ ] **Improved OCR** — Higher accuracy for regional-language scanned documents
 
 ---
 
@@ -789,11 +851,17 @@ WHATSAPP_PHONE_NUMBER_ID=your_phone_number_id
 
 We are **building for a billion voices** — contributions are welcome and deeply valued.
 
+<p align="center">
+  <img src="https://img.shields.io/github/contributors/ompatilm4-web/Saarthi-AI-Prototype-?style=flat-square&color=22c55e" alt="Contributors"/>
+  <img src="https://img.shields.io/github/issues-raw/ompatilm4-web/Saarthi-AI-Prototype-?style=flat-square&color=ef4444" alt="Open Issues"/>
+  <img src="https://img.shields.io/badge/PRs-Welcome-brightgreen?style=flat-square&logo=github" alt="PRs Welcome"/>
+</p>
+
 ### Areas Needing Help
 
 | Area | Description |
 |---|---|
-| 🌍 **Localized Datasets** | Scheme data and translations in underrepresented regional languages (Santali, Bodo, Dogri, Kashmiri) |
+| 🌍 **Localized Datasets** | Scheme data and translations in underrepresented languages (Santali, Bodo, Dogri, Kashmiri) |
 | 🎙️ **Voice Quality** | Improved TTS prosody and accent naturalness for regional dialects |
 | ♿ **Accessibility** | Screen reader support, motor impairment adaptations, low-vision UI |
 | 🧪 **Test Coverage** | Unit and integration tests for API routes, AI pipelines, and OCR accuracy |
@@ -819,12 +887,7 @@ git commit -m "feat: add Malayalam TTS support"
 git push origin feature/your-feature-name
 ```
 
-**Commit Convention:** Follow [Conventional Commits](https://www.conventionalcommits.org/):
-- `feat:` — new feature
-- `fix:` — bug fix
-- `docs:` — documentation
-- `test:` — test coverage
-- `chore:` — maintenance
+> Follow [Conventional Commits](https://www.conventionalcommits.org/): `feat:`, `fix:`, `docs:`, `chore:`, `test:` prefixes required.
 
 **Pull Request Checklist:**
 - [ ] Feature branch from `main`
@@ -849,7 +912,9 @@ You are free to use, modify, and distribute this software for any purpose, inclu
 
 **Built with purpose, for every citizen of India** 🇮🇳
 
-*If Saarthi helped you or inspired your work, please consider giving it a* ⭐
+*If Saarthi helped you or inspired your work, consider giving it a* ⭐
+
+<br/>
 
 [![Made with ❤️ in India](https://img.shields.io/badge/Made_with_❤️_in-India-FF9933?style=for-the-badge)](https://github.com/ompatilm4-web/Saarthi-AI-Prototype-)
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen?style=for-the-badge&logo=github)](https://github.com/ompatilm4-web/Saarthi-AI-Prototype-/pulls)
